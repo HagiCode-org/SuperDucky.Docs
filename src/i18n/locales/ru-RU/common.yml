@@ -1,0 +1,19 @@
+languageSelect:
+  currentLocaleLabel: Текущий язык
+  rootOptionLabel: 简体中文
+  englishOptionLabel: English
+  dialogTitle: Выбрать язык
+  closeLabel: Закрыть выбор языка
+  selectedState: Выбрано
+footer:
+  blogLink: 'Блог'
+aiDisclosure:
+  translation:
+    label: AI-перевод
+    title: Эта страница переведена с оригинала на упрощённом китайском языке с помощью ИИ.
+    description: Обратитесь к оригиналу, если нужно проверить формулировки, технические нюансы или последние обновления.
+    viewOriginal: Открыть оригинал на упрощённом китайском
+  author:
+    label: Участие ИИ
+    title: ИИ помогал в написании, редактировании или проверке этой страницы.
+    description: Внимательно оценивайте важные детали и при необходимости сверяйте критические решения с первоисточниками.

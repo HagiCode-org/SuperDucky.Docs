@@ -1,0 +1,23 @@
+plugin:
+  title: Blog
+ui:
+  starlightBlog.authors.count_one: '{{count}} article de {{author}}'
+  starlightBlog.authors.count_other: '{{count}} articles de {{author}}'
+  starlightBlog.metrics.readingTime.minutes: ' - {{count}} min de lecture'
+  starlightBlog.metrics.words_one: ' - {{count}} mot'
+  starlightBlog.metrics.words_other: ' - {{count}} mots'
+  starlightBlog.pagination.prev: 'Articles plus récents'
+  starlightBlog.pagination.next: 'Articles plus anciens'
+  starlightBlog.post.date: '{{date, datetime(dateStyle: medium)}}'
+  starlightBlog.post.lastUpdate: ' - Dernière mise à jour : <time datetime="{{isoDate}}">{{date, datetime(dateStyle: medium)}}</time>'
+  starlightBlog.post.draft: 'Brouillon'
+  starlightBlog.post.featured: 'À la une'
+  starlightBlog.post.tags: 'Étiquettes :'
+  starlightBlog.sidebar.all: 'Tous les articles'
+  starlightBlog.sidebar.featured: 'Articles à la une'
+  starlightBlog.sidebar.recent: 'Articles récents'
+  starlightBlog.sidebar.tags: 'Étiquettes'
+  starlightBlog.sidebar.authors: 'Auteurs'
+  starlightBlog.sidebar.rss: RSS
+  starlightBlog.tags.count_one: '{{count}} article avec l''étiquette « {{tag}} »'
+  starlightBlog.tags.count_other: '{{count}} articles avec l''étiquette « {{tag}} »'

@@ -1,0 +1,7 @@
+site:
+  title: SuperDucky Docs
+  description: SuperDucky 제품 문서, 설치 가이드, 릴리스 노트, 블로그 글.
+social:
+  githubRepository: 'GitHub 저장소'
+languageSelect:
+  accessibleLabel: '언어 선택'

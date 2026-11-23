@@ -1,0 +1,7 @@
+site:
+  title: SuperDucky Docs
+  description: SuperDucky 产品文档，包含安装指南、版本更新说明与博客文章，帮助你快速上手并了解最新变化。
+social:
+  githubRepository: GitHub 仓库
+languageSelect:
+  accessibleLabel: 选择语言

@@ -1,0 +1,7 @@
+site:
+  title: SuperDucky Docs
+  description: Documentation SuperDucky, guides d’installation, notes de version et articles de blog.
+social:
+  githubRepository: 'Dépôt GitHub'
+languageSelect:
+  accessibleLabel: 'Sélectionner la langue'

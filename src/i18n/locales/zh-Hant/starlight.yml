@@ -1,0 +1,7 @@
+site:
+  title: SuperDucky Docs
+  description: SuperDucky 產品文件、安裝指南、版本更新說明與部落格。
+social:
+  githubRepository: 'GitHub 儲存庫'
+languageSelect:
+  accessibleLabel: '選擇語言'

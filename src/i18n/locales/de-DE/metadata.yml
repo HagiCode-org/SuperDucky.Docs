@@ -1,0 +1,98 @@
+locales:
+  root:
+    sourceLocale: zh-CN
+    routeLocale: root
+    label: 简体中文
+    lang: zh-CN
+    htmlLang: zh-CN
+    direction: ltr
+  en-US:
+    sourceLocale: en-US
+    routeLocale: en-US
+    label: English
+    lang: en-US
+    htmlLang: en-US
+    direction: ltr
+  zh-Hant:
+    sourceLocale: zh-Hant
+    routeLocale: zh-Hant
+    label: 繁體中文
+    lang: zh-Hant
+    htmlLang: zh-Hant
+    direction: ltr
+  fr-FR:
+    sourceLocale: fr-FR
+    routeLocale: fr-FR
+    label: Français
+    lang: fr-FR
+    htmlLang: fr-FR
+    direction: ltr
+  de-DE:
+    sourceLocale: de-DE
+    routeLocale: de-DE
+    label: Deutsch
+    lang: de-DE
+    htmlLang: de-DE
+    direction: ltr
+  es-ES:
+    sourceLocale: es-ES
+    routeLocale: es-ES
+    label: Español (España)
+    lang: es-ES
+    htmlLang: es-ES
+    direction: ltr
+  ja-JP:
+    sourceLocale: ja-JP
+    routeLocale: ja-JP
+    label: 日本語
+    lang: ja-JP
+    htmlLang: ja-JP
+    direction: ltr
+  ko-KR:
+    sourceLocale: ko-KR
+    routeLocale: ko-KR
+    label: 한국어
+    lang: ko-KR
+    htmlLang: ko-KR
+    direction: ltr
+  pt-BR:
+    sourceLocale: pt-BR
+    routeLocale: pt-BR
+    label: Português (Brasil)
+    lang: pt-BR
+    htmlLang: pt-BR
+    direction: ltr
+  ru-RU:
+    sourceLocale: ru-RU
+    routeLocale: ru-RU
+    label: Русский
+    lang: ru-RU
+    htmlLang: ru-RU
+    direction: ltr
+aliases:
+  zh: root
+  zh-CN: root
+  zh-Hans: root
+  zh-SG: root
+  root: root
+  en: en-US
+  en-US: en-US
+  en-us: en-US
+  zh-Hant: zh-Hant
+  zh-TW: zh-Hant
+  zh-HK: zh-Hant
+  zh-MO: zh-Hant
+  fr: fr-FR
+  fr-FR: fr-FR
+  de: de-DE
+  de-DE: de-DE
+  es: es-ES
+  es-ES: es-ES
+  ja: ja-JP
+  ja-JP: ja-JP
+  ko: ko-KR
+  ko-KR: ko-KR
+  pt: pt-BR
+  pt-BR: pt-BR
+  ru: ru-RU
+  ru-RU: ru-RU
