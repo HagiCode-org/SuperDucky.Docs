@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "origin": "https://img-gen.hagicode.com",
+    "reference": "repos/gallery/src/config/albums.ts (album list, read only); cat-head-gallery index.json read at import time",
+    "audit": "openspec/changes/integrate-r2-images-across-docs-site-and-hagilight; album audit2 (2026-10-22) replaces the hero-avatars audit"
+  },
+  "budgets": {
+    "perImageBytes": 40960,
+    "totalBytes": 98304
+  },
+  "entries": [
+    {
+      "id": "product-overview-lead",
+      "surface": "ProductOverviewLead",
+      "component": "src/components/ProductOverviewLead.astro",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g022-blueprint-03.avif",
+      "file": "src/assets/r2/cat-head-gallery/g022-blueprint-03.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 23845,
+      "sha256": "f4b0df21af3b979d3355859991361c3f748e62b1debc1ad8add5facc30a81e30",
+      "contentType": "image/avif",
+      "transforms": [
+        "original AVIF bytes, unmodified",
+        "Astro Picture: AVIF and WebP at 144 and 288 px"
+      ],
+      "decorative": true,
+      "alt": null,
+      "audit": {
+        "verdict": "adopted",
+        "checkedOn": "2026-10-22",
+        "notes": "Cat head, blueprint art style, text-free, square; default for the product overview lead. Not a Hagilight default: the footer default is g001-flat-vector-01 and the showcase default is g067-pixar-style-3d-02, both excluded from this pool. Pool from cat-head-pool.json (audit2, 2026-10-22): every pool key is <= 40 KiB and was reviewed on labelled contact sheets; no visible text, third-party mark, real face or retired channel."
+      },
+      "pool": {
+        "album": "cat-head-gallery",
+        "maxBytes": 40960,
+        "indexUpdatedAt": "2026-10-21T01:17:37.109Z",
+        "keys": [
+          "g002-ukiyo-e-01",
+          "g003-watercolor-wash-02",
+          "g004-pixel-art-03",
+          "g005-oil-impasto-06",
+          "g006-paper-cut-layers-07",
+          "g008-low-poly-07",
+          "g009-claymation-07",
+          "g010-neon-line-07",
+          "g016-bauhaus-geometry-06",
+          "g017-cyanotype-06",
+          "g020-origami-03",
+          "g023-chalk-pastel-10",
+          "g025-voxel-03",
+          "g031-illuminated-manuscript-04",
+          "g034-vaporwave-04",
+          "g035-synthwave-chrome-09",
+          "g038-frosted-glass-02",
+          "g039-needle-felt-09",
+          "g041-glossy-balloon-05",
+          "g042-blue-white-porcelain-05",
+          "g043-glazed-ceramic-06",
+          "g045-impressionist-08",
+          "g047-fauvist-09",
+          "g048-cubist-10",
+          "g051-naive-folk-art-07",
+          "g056-wax-print-fabric-07",
+          "g058-red-paper-cut-10",
+          "g060-kawaii-pastel-01",
+          "g061-retro-90s-anime-01",
+          "g062-shoujo-sparkle-08",
+          "g065-saturday-cartoon-09",
+          "g067-pixar-style-3d-03",
+          "g068-toon-shaded-3d-04",
+          "g069-ps1-lowpoly-06",
+          "g070-matte-clay-render-07",
+          "g071-y2k-chrome-08",
+          "g072-glossy-3d-icon-08",
+          "g073-marble-bust-08",
+          "g075-wood-carving-10",
+          "g076-carved-jade-10",
+          "g078-toy-brick-02",
+          "g079-designer-vinyl-toy-02",
+          "g081-patchwork-quilt-03",
+          "g083-warhol-silkscreen-04",
+          "g088-vintage-lithograph-02",
+          "g090-alcohol-marker-09",
+          "g091-painterly-concept-art-09",
+          "g092-gradient-minimal-09",
+          "g095-constellation-map-09"
+        ]
+      }
+    },
+    {
+      "id": "blog-cta-avatar",
+      "surface": "BlogCtaBlock",
+      "component": "src/components/BlogCtaBlock.astro",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g043-glazed-ceramic-06.avif",
+      "file": "src/assets/r2/cat-head-gallery/g043-glazed-ceramic-06.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 11086,
+      "sha256": "878d5dee896212f697bc8cb44271aa8251f2fb929ec6f72075dd5ddf81078cdf",
+      "contentType": "image/avif",
+      "transforms": [
+        "original AVIF bytes, unmodified",
+        "Astro Picture: AVIF and WebP at 160 and 320 px"
+      ],
+      "decorative": true,
+      "alt": null,
+      "audit": {
+        "verdict": "adopted",
+        "checkedOn": "2026-10-22",
+        "notes": "Cat head, glazed-ceramic art style, text-free, square; restrained default for the blog call to action. Not a Hagilight default: the footer default is g001-flat-vector-01 and the showcase default is g067-pixar-style-3d-02, both excluded from this pool. Pool from cat-head-pool.json (audit2, 2026-10-22): every pool key is <= 40 KiB and was reviewed on labelled contact sheets; no visible text, third-party mark, real face or retired channel."
+      },
+      "pool": {
+        "album": "cat-head-gallery",
+        "maxBytes": 40960,
+        "indexUpdatedAt": "2026-10-21T01:17:37.109Z",
+        "keys": [
+          "g002-ukiyo-e-01",
+          "g003-watercolor-wash-02",
+          "g004-pixel-art-03",
+          "g005-oil-impasto-06",
+          "g006-paper-cut-layers-07",
+          "g008-low-poly-07",
+          "g009-claymation-07",
+          "g010-neon-line-07",
+          "g016-bauhaus-geometry-06",
+          "g017-cyanotype-06",
+          "g020-origami-03",
+          "g022-blueprint-03",
+          "g023-chalk-pastel-10",
+          "g025-voxel-03",
+          "g031-illuminated-manuscript-04",
+          "g034-vaporwave-04",
+          "g035-synthwave-chrome-09",
+          "g038-frosted-glass-02",
+          "g039-needle-felt-09",
+          "g041-glossy-balloon-05",
+          "g042-blue-white-porcelain-05",
+          "g045-impressionist-08",
+          "g047-fauvist-09",
+          "g048-cubist-10",
+          "g051-naive-folk-art-07",
+          "g056-wax-print-fabric-07",
+          "g058-red-paper-cut-10",
+          "g060-kawaii-pastel-01",
+          "g061-retro-90s-anime-01",
+          "g062-shoujo-sparkle-08",
+          "g065-saturday-cartoon-09",
+          "g067-pixar-style-3d-03",
+          "g068-toon-shaded-3d-04",
+          "g069-ps1-lowpoly-06",
+          "g070-matte-clay-render-07",
+          "g071-y2k-chrome-08",
+          "g072-glossy-3d-icon-08",
+          "g073-marble-bust-08",
+          "g075-wood-carving-10",
+          "g076-carved-jade-10",
+          "g078-toy-brick-02",
+          "g079-designer-vinyl-toy-02",
+          "g081-patchwork-quilt-03",
+          "g083-warhol-silkscreen-04",
+          "g088-vintage-lithograph-02",
+          "g090-alcohol-marker-09",
+          "g091-painterly-concept-art-09",
+          "g092-gradient-minimal-09",
+          "g095-constellation-map-09"
+        ]
+      }
+    }
+  ],
+  "unchangedSurfaces": [
+    {
+      "surface": "BlogFooterAd",
+      "component": "src/components/BlogFooterAd.astro",
+      "reason": "Its only image slot holds the campaign promo.image, which must keep its own art; no image is added to it."
+    },
+    {
+      "surface": "StructuredArticleFooter",
+      "component": "src/components/StructuredArticleFooter.astro",
+      "reason": "No image slot: the install aside and the related-link pills are text only."
+    },
+    {
+      "surface": "FeatureIndex",
+      "component": "src/components/FeatureIndex.astro",
+      "reason": "A numbered index of text links; an image per row would clutter it and no slot exists."
+    },
+    {
+      "surface": "ReleaseNotesLanding",
+      "component": "src/components/ReleaseNotesLanding.astro",
+      "reason": "The only empty-state branch has no image slot, and it is never rendered while release notes exist; an image there would never show."
+    },
+    {
+      "surface": "Starlight 404",
+      "component": "starlight (built-in NotFound page)",
+      "reason": "Docs uses the built-in Starlight 404 with no custom component; a custom page would add a component outside this change."
+    }
+  ]
+}
