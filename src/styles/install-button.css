@@ -1,0 +1,919 @@
+/**
+ * InstallButton 组件样式 - 文档站点版本
+ * 与营销站点保持一致的视觉效果
+ */
+
+/* ==========================================================================
+   安装按钮容器
+   ========================================================================== */
+
+.install-button-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+  --install-segment-gap: 0.375rem;
+  --install-segment-radius: 0.875rem;
+  --install-segment-shell-bg: rgba(251, 252, 254, 0.9);
+  --install-segment-shell-border: rgba(214, 222, 232, 0.95);
+  --install-segment-shell-shadow: 0 10px 24px rgba(37, 99, 235, 0.12);
+  --install-segment-surface-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+  --install-segment-surface-shadow-hover: 0 12px 24px rgba(37, 99, 235, 0.16);
+  --install-segment-focus-ring: rgba(59, 130, 246, 0.45);
+}
+
+.split-button-container {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+/* 紧凑模式 - Header 导航栏使用 */
+.install-button-wrapper--compact .split-button-container {
+  min-height: 40px;
+}
+
+.split-button-container--segmented {
+  gap: var(--install-segment-gap);
+  overflow: visible;
+  padding: 0.25rem;
+  border-radius: calc(var(--install-segment-radius) + 0.25rem);
+  border: 1px solid var(--install-segment-shell-border);
+  background: var(--install-segment-shell-bg);
+  box-shadow: var(--install-segment-shell-shadow);
+}
+
+/* ==========================================================================
+   主下载按钮
+   ========================================================================== */
+
+.install-button-primary-actions {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.install-button-primary-actions--grouped {
+  gap: var(--install-segment-gap);
+}
+
+.btn-download-source {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1 1 0;
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  min-width: 0;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+.btn-download-source--accelerated {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 2px 8px rgba(74, 144, 217, 0.18);
+}
+
+.btn-download-source--github {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-color: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+.btn-download-source--windows-store {
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.24), transparent 58%),
+    linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #2563eb 100%);
+  border-color: rgba(96, 165, 250, 0.3);
+  box-shadow: 0 2px 8px rgba(29, 78, 216, 0.18);
+}
+
+.btn-download-source--steam {
+  background:
+    radial-gradient(circle at top left, rgba(102, 192, 244, 0.28), transparent 56%),
+    linear-gradient(135deg, #171a21 0%, #1b2838 58%, #2a475e 100%);
+  border-color: rgba(102, 192, 244, 0.3);
+  box-shadow: 0 2px 8px rgba(18, 24, 34, 0.18);
+}
+
+.install-button-wrapper--compact .btn-download-source {
+  min-height: 40px;
+  font-size: 0.9375rem;
+  border-radius: var(--install-segment-radius);
+}
+
+.split-button-container--segmented .btn-download-source,
+.split-button-container--segmented .btn-download-source--steam-shortcut,
+.split-button-container--segmented .btn-dropdown-toggle {
+  box-shadow: none;
+}
+
+.split-button-container--segmented .install-button-primary-actions--grouped .btn-download-source {
+  border-radius: var(--install-segment-radius);
+  border-right: 1px solid transparent;
+  box-shadow: var(--install-segment-surface-shadow);
+}
+
+.split-button-container--segmented .install-button-primary-actions--grouped {
+  flex: 2 1 0;
+}
+
+.split-button-container--segmented .install-button-primary-actions--grouped .btn-download-source:first-child {
+  border-top-left-radius: var(--install-segment-radius);
+  border-bottom-left-radius: var(--install-segment-radius);
+}
+
+.split-button-container--segmented .btn-download-source--steam-shortcut {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: var(--install-segment-radius);
+  border-right: 1px solid rgba(102, 192, 244, 0.3);
+  box-shadow: var(--install-segment-surface-shadow);
+}
+
+.split-button-container--segmented .btn-download-source--store-shortcut {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: var(--install-segment-radius);
+  border-right: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.split-button-container--segmented .btn-download-source--store-shortcut-last {
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+}
+
+.ms-store-badge-slot {
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 0;
+  min-height: 40px;
+  border-radius: var(--install-segment-radius);
+  overflow: hidden;
+  box-shadow: var(--install-segment-surface-shadow);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.ms-store-badge-slot--compact {
+  margin-left: 0;
+}
+
+.ms-store-badge-slot:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--install-segment-surface-shadow-hover);
+}
+
+.ms-store-badge-element {
+  display: block;
+  height: 100%;
+}
+
+.split-button-container--segmented .btn-download-source--steam-shortcut-last {
+  border-top-right-radius: var(--install-segment-radius);
+  border-bottom-right-radius: var(--install-segment-radius);
+}
+
+.btn-download-source:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(74, 144, 217, 0.2);
+}
+
+.btn-download-source-disabled {
+  animation: none;
+  cursor: not-allowed;
+  opacity: 0.75;
+  box-shadow: none;
+  transform: none;
+  background: linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%);
+  border-color: rgba(148, 163, 184, 0.24);
+}
+
+.btn-download-source-disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background-position: 0 50%;
+}
+
+.btn-download-source-loading {
+  opacity: 0.82;
+  cursor: not-allowed;
+}
+
+.btn-download-source-loading .btn-text {
+  opacity: 0.96;
+}
+
+/* 按钮波动渐变动画 */
+@keyframes install-button-gradient-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.download-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.btn-text {
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   下拉切换按钮
+   ========================================================================== */
+
+.btn-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 高饱和度渐变填充背景 */
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  border: none;
+  border-left: none;
+  color: #ffffff !important;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  padding: 0 0.875rem;
+  /* 波动渐变动画 */
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+.install-button-wrapper--compact .btn-dropdown-toggle {
+  min-height: 40px;
+}
+
+.split-button-container--segmented .btn-dropdown-toggle {
+  min-width: 36px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--install-segment-radius);
+  box-shadow: var(--install-segment-surface-shadow);
+}
+
+.split-button-container--segmented .btn-download-source:hover,
+.split-button-container--segmented .btn-dropdown-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--install-segment-surface-shadow-hover);
+}
+
+.btn-dropdown-toggle:hover {
+  background-position: 100% 50%;
+}
+
+.btn-download-source:focus-visible,
+.btn-dropdown-toggle:focus-visible,
+.ms-store-badge-slot:focus-within {
+  outline: 2px solid var(--install-segment-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   状态提示
+   ========================================================================== */
+
+.install-button-status {
+  max-width: min(40rem, 90vw);
+  margin: 0;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.install-button-wrapper--compact .install-button-status {
+  max-width: min(26rem, 90vw);
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.install-button-status--info {
+  color: #0f4c81;
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.install-button-status--warning {
+  color: #8a4b08;
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+.install-button-status--error {
+  color: #9f1239;
+  background: rgba(244, 63, 94, 0.1);
+  border-color: rgba(244, 63, 94, 0.24);
+}
+
+.install-button-status-detail {
+  display: block;
+  margin-top: 0.25rem;
+  opacity: 0.88;
+  word-break: break-word;
+}
+
+.install-button-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 0.75rem;
+}
+
+.install-button-action-link,
+.install-button-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  padding: 0 0.875rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.install-button-action-button {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   下拉菜单
+   ========================================================================== */
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  --dropdown-surface: #ffffff;
+  --dropdown-surface-strong: #f8fafc;
+  --dropdown-border: rgba(148, 163, 184, 0.34);
+  --dropdown-header-divider: rgba(148, 163, 184, 0.18);
+  --dropdown-header-badge-surface: rgba(248, 250, 252, 0.94);
+  --dropdown-header-badge-border: rgba(148, 163, 184, 0.28);
+  --dropdown-header-badge-text: var(--sl-color-gray-1);
+  --dropdown-shadow: none;
+  --dropdown-header-surface: #f8fafc;
+  --dropdown-header-text: var(--sl-color-gray-2);
+  --dropdown-card-surface: #ffffff;
+  --dropdown-card-border: rgba(148, 163, 184, 0.28);
+  --dropdown-card-shadow: none;
+  --dropdown-card-hover-surface: #f8fbff;
+  --dropdown-card-hover-border: rgba(59, 130, 246, 0.32);
+  --dropdown-card-hover-shadow: none;
+  --dropdown-text: var(--sl-color-gray-1);
+  --dropdown-muted: var(--sl-color-gray-2);
+  --dropdown-chip-surface: #f8fbff;
+  --dropdown-chip-border: rgba(59, 130, 246, 0.22);
+  --dropdown-chip-text: var(--sl-color-gray-1);
+  --dropdown-chip-hover-surface: #eff6ff;
+  --dropdown-chip-hover-border: rgba(37, 99, 235, 0.34);
+  --dropdown-chip-default-surface: #f8fbff;
+  --dropdown-chip-default-border: rgba(59, 130, 246, 0.22);
+  --dropdown-chip-default-text: var(--sl-color-gray-1);
+  --dropdown-badge-surface: rgba(255, 255, 255, 0.96);
+  --dropdown-disabled-surface: rgba(148, 163, 184, 0.1);
+  --dropdown-disabled-border: rgba(148, 163, 184, 0.35);
+  --dropdown-disabled-text: var(--sl-color-gray-2);
+  --dropdown-disabled-accent: #f59e0b;
+  width: min(44rem, max(32rem, 68vw));
+  max-width: min(calc(100vw - 24px), 44rem);
+  max-height: calc(100vh - 24px);
+  background: var(--dropdown-surface);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 0.95rem;
+  box-shadow: var(--dropdown-shadow);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease-out;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  font-size: 1rem;
+}
+
+.install-button-wrapper--compact .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+.dropdown-menu-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 0.95rem 0.9rem;
+  background: linear-gradient(180deg, var(--dropdown-surface-strong) 0%, var(--dropdown-surface) 100%);
+  border-bottom: 1px solid var(--dropdown-header-divider);
+}
+
+.dropdown-header-copy {
+  display: grid;
+  gap: 0.25rem;
+  max-width: 30rem;
+}
+
+.dropdown-eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--dropdown-header-text);
+}
+
+.dropdown-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dropdown-text);
+}
+
+.dropdown-description {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--dropdown-muted);
+}
+
+.dropdown-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: flex-start;
+  gap: 0.5rem;
+}
+
+.dropdown-header-badge,
+.version-tag,
+.platform-state-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 999px;
+  border: 1px solid var(--dropdown-header-badge-border);
+  background: var(--dropdown-header-badge-surface);
+  color: var(--dropdown-header-badge-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dropdown-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0.875rem;
+  overflow-y: auto;
+  display: grid;
+  gap: 0.875rem;
+}
+
+.dropdown-platform-section {
+  --dropdown-platform-accent: #2563eb;
+  --dropdown-platform-surface: rgba(37, 99, 235, 0.06);
+  --dropdown-platform-border: rgba(37, 99, 235, 0.18);
+  display: grid;
+  gap: 0.6875rem;
+  padding: 0.8125rem;
+  border-radius: 0.875rem;
+  border: 1px solid var(--dropdown-platform-border);
+  background: linear-gradient(180deg, var(--dropdown-platform-surface) 0%, var(--dropdown-surface) 100%);
+}
+
+.dropdown-platform-section--windows {
+  --dropdown-platform-accent: #2563eb;
+  --dropdown-platform-surface: rgba(37, 99, 235, 0.06);
+  --dropdown-platform-border: rgba(37, 99, 235, 0.18);
+}
+
+.dropdown-platform-section--macos {
+  --dropdown-platform-accent: #9333ea;
+  --dropdown-platform-surface: rgba(147, 51, 234, 0.06);
+  --dropdown-platform-border: rgba(147, 51, 234, 0.16);
+}
+
+.dropdown-platform-section--linux {
+  --dropdown-platform-accent: #ea580c;
+  --dropdown-platform-surface: rgba(234, 88, 12, 0.07);
+  --dropdown-platform-border: rgba(234, 88, 12, 0.16);
+}
+
+.dropdown-platform-section-current {
+  box-shadow: inset 0 0 0 1px var(--dropdown-platform-accent);
+}
+
+.dropdown-group-label {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.625rem;
+}
+
+.dropdown-group-lead {
+  display: flex;
+  align-items: center;
+  gap: 0.6875rem;
+  min-width: 0;
+}
+
+.dropdown-group-text {
+  display: grid;
+  gap: 0.16rem;
+  min-width: 0;
+}
+
+.dropdown-group-meta {
+  font-size: 0.8125rem;
+  color: var(--dropdown-muted);
+}
+
+.dropdown-group-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.dropdown-item-stack {
+  display: grid;
+  gap: 0.5625rem;
+}
+
+.platform-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  font-size: 0.9375rem;
+  line-height: 1;
+  border-radius: 0.625rem;
+  background: var(--dropdown-chip-surface);
+  border: 1px solid var(--dropdown-chip-border);
+}
+
+.platform-name {
+  display: block;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--dropdown-text);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.625rem;
+  min-height: 0;
+  padding: 0.75rem 0.8125rem;
+  color: var(--dropdown-text);
+  text-decoration: none;
+  border-radius: 0.75rem;
+  border: 1px solid var(--dropdown-card-border);
+  background: var(--dropdown-card-surface);
+  box-shadow: var(--dropdown-card-shadow);
+  transition: all 0.15s ease-out;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.dropdown-item-multi-source {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.dropdown-item:hover {
+  background: var(--dropdown-card-hover-surface);
+  border-color: var(--dropdown-card-hover-border);
+  box-shadow: var(--dropdown-card-hover-shadow);
+  color: var(--dropdown-text);
+}
+
+.dropdown-item-recommended {
+  border-color: var(--dropdown-card-border);
+  background: var(--dropdown-card-surface);
+}
+
+.dropdown-item-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background: var(--dropdown-disabled-surface);
+  color: var(--dropdown-disabled-text);
+  border: 1px dashed var(--dropdown-disabled-border);
+  box-shadow: none;
+}
+
+.dropdown-item-disabled-notice {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--dropdown-disabled-accent);
+  font-weight: 600;
+}
+
+.dropdown-item-label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-weight: 650;
+}
+
+.dropdown-item-text-block {
+  flex: 1;
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.dropdown-item-description {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--dropdown-muted);
+}
+
+.arch-label {
+  font-size: 0.875rem;
+  color: var(--dropdown-muted);
+  font-weight: 400;
+}
+
+.file-ext-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.0625rem 0.3125rem;
+  margin-left: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0080FF;
+  background: rgba(0, 128, 255, 0.08);
+  border-radius: 0.25rem;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  letter-spacing: 0.02em;
+}
+
+.recommended-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--dropdown-chip-default-border);
+  background: var(--dropdown-chip-default-surface);
+  color: var(--dropdown-chip-default-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  margin-left: 0.35rem;
+}
+
+.dropdown-item-size {
+  font-size: 0.875rem;
+  color: var(--dropdown-muted);
+  font-weight: 600;
+}
+
+.dropdown-item-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.dropdown-source-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.dropdown-source-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  min-height: 34px;
+  padding: 0.45rem 0.625rem;
+  border-radius: 0.6875rem;
+  border: 1px solid var(--dropdown-chip-border);
+  background: var(--dropdown-chip-surface);
+  color: var(--dropdown-chip-text);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: none;
+  transition: all 0.15s ease-out;
+}
+
+.dropdown-source-action:hover {
+  background: var(--dropdown-chip-hover-surface);
+  border-color: var(--dropdown-chip-hover-border);
+  color: var(--dropdown-text);
+}
+
+.dropdown-source-action-default {
+  background: var(--dropdown-chip-default-surface);
+  border-color: var(--dropdown-chip-default-border);
+  color: var(--dropdown-chip-default-text);
+}
+
+.dropdown-source-action-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.0625rem 0.3125rem;
+  border-radius: 999px;
+  background: var(--dropdown-badge-surface);
+  color: currentColor;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.external-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  color: var(--dropdown-muted);
+  opacity: 0.6;
+}
+
+.dropdown-item:hover .external-icon {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   暗色主题适配
+   ========================================================================== */
+
+[data-theme='dark'] .install-button-wrapper {
+  --install-segment-shell-bg: rgba(15, 23, 36, 0.88);
+  --install-segment-shell-border: rgba(37, 99, 235, 0.24);
+  --install-segment-shell-shadow: 0 14px 28px rgba(2, 6, 23, 0.28);
+  --install-segment-surface-shadow: 0 10px 22px rgba(2, 6, 23, 0.22);
+  --install-segment-surface-shadow-hover: 0 14px 28px rgba(2, 6, 23, 0.3);
+  --install-segment-focus-ring: rgba(96, 165, 250, 0.6);
+}
+
+[data-theme='dark'] .btn-download-main {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+[data-theme='dark'] .btn-dropdown-toggle {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  border-left-color: rgba(255, 255, 255, 0.15);
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+[data-theme='dark'] .btn-download-main:hover,
+[data-theme='dark'] .btn-dropdown-toggle:hover {
+  background: linear-gradient(135deg, #1A90FF 0%, #10DDDD 50%, #32D55E 100%);
+}
+
+[data-theme='dark'] .dropdown-menu {
+  --dropdown-surface: #0f172a;
+  --dropdown-surface-strong: #162033;
+  --dropdown-border: rgba(96, 165, 250, 0.28);
+  --dropdown-header-divider: rgba(71, 85, 105, 0.6);
+  --dropdown-header-badge-surface: rgba(19, 32, 51, 0.94);
+  --dropdown-header-badge-border: rgba(96, 165, 250, 0.24);
+  --dropdown-header-badge-text: #e2e8f0;
+  --dropdown-shadow: none;
+  --dropdown-header-surface: #162033;
+  --dropdown-header-text: #bfdbfe;
+  --dropdown-card-surface: #0f172a;
+  --dropdown-card-border: rgba(96, 165, 250, 0.22);
+  --dropdown-card-shadow: none;
+  --dropdown-card-hover-surface: #132033;
+  --dropdown-card-hover-border: rgba(96, 165, 250, 0.38);
+  --dropdown-card-hover-shadow: none;
+  --dropdown-text: #e2e8f0;
+  --dropdown-muted: #94a3b8;
+  --dropdown-chip-surface: #132033;
+  --dropdown-chip-border: rgba(45, 212, 191, 0.26);
+  --dropdown-chip-text: #e2e8f0;
+  --dropdown-chip-hover-surface: #163047;
+  --dropdown-chip-hover-border: rgba(34, 211, 238, 0.34);
+  --dropdown-chip-default-surface: #132033;
+  --dropdown-chip-default-border: rgba(45, 212, 191, 0.26);
+  --dropdown-chip-default-text: #e2e8f0;
+  --dropdown-badge-surface: rgba(255, 255, 255, 0.08);
+  --dropdown-disabled-surface: rgba(51, 65, 85, 0.5);
+  --dropdown-disabled-border: rgba(148, 163, 184, 0.3);
+  --dropdown-disabled-text: #94a3b8;
+  --dropdown-disabled-accent: #fbbf24;
+}
+
+[data-theme='dark'] .dropdown-item-disabled {
+  background: var(--dropdown-disabled-surface);
+  border-color: var(--dropdown-disabled-border);
+  color: var(--dropdown-disabled-text);
+}
+
+[data-theme='dark'] .install-button-status--info {
+  color: #bfdbfe;
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(96, 165, 250, 0.28);
+}
+
+[data-theme='dark'] .install-button-status--warning {
+  color: #fde68a;
+  background: rgba(180, 83, 9, 0.3);
+  border-color: rgba(251, 191, 36, 0.28);
+}
+
+[data-theme='dark'] .install-button-status--error {
+  color: #fecdd3;
+  background: rgba(159, 18, 57, 0.32);
+  border-color: rgba(251, 113, 133, 0.3);
+}
+
+/* 暗色主题下的平台色栏 - 更柔和 */
+/* ==========================================================================
+   移动端响应式样式
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .install-button-primary-actions {
+    flex-direction: column;
+  }
+
+  .dropdown-menu {
+    width: 90vw;
+    max-width: 90vw;
+    max-height: calc(100vh - 24px);
+    right: 0;
+  }
+
+  .dropdown-source-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .dropdown-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dropdown-header-meta,
+  .dropdown-group-badges {
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================================
+   减少动画偏好
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-download-source,
+  .btn-dropdown-toggle,
+  .dropdown-item,
+  .dropdown-menu {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,239 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import {
+  BACKUP_INDEX_JSON_URL,
+  LOCAL_VERSION_INDEX,
+  PRIMARY_INDEX_JSON_URL,
+} from './desktop-utils';
+import {
+  clearDesktopVersionCache,
+  getDesktopVersionData,
+} from './version-manager';
+
+const desktopIndexFixture = {
+  updatedAt: '2026-03-24T00:00:00Z',
+  versions: [
+    {
+      version: 'v1.2.3',
+      assets: [
+        {
+          name: 'Hagicode.Desktop.Setup.1.2.3.exe',
+          path: 'v1.2.3/Hagicode.Desktop.Setup.1.2.3.exe',
+          size: 1048576,
+          lastModified: null,
+        },
+        {
+          name: 'Hagicode.Desktop-1.2.3-arm64.dmg',
+          path: 'v1.2.3/Hagicode.Desktop-1.2.3-arm64.dmg',
+          size: 1048576,
+          lastModified: null,
+        },
+        {
+          name: 'Hagicode.Desktop-1.2.3.AppImage',
+          path: 'v1.2.3/Hagicode.Desktop-1.2.3.AppImage',
+          size: 1048576,
+          lastModified: null,
+        },
+        {
+          name: 'Hagicode.Desktop.msix',
+          path: 'v1.2.3/Hagicode.Desktop.msix',
+          size: 1048576,
+          lastModified: null,
+        },
+        {
+          name: 'hagicode-desktop_1.2.3_amd64.deb',
+          path: 'v1.2.3/hagicode-desktop_1.2.3_amd64.deb',
+          size: 1048576,
+          lastModified: null,
+        },
+      ],
+      files: [
+        'v1.2.3/Hagicode.Desktop.Setup.1.2.3.exe',
+        'v1.2.3/Hagicode.Desktop-1.2.3-arm64.dmg',
+        'v1.2.3/Hagicode.Desktop-1.2.3.AppImage',
+        'v1.2.3/Hagicode.Desktop.msix',
+        'v1.2.3/hagicode-desktop_1.2.3_amd64.deb',
+      ],
+    },
+  ],
+  channels: {
+    stable: { latest: 'v1.2.3', versions: ['v1.2.3'] },
+    beta: { latest: 'v1.2.3', versions: ['v1.2.3'] },
+  },
+};
+
+function createJsonResponse(body: unknown, options?: { ok?: boolean; status?: number; statusText?: string }) {
+  return {
+    ok: options?.ok ?? true,
+    status: options?.status ?? 200,
+    statusText: options?.statusText ?? 'OK',
+    json: vi.fn().mockResolvedValue(body),
+  };
+}
+
+describe('docs runtime index fetching', () => {
+  beforeEach(() => {
+    vi.stubGlobal('window', {});
+  });
+
+  afterEach(() => {
+    clearDesktopVersionCache();
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+
+  it('uses the primary source and reuses the cached result', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(createJsonResponse(structuredClone(desktopIndexFixture)));
+    vi.stubGlobal('fetch', fetchMock);
+
+    const first = await getDesktopVersionData();
+    const second = await getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith(
+      PRIMARY_INDEX_JSON_URL,
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
+    expect(first).toBe(second);
+    expect(first.source).toBe('primary');
+    expect(first.status).toBe('ready');
+    expect(first.attempts).toEqual([]);
+    expect(first.fallbackTarget).toBeNull();
+    expect(first.latest?.version).toBe('v1.2.3');
+    expect(first.platforms).toHaveLength(3);
+    expect(first.platforms.find((platform) => platform.platform === 'windows')?.downloads.map((download) => download.filename)).toEqual([
+      'Hagicode.Desktop.Setup.1.2.3.exe',
+      'Hagicode.Desktop.msix',
+    ]);
+    expect(first.platforms.find((platform) => platform.platform === 'linux')?.downloads.map((download) => download.filename)).toEqual([
+      'Hagicode.Desktop-1.2.3.AppImage',
+    ]);
+  });
+
+  it('accepts a stable-only release index when beta has no published version', async () => {
+    const fixture = structuredClone(desktopIndexFixture) as {
+      channels: Record<string, { latest: string | null; versions: string[] }>;
+    };
+    fixture.channels.beta = { latest: null, versions: [] };
+    fixture.channels.dev = { latest: null, versions: [] };
+
+    const fetchMock = vi.fn().mockResolvedValue(createJsonResponse(fixture));
+    vi.stubGlobal('fetch', fetchMock);
+
+    const data = await getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(data.source).toBe('primary');
+    expect(data.status).toBe('ready');
+    expect(data.error).toBeNull();
+    expect(data.latest?.version).toBe('v1.2.3');
+    expect(data.channels.stable.latest?.version).toBe('v1.2.3');
+    expect(data.channels.beta.latest).toBeNull();
+    expect(data.channels.beta.all).toEqual([]);
+  });
+
+  it('falls back to the backup source when the primary payload is invalid', async () => {
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      if (url === PRIMARY_INDEX_JSON_URL) {
+        return createJsonResponse({ updatedAt: '2026-03-24T00:00:00Z' });
+      }
+
+      if (url === BACKUP_INDEX_JSON_URL) {
+        return createJsonResponse(structuredClone(desktopIndexFixture));
+      }
+
+      throw new Error(`Unexpected fetch: ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const data = await getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(data.source).toBe('backup');
+    expect(data.status).toBe('degraded');
+    expect(data.latest?.version).toBe('v1.2.3');
+    expect(data.platforms).toHaveLength(3);
+    expect(data.attempts).toEqual([
+      expect.objectContaining({ source: 'primary' }),
+    ]);
+    expect(data.error).toBeNull();
+  });
+
+  it('falls back to the local snapshot after primary and backup failures', async () => {
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      if (url === PRIMARY_INDEX_JSON_URL) {
+        throw new Error('primary down');
+      }
+
+      if (url === BACKUP_INDEX_JSON_URL) {
+        return createJsonResponse({}, { ok: false, status: 503, statusText: 'Service Unavailable' });
+      }
+
+      if (url === LOCAL_VERSION_INDEX) {
+        return createJsonResponse(structuredClone(desktopIndexFixture));
+      }
+
+      throw new Error(`Unexpected fetch: ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const data = await getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(data.status).toBe('local_snapshot');
+    expect(data.source).toBe('local');
+    expect(data.latest?.version).toBe('v1.2.3');
+    expect(data.attempts).toEqual([
+      expect.objectContaining({ source: 'primary', error: 'primary down' }),
+      expect.objectContaining({ source: 'backup' }),
+    ]);
+  });
+
+  it('returns a fatal state when every source fails', async () => {
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      throw new Error(`failed:${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const data = await getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(data.status).toBe('fatal');
+    expect(data.source).toBeNull();
+    expect(data.latest).toBeNull();
+    expect(data.platforms).toEqual([]);
+    expect(data.error).toContain('Failed to load desktop versions');
+    expect(data.attempts).toHaveLength(3);
+    expect(data.fallbackTarget).toBe('https://index.hagicode.com/desktop/history/');
+    expect(data.failedAttemptSummary).toContain('primary=');
+
+    const second = await getDesktopVersionData();
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(second.status).toBe('fatal');
+    expect(second).toBe(data);
+  });
+
+  it('deduplicates concurrent in-flight requests', async () => {
+    let resolveResponse: (value: ReturnType<typeof createJsonResponse>) => void = () => {};
+    const fetchMock = vi.fn().mockImplementation(
+      () =>
+        new Promise<ReturnType<typeof createJsonResponse>>((resolve) => {
+          resolveResponse = resolve;
+        }),
+    );
+    vi.stubGlobal('fetch', fetchMock);
+
+    const pending = Promise.all([
+      getDesktopVersionData(),
+      getDesktopVersionData(),
+    ]);
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    resolveResponse(createJsonResponse(structuredClone(desktopIndexFixture)));
+
+    const [first, second] = await pending;
+    expect(first).toBe(second);
+    expect(first.source).toBe('primary');
+  });
+});
