@@ -1,0 +1,270 @@
+---
+/**
+ * 博客文章开头广告组件
+ * 在博客文章标题之后、正文之前显示推广卡片
+ *
+ * 使用 docs index promotion 数据源渲染推广内容
+ */
+import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
+import { getRenderableBlogPromotions, type ActivePromotion } from '@/lib/blog-promotions';
+import { resolveDocsLocale, type DocsLocale } from '@/lib/i18n';
+
+interface Props {
+  /** 是否隐藏广告 */
+  hideAd?: boolean;
+  /** 当前语言（Starlight locale） */
+  locale?: string;
+  /** 当前页面已解析的推广数据 */
+  promotions?: ActivePromotion[];
+}
+
+const { hideAd = false, locale, promotions = [] } = Astro.props;
+const currentLocale: DocsLocale = resolveDocsLocale(Astro.currentLocale, locale, Astro.locals?.starlightRoute?.locale);
+
+// 如果设置隐藏广告，则不渲染
+if (hideAd) {
+  return null;
+}
+
+const renderPromos = getRenderableBlogPromotions(promotions, currentLocale);
+
+function isExternalPromotionLink(link: string): boolean {
+  return /^https?:\/\//.test(link);
+}
+---
+
+<div class="blog-header-promo-container" data-pagefind-ignore>
+  {renderPromos.map((promo, index) => (
+    <div class={`blog-header-promo ${index === 0 ? 'primary-promo' : ''}`}>
+      {
+        promo.image ? (
+          <div class="promo-media">
+            <img
+              class="promo-image"
+              src={promo.image.src}
+              alt={promo.image.alt || promo.title}
+              width={promo.image.width}
+              height={promo.image.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ) : (
+          <div class="promo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+            </svg>
+          </div>
+        )
+      }
+      <div class="promo-content">
+        <div class="promo-title">
+          {promo.title}
+        </div>
+        <div class="promo-description">
+          {promo.description}
+        </div>
+      </div>
+      <a
+        href={promo.link}
+        target={isExternalPromotionLink(promo.link) ? '_blank' : undefined}
+        rel={isExternalPromotionLink(promo.link) ? 'noopener noreferrer' : undefined}
+        class="promo-button"
+        {...gaEventAttributes({ category: 'promotion', label: promo.id, location: 'blog_header_ad' })}
+      >
+        {promo.ctaLabel}
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/>
+          <path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  ))}
+</div>
+
+<style>
+  .blog-header-promo-container {
+    --promo-primary: var(--color-primary, var(--sl-color-accent, #0080ff));
+    --promo-secondary: var(--color-secondary, var(--sl-color-accent-high, #00cccc));
+    --promo-border: var(--sl-color-gray-5, #4b5563);
+    --promo-text-high: #111827;
+    --promo-text-normal: #334155;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-block-end: 1.5rem;
+  }
+
+  :global([data-theme='dark']) .blog-header-promo-container {
+    --promo-text-high: #f8fafc;
+    --promo-text-normal: #cbd5e1;
+  }
+
+  .blog-header-promo {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--sl-radius-md);
+    background: color-mix(in srgb, var(--promo-primary) 6%, var(--sl-color-bg) 94%);
+    border: 1px solid color-mix(in srgb, var(--promo-primary) 20%, var(--promo-border));
+    color: var(--promo-text-high);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .primary-promo {
+    background: color-mix(in srgb, var(--promo-primary) 10%, var(--sl-color-bg) 90%);
+    border: 1px solid color-mix(in srgb, var(--promo-primary) 30%, var(--promo-border));
+  }
+
+  .blog-header-promo:hover {
+    background: color-mix(in srgb, var(--promo-primary) 9%, var(--sl-color-bg) 91%);
+    border-color: color-mix(in srgb, var(--promo-primary) 30%, var(--promo-border));
+  }
+
+  .promo-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid color-mix(in srgb, var(--promo-primary) 20%, var(--promo-border));
+    border-radius: var(--sl-radius-sm);
+    background: color-mix(in srgb, var(--promo-primary) 14%, var(--sl-color-bg) 86%);
+    color: var(--sl-color-accent-high);
+  }
+
+  .promo-media {
+    flex-shrink: 0;
+    width: clamp(3.2rem, 6.4vw, 4.25rem);
+    min-width: clamp(3.2rem, 6.4vw, 4.25rem);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: calc(var(--sl-radius-md) - 0.125rem);
+    border: 1px solid color-mix(in srgb, var(--promo-primary) 18%, var(--promo-border));
+    background: color-mix(in srgb, var(--sl-color-bg) 88%, transparent);
+  }
+
+  .promo-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .promo-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .promo-title {
+    font-weight: 600;
+    color: var(--promo-text-high);
+    margin-block-end: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    opacity: 1;
+    visibility: visible;
+    -webkit-text-fill-color: currentColor !important;
+    background: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+  }
+
+  .promo-description {
+    font-size: 0.875rem;
+    color: var(--promo-text-normal);
+    line-height: 1.5;
+    opacity: 1;
+    visibility: visible;
+    -webkit-text-fill-color: currentColor !important;
+    background: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+  }
+
+  .promo-button {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--sl-radius-sm);
+    border: 1px solid color-mix(in srgb, var(--sl-color-accent-high) 28%, transparent);
+    background: var(--sl-color-accent, #0080FF);
+    color: #f8fbff;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    -webkit-text-fill-color: currentColor !important;
+  }
+
+  .promo-button:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--sl-color-accent-high) 44%, transparent);
+    background: var(--sl-color-accent-high, #245ea8);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.16);
+  }
+
+  .promo-button svg {
+    transition: transform 0.2s ease;
+  }
+
+  .promo-button:hover svg {
+    transform: translateX(2px);
+  }
+
+  /* 响应式优化 */
+  @media (max-width: 640px) {
+    .blog-header-promo-container {
+      flex-direction: column;
+    }
+
+    .blog-header-promo {
+      flex-direction: column;
+    }
+
+    .promo-button {
+      align-self: flex-start;
+    }
+
+    .promo-media {
+      width: clamp(3.2rem, 12vw, 4.25rem);
+      min-width: clamp(3.2rem, 12vw, 4.25rem);
+    }
+  }
+
+  /* 减少动画偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .promo-button,
+    .promo-button svg {
+      transition: none !important;
+    }
+
+    .promo-button:hover {
+      transform: none;
+    }
+
+    .promo-button:hover svg {
+      transform: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .blog-header-promo,
+    .promo-title,
+    .promo-description,
+    .promo-button {
+      color: CanvasText !important;
+      -webkit-text-fill-color: currentColor !important;
+      border-color: CanvasText;
+    }
+  }
+</style>

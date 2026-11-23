@@ -1,0 +1,34 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+
+import Page from '../../../../node_modules/starlight-blog/components/Page.astro';
+import PostCount from '../../../../node_modules/starlight-blog/components/PostCount.astro';
+import { getPageProps } from '../../../../node_modules/starlight-blog/libs/page.ts';
+import { getAuthorsStaticPaths } from '../libs/authors';
+import CompactPosts from '../components/CompactPosts.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return getAuthorsStaticPaths();
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { author, entries, locale } = Astro.props;
+
+const pageProps = getPageProps(author.name);
+---
+
+<Page {...pageProps}>
+  <PostCount
+    >{
+      Astro.locals.t('starlightBlog.authors.count', {
+        interpolation: { escapeValue: false },
+        count: entries.length,
+        author: author.name,
+      })
+    }</PostCount
+  >
+  <CompactPosts {entries} {locale} />
+</Page>

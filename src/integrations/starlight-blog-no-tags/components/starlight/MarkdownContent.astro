@@ -1,0 +1,34 @@
+---
+import { getBlogConfigFromPath, isAnyBlogPostPage } from '../../../../../node_modules/starlight-blog/libs/page.ts';
+import Cover from '../../../../../node_modules/starlight-blog/components/Cover.astro';
+import Metadata from '../../../../../node_modules/starlight-blog/components/Metadata.astro';
+import PrevNextLinks from '../../../../../node_modules/starlight-blog/components/PrevNextLinks.astro';
+import PostTags from '../PostTags.astro';
+import { getBlogEntry } from '../../libs/content';
+
+const { id, locale } = Astro.locals.starlightRoute;
+const config = getBlogConfigFromPath(id);
+
+if (!config || !isAnyBlogPostPage(config, id)) {
+  return null;
+}
+
+const { entry, nextLink, prevLink } = await getBlogEntry(id, locale);
+---
+
+{entry.data.cover && <Cover cover={entry.data.cover} />}
+<Metadata {config} {entry} showBadges={false} />
+<slot />
+<div class="post-footer">
+  <PostTags {config} {entry} {locale} />
+  <PrevNextLinks {config} next={nextLink} prev={prevLink} />
+</div>
+
+<style>
+  .post-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-block-start: 2rem !important;
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+import type { StarlightBlogEntry } from '../../../../node_modules/starlight-blog/libs/content.ts';
+import type { StarlightBlogConfig } from '../../../../node_modules/starlight-blog/libs/config.ts';
+import type { Locale } from '../../../../node_modules/starlight-blog/libs/i18n.ts';
+import { getRelativeBlogUrl } from '../../../../node_modules/starlight-blog/libs/page.ts';
+import { getEntryTags } from '../../../../node_modules/starlight-blog/libs/tags.ts';
+
+interface Props {
+  config: StarlightBlogConfig;
+  entry: StarlightBlogEntry;
+  locale: Locale;
+}
+
+const { config, entry, locale } = Astro.props;
+
+const tags = getEntryTags(entry);
+const getTagHref = (slug: string) => getRelativeBlogUrl(config, '/tags', locale) + `#${slug}`;
+---
+
+{
+  tags.length > 0 ? (
+    <div>
+      <b>{Astro.locals.t('starlightBlog.post.tags')}</b>
+      <ul>
+        {tags.map((tag) => (
+          <li>
+            <a href={getTagHref(tag.slug)}>{tag.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : null
+}
+
+<style>
+  ul {
+    display: inline;
+    margin-inline-start: 0.25rem;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+    padding: 0;
+  }
+
+  a {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.3rem;
+    font-size: var(--sl-text-sm);
+    margin-inline: 0.2rem;
+    padding: 0.25rem 0.5rem 0.35rem;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-color: var(--sl-color-gray-2);
+  }
+</style>
