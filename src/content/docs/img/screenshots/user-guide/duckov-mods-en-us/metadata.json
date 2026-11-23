@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "duckov-mods-en-us",
+  "slug": "duckov-mods-en-us",
+  "title": "Escape from Duckov mod management",
+  "description": "SuperDucky Mod Management page for Escape from Duckov: the Combat group is selected and shows three enabled mods; the toolbar has Enable all, Disable all, Source, Status and search.",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "en-US",
+    "mods"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, en-US UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.567Z",
+    "updatedAt": "2026-11-23T17:48:18.567Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/duckov-mods-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

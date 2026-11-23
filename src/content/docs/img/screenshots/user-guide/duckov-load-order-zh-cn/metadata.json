@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "duckov-load-order-zh-cn",
+  "slug": "duckov-load-order-zh-cn",
+  "title": "加载顺序预览",
+  "description": "超级丫丫“预览结果”模式(逃离鸭科夫):所有分组按加载顺序合并成一个列表,底部提示预览模式下无法拖动排序。",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "zh-CN",
+    "load-order"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, zh-CN UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.566Z",
+    "updatedAt": "2026-11-23T17:48:18.566Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/duckov-load-order-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

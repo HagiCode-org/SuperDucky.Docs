@@ -1,0 +1,47 @@
+---
+title: 界面总览
+description: 认识 SuperDucky 的界面:左侧导航、当前游戏切换、主题,以及每个页面负责什么。
+sidebar:
+  order: 1
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+SuperDucky 的界面由左侧的导航栏和右侧的页面内容组成。本节按页面逐一说明,你可以直接跳到正在使用的功能。
+
+![暗色主题下的模组管理页面:左侧是导航栏,中间是分组列表,右侧是模组卡片](../img/screenshots/product/dark-theme-zh-cn/original.png)
+
+## 导航栏
+
+导航栏从上到下依次是:
+
+| 位置 | 作用 |
+|------|------|
+| **当前游戏** | 切换正在管理的游戏。每个游戏有各自的模组、套件和设置,切换后整个应用跟着换 |
+| **主题按钮** | 在亮色和暗色主题之间切换 |
+| **首页** | 快速操作入口 |
+| **模组管理** | 分组、启用、排序和预览模组,见[模组与分组](/user-guide/mods-and-groups) |
+| **模组市场** | 浏览和订阅创意工坊模组、从文件夹安装 ZIP,见[模组市场](/user-guide/marketplace) |
+| **存档图鉴** | 查看游戏内收集图鉴的进度,仅逃离鸭科夫 |
+| **日志系统** | 实时查看游戏日志,见[游戏日志](/user-guide/logs) |
+| **借一步说话** | 感谢与支持页面,也有反馈和交流群的入口 |
+| **设置** | 路径、语言、市场、调试和隐私,见[设置](/user-guide/settings) |
+
+导航栏底部显示应用版本和**启动游戏**按钮。点击导航栏边缘的小箭头可以折叠成只显示图标的窄栏。
+
+不同游戏的导航项并不完全相同:深空当铺没有“存档图鉴”,切换到它时这一项会消失。
+
+## 存档图鉴
+
+存档图鉴(仅逃离鸭科夫)展示游戏内的收集进度,可以按标签、品质筛选和搜索,也可以把物品加入对比。图鉴数据来自游戏侧的 SuperDucky.Connector 模组导出的物品信息。如果页面提示“功能已禁用”,到“设置 → 图鉴设置 → 功能开关”启用即可。
+
+## 各页面指南
+
+<CardGrid>
+  <LinkCard title="模组与分组" href="/user-guide/mods-and-groups" description="扫描、筛选、批量操作,以及依赖健康检查。" />
+  <LinkCard title="加载顺序与套件" href="/user-guide/load-order-and-profiles" description="调整顺序、预览结果、套件和还原历史记录。" />
+  <LinkCard title="深空当铺" href="/user-guide/probably-stolen" description="模组清单、能力确认和存档备份。" />
+  <LinkCard title="模组市场" href="/user-guide/marketplace" description="创意工坊订阅与本地 ZIP 安装。" />
+  <LinkCard title="游戏日志" href="/user-guide/logs" description="用日志排查模组为什么没有加载。" />
+  <LinkCard title="设置" href="/user-guide/settings" description="路径、启动等待时间、语言和隐私。" />
+</CardGrid>

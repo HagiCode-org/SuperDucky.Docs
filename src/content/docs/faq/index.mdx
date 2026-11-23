@@ -1,0 +1,54 @@
+---
+title: 常见问题
+description: SuperDucky 使用中的常见问题:支持哪些游戏、模组没有生效怎么办、Steam 提示游戏正在运行、深空当铺的能力确认、在哪里反馈问题。
+sidebar:
+  order: 1
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## SuperDucky 支持哪些游戏和平台?
+
+支持《逃离鸭科夫》和《深空当铺》。目前只通过 Microsoft Store 发布,适用于 Windows 10 / 11,见[下载与安装](/installation)。
+
+## 两个游戏的模组会互相影响吗?
+
+不会。每个游戏有自己的模组路径、套件、分组和缓存,保存在用户数据文件夹的 `games/<游戏>/` 下,切换游戏时应用会整体切换到那个游戏的数据。
+
+## 我点了启用,但游戏里模组没有生效
+
+按下面的顺序检查,详细步骤见[模组没有加载怎么办](/faq/mod-not-loading):
+
+1. 修改之后是否点击了**保存更改**;
+2. 是否通过 SuperDucky 的**启动游戏**按钮启动(深空当铺只有这时才会写入存档);
+3. “模组配置健康”横幅是否显示了依赖错误;
+4. 在[游戏日志](/user-guide/logs)里搜索模组名。
+
+## 点击启动游戏后 Steam 提示“游戏正在运行”
+
+从 SuperDucky 启动游戏时,它会暂时关闭自己的 Steam 连接。如果等待时间设置得太短,连接还没有释放,Steam 就会认为游戏已经在运行。到“设置 → 游戏选项”增加**启动游戏等待时间**,参考值见[设置](/user-guide/settings)。
+
+## 深空当铺为什么每次启动都要我确认能力?
+
+只有**新启用**的、声明了能力的模组,或已启用的模组**新增了**之前没有批准过的能力时,才会弹出确认。每个模组需要单独勾选,没有“全部批准”,也不会记住批准。取消不会写入任何东西。详见[深空当铺](/user-guide/probably-stolen)。
+
+## 深空当铺提示“正在运行,请先关闭游戏再启动”
+
+SuperDucky 不会在游戏运行时修改存档。关闭游戏后再点击启动。如果游戏明明已经关闭仍有这个提示,说明进程检查失败了,此时 SuperDucky 会保守地按“正在运行”处理,稍等片刻或重启 SuperDucky 再试。
+
+## 我的创意工坊模组在“模组管理”里看不到
+
+在“模组管理”点击**刷新**重新扫描,并确认“设置 → 游戏选项”里的 Steam Workshop 文件夹路径正确。刚订阅的模组需要 Steam 先下载完成。
+
+## 数据保存在哪里?会上传吗?
+
+见[遥测与隐私](/faq/data-and-privacy)。
+
+## 在哪里反馈问题?
+
+在 [GitHub Issues](https://github.com/ducky7go/SuperDucky/issues) 提交,附上“设置 → 调试工具”里导出的日志会更容易定位。
+
+<CardGrid>
+  <LinkCard title="模组没有加载怎么办" href="/faq/mod-not-loading" description="从保存、启动方式、依赖到日志的排查步骤。" />
+  <LinkCard title="遥测与隐私" href="/faq/data-and-privacy" description="收集什么、不收集什么,以及数据放在哪里。" />
+</CardGrid>

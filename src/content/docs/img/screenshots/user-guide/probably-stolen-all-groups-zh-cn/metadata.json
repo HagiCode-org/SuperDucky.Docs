@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "probably-stolen-all-groups-zh-cn",
+  "slug": "probably-stolen-all-groups-zh-cn",
+  "title": "深空当铺全部分组预览",
+  "description": "超级丫丫预览深空当铺全部 5 个模组:卡片按所属分组着色,并显示声明的能力数量。",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "zh-CN",
+    "probably-stolen"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, zh-CN UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.570Z",
+    "updatedAt": "2026-11-23T17:48:18.570Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/probably-stolen-all-groups-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+---
+title: Telemetry and Privacy
+description: Which anonymous telemetry SuperDucky collects, what it does not collect, how to view or turn it off in Settings, and where app data lives on your computer.
+sidebar:
+  order: 11
+---
+
+## Where data lives on this computer
+
+SuperDucky keeps its settings, profiles and caches in the app's data folder. The data folder is named `superducky`. The Microsoft Store version is a packaged app, and Windows may redirect what it writes to `%APPDATA%/superducky/` into the app's own storage, so go by the path shown under "Settings → Basic → Config and data location".
+
+`config/settings.json` holds the global settings (language, telemetry switch, custom paths). Each game's mod paths, profiles, history versions and caches are under `games/<game>/`. "Config and data location" in "Settings → Basic" shows the location in use.
+
+When you upgrade from the single-game version, the old data is migrated into the Escape from Duckov folder. The original files are fully backed up to `migration-backups/<time>/` first and are never deleted or overwritten.
+
+## Telemetry
+
+SuperDucky uses Microsoft Application Insights to collect **anonymous** telemetry that helps improve the product:
+
+- **Performance data**: start-up time, page load speed, response time of features, memory and CPU use;
+- **Feature usage**: which pages are visited, which mod-management features are used, profile actions, marketplace browsing and settings changes;
+- **Anonymous error reports**: script errors, crash information and failed operations. Error messages are anonymised before they are sent, with file paths and similar personal details removed.
+
+What it does **not** collect:
+
+- names, email addresses, user names or other personal identity information;
+- IP addresses (the service is configured not to record them);
+- exact file paths, which are replaced by placeholders such as `[MOD_PATH]` and `[STEAM_PATH]`;
+- persistent identifiers that follow you across sessions; no tracking cookies are used.
+
+The data is not sold and not used for ad targeting.
+
+## View and turn off
+
+Under **Privacy and telemetry** in "Settings → Basic" you can:
+
+- see whether data collection is on;
+- turn data collection off;
+- read the full privacy statement.
+
+## About game saves
+
+SuperDucky changes the game's configuration only when you save a setup or launch the game. For Probably Stolen, the save is backed up before every write; see [Probably Stolen](/en-US/user-guide/probably-stolen).

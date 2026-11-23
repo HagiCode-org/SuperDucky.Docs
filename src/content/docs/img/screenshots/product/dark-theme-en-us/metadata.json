@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 2,
+  "assetId": "dark-theme-en-us",
+  "slug": "dark-theme-en-us",
+  "title": "Dark theme",
+  "description": "SuperDucky Mod Management page in the dark theme: group list on the left, mod cards on the right, Escape from Duckov selected as the current game.",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "en-US",
+    "dark-theme",
+    "dark-ui"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, en-US UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/product/dark-theme-en-us",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.561Z",
+    "updatedAt": "2026-11-23T17:48:18.562Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "product",
+      "categorySegments": [
+        "product"
+      ],
+      "relativeSourcePath": "product/dark-theme-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

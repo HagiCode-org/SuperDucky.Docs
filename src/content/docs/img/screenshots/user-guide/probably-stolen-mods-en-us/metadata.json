@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "probably-stolen-mods-en-us",
+  "slug": "probably-stolen-mods-en-us",
+  "title": "Probably Stolen mod management",
+  "description": "SuperDucky Mod Management page for Probably Stolen: the Shop helpers group shows three mods, two of them with a Capabilities badge.",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "en-US",
+    "probably-stolen"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, en-US UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.571Z",
+    "updatedAt": "2026-11-23T17:48:18.571Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/probably-stolen-mods-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

@@ -1,5 +1,284 @@
 {
-  "generatedAt": "2026-11-22T00:00:00.000Z",
+  "generatedAt": "2026-11-23T17:48:18.572Z",
   "libraryRoot": "src/content/docs/img/screenshots",
-  "items": []
+  "items": [
+    {
+      "id": "product/dark-theme-en-us",
+      "slug": "dark-theme-en-us",
+      "category": "product",
+      "categorySegments": [
+        "product"
+      ],
+      "title": "Dark theme",
+      "alt": "SuperDucky Mod Management page in the dark theme: group list on the left, mod cards on the right, Escape from Duckov selected as the current game.",
+      "description": "SuperDucky Mod Management page in the dark theme: group list on the left, mod cards on the right, Escape from Duckov selected as the current game.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "en-US",
+        "dark-theme",
+        "dark-ui"
+      ],
+      "relativeImagePath": "img/screenshots/product/dark-theme-en-us/original.png",
+      "assetDir": "src/content/docs/img/screenshots/product/dark-theme-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/product/dark-theme-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/product/dark-theme-en-us/original.png",
+      "updatedAt": "2026-11-23T17:48:18.562Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "product/dark-theme-zh-cn",
+      "slug": "dark-theme-zh-cn",
+      "category": "product",
+      "categorySegments": [
+        "product"
+      ],
+      "title": "暗色主题",
+      "alt": "暗色主题下的超级丫丫“模组管理”页面:左侧是分组列表,右侧是模组卡片,当前游戏为逃离鸭科夫。",
+      "description": "暗色主题下的超级丫丫“模组管理”页面:左侧是分组列表,右侧是模组卡片,当前游戏为逃离鸭科夫。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "zh-CN",
+        "dark-theme",
+        "dark-ui"
+      ],
+      "relativeImagePath": "img/screenshots/product/dark-theme-zh-cn/original.png",
+      "assetDir": "src/content/docs/img/screenshots/product/dark-theme-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/product/dark-theme-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/product/dark-theme-zh-cn/original.png",
+      "updatedAt": "2026-11-23T17:48:18.563Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/duckov-load-order-en-us",
+      "slug": "duckov-load-order-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Load order preview",
+      "alt": "SuperDucky \"Preview results\" mode for Escape from Duckov: all groups merged into one list in load order, with the footer note that drag sorting is not available in preview mode.",
+      "description": "SuperDucky \"Preview results\" mode for Escape from Duckov: all groups merged into one list in load order, with the footer note that drag sorting is not available in preview mode.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "en-US",
+        "load-order"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/duckov-load-order-en-us/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us/original.png",
+      "updatedAt": "2026-11-23T17:48:18.565Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/duckov-load-order-zh-cn",
+      "slug": "duckov-load-order-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "加载顺序预览",
+      "alt": "超级丫丫“预览结果”模式(逃离鸭科夫):所有分组按加载顺序合并成一个列表,底部提示预览模式下无法拖动排序。",
+      "description": "超级丫丫“预览结果”模式(逃离鸭科夫):所有分组按加载顺序合并成一个列表,底部提示预览模式下无法拖动排序。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "zh-CN",
+        "load-order"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/duckov-load-order-zh-cn/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn/original.png",
+      "updatedAt": "2026-11-23T17:48:18.566Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/duckov-mods-en-us",
+      "slug": "duckov-mods-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Escape from Duckov mod management",
+      "alt": "SuperDucky Mod Management page for Escape from Duckov: the Combat group is selected and shows three enabled mods; the toolbar has Enable all, Disable all, Source, Status and search.",
+      "description": "SuperDucky Mod Management page for Escape from Duckov: the Combat group is selected and shows three enabled mods; the toolbar has Enable all, Disable all, Source, Status and search.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "en-US",
+        "mods"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/duckov-mods-en-us/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us/original.png",
+      "updatedAt": "2026-11-23T17:48:18.567Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/duckov-mods-zh-cn",
+      "slug": "duckov-mods-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "逃离鸭科夫模组管理",
+      "alt": "超级丫丫“模组管理”页面(逃离鸭科夫):选中“Combat”分组,显示 3 个已启用的模组;工具栏有“启用全部”“禁用全部”“来源”“状态”和搜索框。",
+      "description": "超级丫丫“模组管理”页面(逃离鸭科夫):选中“Combat”分组,显示 3 个已启用的模组;工具栏有“启用全部”“禁用全部”“来源”“状态”和搜索框。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "zh-CN",
+        "mods"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/duckov-mods-zh-cn/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn/original.png",
+      "updatedAt": "2026-11-23T17:48:18.567Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/game-log-en-us",
+      "slug": "game-log-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Game log viewer",
+      "alt": "SuperDucky Log System page monitoring the Escape from Duckov log, with Stop monitoring, Clear, Editor, Folder, Top and Bottom buttons, a search box and an auto-scroll switch.",
+      "description": "SuperDucky Log System page monitoring the Escape from Duckov log, with Stop monitoring, Clear, Editor, Folder, Top and Bottom buttons, a search box and an auto-scroll switch.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "en-US",
+        "logs"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/game-log-en-us/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/game-log-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/game-log-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/game-log-en-us/original.png",
+      "updatedAt": "2026-11-23T17:48:18.568Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/game-log-zh-cn",
+      "slug": "game-log-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "游戏日志",
+      "alt": "超级丫丫“日志系统”页面正在监控逃离鸭科夫的游戏日志,有“停止监控”“清空”“编辑器”“文件夹”“顶部”“底部”按钮、搜索框和自动滚动开关。",
+      "description": "超级丫丫“日志系统”页面正在监控逃离鸭科夫的游戏日志,有“停止监控”“清空”“编辑器”“文件夹”“顶部”“底部”按钮、搜索框和自动滚动开关。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "zh-CN",
+        "logs"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/game-log-zh-cn/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn/original.png",
+      "updatedAt": "2026-11-23T17:48:18.569Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/probably-stolen-all-groups-en-us",
+      "slug": "probably-stolen-all-groups-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Probably Stolen preview of all groups",
+      "alt": "SuperDucky preview of all five Probably Stolen mods across groups, each card tinted with its group colour and showing its Capabilities count.",
+      "description": "SuperDucky preview of all five Probably Stolen mods across groups, each card tinted with its group colour and showing its Capabilities count.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "en-US",
+        "probably-stolen"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-all-groups-en-us/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us/original.png",
+      "updatedAt": "2026-11-23T17:48:18.570Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/probably-stolen-all-groups-zh-cn",
+      "slug": "probably-stolen-all-groups-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "深空当铺全部分组预览",
+      "alt": "超级丫丫预览深空当铺全部 5 个模组:卡片按所属分组着色,并显示声明的能力数量。",
+      "description": "超级丫丫预览深空当铺全部 5 个模组:卡片按所属分组着色,并显示声明的能力数量。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "zh-CN",
+        "probably-stolen"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/original.png",
+      "updatedAt": "2026-11-23T17:48:18.570Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/probably-stolen-mods-en-us",
+      "slug": "probably-stolen-mods-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Probably Stolen mod management",
+      "alt": "SuperDucky Mod Management page for Probably Stolen: the Shop helpers group shows three mods, two of them with a Capabilities badge.",
+      "description": "SuperDucky Mod Management page for Probably Stolen: the Shop helpers group shows three mods, two of them with a Capabilities badge.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "en-US",
+        "probably-stolen"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-mods-en-us/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us/original.png",
+      "updatedAt": "2026-11-23T17:48:18.571Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/probably-stolen-mods-zh-cn",
+      "slug": "probably-stolen-mods-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "深空当铺模组管理",
+      "alt": "超级丫丫“模组管理”页面(深空当铺):“Shop helpers”分组显示 3 个模组,其中两个带有“能力”标记。",
+      "description": "超级丫丫“模组管理”页面(深空当铺):“Shop helpers”分组显示 3 个模组,其中两个带有“能力”标记。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "zh-CN",
+        "probably-stolen"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-mods-zh-cn/original.png",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn/original.png",
+      "updatedAt": "2026-11-23T17:48:18.572Z",
+      "analysisStatus": "skipped"
+    }
+  ]
 }

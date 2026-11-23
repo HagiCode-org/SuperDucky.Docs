@@ -1,8 +1,46 @@
 ---
 title: SuperDucky Product Overview
-description: The entry page of the SuperDucky documentation site. The full documentation will be added here over time.
+description: SuperDucky is a desktop mod manager for Unity games. Add, enable and disable mods, drag to set the load order, and save and switch setups as profiles. It supports Escape from Duckov and Probably Stolen.
 ---
 
-Welcome to the SuperDucky documentation site.
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-This is a placeholder page for the base structure: the site framework, localization, search, blog, release notes, and deployment pipeline are in place. The product introduction, installation guide, and user guide will be added later.
+SuperDucky is a desktop mod manager for Unity games. It adds, removes, enables and disables mods, sets their load order, and saves each mod setup as a **profile** you can switch between.
+
+It is released through the Microsoft Store and runs on Windows 10 / 11. Each game has its own mods, profiles and settings.
+
+## Supported games
+
+| Game | Steam app ID | Mod manifest | Notes |
+|------|--------------|--------------|-------|
+| Escape from Duckov | 3167020 | `info.ini` | The default game, with the full feature set |
+| Probably Stolen (深空当铺) | 4348910 | `manifest.xml` | Enabling a mod asks you to confirm the capabilities it declares; no NuGet market or save gallery |
+
+The differences are listed in [Probably Stolen](/en-US/user-guide/probably-stolen).
+
+## Main features
+
+![SuperDucky Mod Management page with the group list on the left and enabled mod cards on the right](../img/screenshots/user-guide/duckov-mods-en-us/original.png)
+
+- **Mod management**: scan local and Steam Workshop mods, enable or disable them in one click, and filter by source or status or search. See [Mods and groups](/en-US/user-guide/mods-and-groups).
+- **Groups and load order**: put mods in groups and drag to reorder them; "Preview results" shows the final order of all groups merged before you launch the game. See [Load order and profiles](/en-US/user-guide/load-order-and-profiles).
+- **Profiles**: save the current groups and enable state as a profile and switch between playstyles. Every save leaves a history version you can restore.
+- **Dependency checks**: SuperDucky checks that dependencies exist, are enabled, load in the right order and contain no cycles, and reports problems at the top of the page.
+- **Mod marketplace**: browse, subscribe to and unsubscribe from Steam Workshop mods, or install ZIP archives from a folder in one go. See [Mod marketplace](/en-US/user-guide/marketplace).
+- **Log viewer**: read the game log live to find out why a mod did not load. See [Game log](/en-US/user-guide/logs).
+- **English and Simplified Chinese** interface, with light and dark themes.
+
+![SuperDucky Mod Management page in the dark theme](../img/screenshots/product/dark-theme-en-us/original.png)
+
+:::note
+Screenshots in this documentation use fictional demo mods (author `DuckModder`). They do not show anyone's real mod library.
+:::
+
+## Where to start
+
+<CardGrid>
+  <LinkCard title="Download and install" href="/en-US/installation" description="Get SuperDucky (超级丫丫) from the Microsoft Store." />
+  <LinkCard title="First launch" href="/en-US/quick-start/first-launch" description="Choose a language and a game, then set the mod folder paths." />
+  <LinkCard title="Manage your first mods" href="/en-US/quick-start/first-mods" description="Group, enable, preview the order, then launch the game." />
+  <LinkCard title="FAQ" href="/en-US/faq" description="Mods not loading, where data is stored, telemetry and privacy." />
+</CardGrid>

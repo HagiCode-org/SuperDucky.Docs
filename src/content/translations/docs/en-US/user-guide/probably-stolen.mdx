@@ -1,0 +1,74 @@
+---
+title: Probably Stolen
+description: Manage Probably Stolen mods with SuperDucky - manifest.xml, capability declarations and approval, save backups, and how it differs from Escape from Duckov.
+sidebar:
+  order: 4
+---
+
+SuperDucky supports Probably Stolen (深空当铺) as well. Grouping, enabling, previewing and profiles work exactly as they do for Escape from Duckov. The differences are the mod format and the **capability approval** when you launch.
+
+First switch to "Probably Stolen" in "Current game" at the top of the navigation bar. The first switch sets the game up; see [First launch](/en-US/quick-start/first-launch).
+
+![Probably Stolen Mod Management page with the Shop helpers group showing three mods, two of them with a Capabilities badge](../../img/screenshots/user-guide/probably-stolen-mods-en-us/original.png)
+
+## Mod format
+
+A Probably Stolen mod is a folder with a `manifest.xml` that holds `<ID>`, `<Name>`, `<ModVersion>`, `<Assemblies>` and `<Capabilities>`. Local mods go in the `Mods` folder of the game, and Workshop mods are in Steam's Workshop folder.
+
+SuperDucky reads manifests strictly:
+
+- a mod **without `<Capabilities>`** cannot be enabled, because the game rejects it;
+- when the **same `<ID>`** appears in two places, both mods are marked as conflicting and neither can be enabled until you remove one.
+
+## Capabilities
+
+A capability is a permission a mod declares in its manifest and needs the game to grant. A mod with capabilities shows a "Capabilities: N" badge on its card; hover to see the list.
+
+![Preview of all five Probably Stolen mods tinted by group, each card showing its capability count](../../img/screenshots/user-guide/probably-stolen-all-groups-en-us/original.png)
+
+| Capability | Meaning |
+|------------|---------|
+| File access | Can read and write files on this computer |
+| Network | Can access the network |
+| Start processes | Can start other programs |
+| Run dynamic code | Can generate and run code while the game runs |
+| Native code | Can load native (unmanaged) libraries |
+| Other assemblies | Can read the internals of other assemblies through reflection |
+| Steam | Can call the Steam client interface |
+| Unknown capability | Not recognised; allow it only if you trust the mod |
+
+## Confirmation at launch
+
+Flipping a switch in Mod Management changes only the current profile. When you click **Launch game**, SuperDucky first plans the sync and then decides whether to ask you:
+
+1. If a mod is **newly enabled** and declares capabilities, a "Confirm mod capabilities" dialog lists each such mod and its capabilities;
+2. For a mod that is already enabled, you are asked again only if its manifest declares a **new capability** you have not approved before; a reduced or unchanged list asks nothing;
+3. Each mod needs its **own checkbox** ("I have read these capabilities and allow this mod to use them"). There is no "approve all" and no remembered approval;
+4. Click **Confirm and start** once every mod is checked. **Cancel** writes nothing and does not start the game.
+
+## Save file and backups
+
+SuperDucky enables, disables and orders mods by editing the game save `SaveFile.es3`. It changes only three top-level members: the load order (`modOrder`), the trust records (`modTrust`), and it deletes the signature (`modTrustMac`) so the game signs the file again. Every other byte is kept.
+
+- Before each write, the save is copied to `SaveFile.es3.superducky-bak-<timestamp>`, and the latest 10 copies are kept.
+- The new content goes to a temporary file, is read back and checked, then replaces the original.
+- If the save is not in the expected shape (for example it has a BOM, is not UTF-8, or has duplicate top-level keys), SuperDucky **refuses to write** and does not try to repair it.
+- Writes are refused while the game is running. When you see "Probably Stolen is running; close the game first", quit the game. If the process check itself fails, SuperDucky treats the game as running.
+
+## Workshop mods
+
+Workshop mods for Probably Stolen can be enabled. The record written to the save marks them as coming from the Workshop. They have not been fully verified on a real machine yet, so the UI labels them "Not verified on a real machine" and says so again after launch.
+
+## How it differs from Escape from Duckov
+
+| Feature | Escape from Duckov | Probably Stolen |
+|---------|--------------------|-----------------|
+| Mod manifest | `info.ini` | `manifest.xml` |
+| Workshop marketplace | Yes | Yes |
+| Game log | Yes | Yes |
+| Capability approval | No | Yes |
+| Save Gallery | Yes | No |
+| NuGet market | Yes | No |
+| BML import | Yes | No |
+| Launcher dependency check | Yes | No |
+| If the sync fails | The game still launches | Launch is blocked |

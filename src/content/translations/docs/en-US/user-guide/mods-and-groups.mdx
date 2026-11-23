@@ -1,0 +1,73 @@
+---
+title: Mods and Groups
+description: Scan, filter and enable mods in SuperDucky, organise them in groups, use bulk actions, and read the dependency health check.
+sidebar:
+  order: 2
+---
+
+Mod Management is SuperDucky's main page. This page explains how to find and enable mods, organise them in groups, and what the dependency health check does.
+
+![Escape from Duckov Mod Management page with the Combat group selected and three enabled mods](../../img/screenshots/user-guide/duckov-mods-en-us/original.png)
+
+## Where mods come from
+
+SuperDucky scans two places:
+
+- **Local**: mods you placed in the local mod folder by hand, or installed from a ZIP through the marketplace.
+- **Steam Workshop**: mods you subscribed to, downloaded by Steam into the Workshop folder.
+
+A badge on each card shows the source. Newly scanned mods go into the default group "Ungrouped". Click **Refresh** at the top right to scan again.
+
+If the list is empty, the paths are usually not set yet. Click "Open settings" on the page and check the mod folders in [Settings](/en-US/user-guide/settings).
+
+## Find mods
+
+The toolbar gives you four ways to narrow the list:
+
+- **Source**: only local or only Workshop mods.
+- **Status**: only enabled or only disabled mods.
+- **Search box**: search by name, author or description; press `/` to focus it.
+- **View**: default, compact and one-line views. Compact or one-line is easier to browse with many mods.
+
+After filtering, **Enable filtered** and **Disable filtered** act only on the mods you can see. With no filter, the same buttons read **Enable all** and **Disable all**. If the filters hide every mod, the page says so and offers "Clear search and filters".
+
+## Groups
+
+Groups keep related mods together, for example "Combat", "Interface" or "Shop helpers". Each group has a colour and a name, and the order of the groups also decides the load order (see [Load order and profiles](/en-US/user-guide/load-order-and-profiles)).
+
+- **New**: click "New" above the group list and enter a name.
+- **Edit and delete**: select a group, then open the "…" menu above the list for "Edit" and "Delete". Deleting a group that holds mods asks which group to move them to.
+- **Reorder groups**: drag the handle on the left of a group, or choose "Move up" or "Move down" from the same "…" menu.
+- **Default group**: "Ungrouped" receives newly scanned mods and cannot be deleted.
+
+To see the mods of all groups at once, use [Preview results](/en-US/user-guide/load-order-and-profiles).
+
+## Move and sort mods
+
+- **Drag** the handle on a card to reorder it within its group or drop it into another group.
+- A card's menu offers: enable/disable, move up, move down, move to top of group, move to end of group, send to group, open folder, and view on Steam.
+- **Bulk actions**: select several cards and a bulk toolbar appears to enable, disable, move to a group, or move to the top or end of a group. Press `Esc` to clear the selection.
+
+After moving mods the page says "You have unsaved changes". Click **Save changes** to apply them.
+
+## Dependency health check
+
+The banner at the top shows whether the current setup is healthy. SuperDucky checks:
+
+| Check | Meaning |
+|-------|---------|
+| Dependency existence | Every declared dependency is installed |
+| Dependency enabled | Every dependency is enabled |
+| Order check | A dependency loads before the mod that needs it |
+| Cycle detection | Mods do not depend on each other in a loop |
+| Duplicate names | No two enabled mods share a name |
+
+When all is well the banner is a green "Mod configuration is healthy". Otherwise it shows the number of errors and warnings, and **View report** lets you:
+
+- **Enable** a missing or disabled dependency directly, or use **Subscribe on Steam**;
+- **Locate dependency** or **Locate mod** to find the mods in the list;
+- **Ignore** an issue you know is harmless, and **Restore** it later.
+
+:::tip
+Errors say "fix them before saving"; warnings can be saved. A dependency error can stop the game from working properly, so handle those first.
+:::

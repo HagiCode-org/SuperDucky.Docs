@@ -1,0 +1,42 @@
+---
+title: First Launch
+description: Choose a language and a game the first time you open SuperDucky, detect or set the mod folder paths, and finish setup.
+sidebar:
+  order: 1
+---
+
+The first time you open SuperDucky, a setup wizard starts. It takes a few minutes and does three things: picks a language, picks the game you want to use, and tells the app where your mods are.
+
+## 1. Choose a language
+
+Pick the interface language (Simplified Chinese or English) at the start of the wizard. You can change it later in "Settings → Basic"; the change takes effect immediately.
+
+## 2. Choose a game
+
+The first step of "Game setup" is **Choose game**. Each game is set up on its own, so choose only the one you use. A game that is already set up is marked "Set up", and the others "Not set up yet". You can set up another game later whenever you want to manage it.
+
+## 3. Configure paths
+
+The "Configure paths" step asks where your mods are:
+
+| Path | Meaning |
+|------|---------|
+| **Local mod path** | The folder with mods you installed by hand |
+| **Steam mod path** | The folder where Steam downloads Workshop mods |
+| **Game data path / save folder** | Used to sync your mod setup to the game (called "Game data path" for Escape from Duckov and "Save folder" for Probably Stolen) |
+
+The easiest way is **Auto-detect paths**. If the game is installed through Steam, SuperDucky tries to find these folders for you; check that they are right afterwards. You can also click the folder icon to browse. At least the local mod path is required to continue. The Settings page calls the same two items "Local mod folder" and "Steam Workshop folder".
+
+The default locations for each game:
+
+| Game | Local mods | Game data |
+|------|------------|-----------|
+| Escape from Duckov | `Duckov_Data/Mods` in the game folder | `%UserProfile%\AppData\LocalLow\TeamSoda\Duckov\` |
+| Probably Stolen | `Mods` in the game folder, one subfolder per mod with a `manifest.xml` inside | `%UserProfile%\AppData\LocalLow\Questing Goose Studio\Probably Stolen\` |
+
+
+## 4. Finish
+
+The last page lists the main features. Click **Finish and start using SuperDucky** to begin. You can change the paths in Settings at any time after the wizard.
+
+Next: [Manage your first mods](/en-US/quick-start/first-mods).

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 2,
+  "assetId": "dark-theme-zh-cn",
+  "slug": "dark-theme-zh-cn",
+  "title": "暗色主题",
+  "description": "暗色主题下的超级丫丫“模组管理”页面:左侧是分组列表,右侧是模组卡片,当前游戏为逃离鸭科夫。",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "zh-CN",
+    "dark-theme",
+    "dark-ui"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, zh-CN UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/product/dark-theme-zh-cn",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.563Z",
+    "updatedAt": "2026-11-23T17:48:18.563Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "product",
+      "categorySegments": [
+        "product"
+      ],
+      "relativeSourcePath": "product/dark-theme-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "probably-stolen-all-groups-en-us",
+  "slug": "probably-stolen-all-groups-en-us",
+  "title": "Probably Stolen preview of all groups",
+  "description": "SuperDucky preview of all five Probably Stolen mods across groups, each card tinted with its group colour and showing its Capabilities count.",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "en-US",
+    "probably-stolen"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, en-US UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.569Z",
+    "updatedAt": "2026-11-23T17:48:18.570Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/probably-stolen-all-groups-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

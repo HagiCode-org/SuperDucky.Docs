@@ -1,0 +1,62 @@
+---
+title: Settings
+description: SuperDucky's Settings page - basic settings, game options and launch wait time, install wizard, mod market, debug tools, security center and save gallery.
+sidebar:
+  order: 7
+---
+
+Click **Settings** in the navigation bar. The categories are on the left and their options on the right. After a change, watch the save state on the page (saving, saved or failed).
+
+## Basic
+
+- **Display language**: the language of the whole app (Simplified Chinese or English). It applies immediately and stays after a restart.
+- **Config and data location**: shows the config file and data folder in use, useful for backups and troubleshooting.
+- **Privacy and telemetry**: view and control data collection; see [Telemetry and privacy](/en-US/faq/data-and-privacy).
+
+## Game options
+
+This page is about the **current game**; switch the game and it shows that game's settings.
+
+- **Auto-detect paths**: let SuperDucky find the game folders. Check the result afterwards.
+- **Local mod folder**: the folder with mods you installed by hand.
+- **Steam Workshop folder**: where Steam downloads Workshop mods.
+- **Game data path** (Escape from Duckov) / **Save folder** (Probably Stolen): used to sync the mod setup to the game.
+- **Game launch wait time**: when SuperDucky launches the game it briefly turns off its own Steam connection so it does not conflict with the game, and turns it back on afterwards. This is the number of seconds it waits before doing so.
+
+### Setting the launch wait time
+
+Make sure that **the game has fully started within this time** after you click launch. If the wait is too short, the Steam connection is still held by SuperDucky and Steam says "game is running" and refuses to start it. Reference values:
+
+| Environment | Suggestion |
+|-------------|------------|
+| SSD, good network | 5–15 seconds |
+| Hard disk, average network | 20–30 seconds |
+| Slow network or low-end PC | 30–45 seconds |
+| Poor network | 45–60 seconds |
+
+## Install wizard
+
+You can **reset the wizard state** so the setup wizard shows again next time. The reset applies only to the current game, which must be set up again before you can use it.
+
+## Mod market
+
+- **Default view mode**: large, normal or minimal.
+- **Page size**: automatic or a fixed number.
+- **Steam market settings**: auto-update, update history, cache time and subscription safety; see [Mod marketplace](/en-US/user-guide/marketplace).
+- **NuGet market settings**: enable or disable the NuGet feed (Escape from Duckov only).
+
+## Debug tools
+
+Set the log level (DEBUG, INFO, WARN, ERROR), log file rotation and how many files to keep, open the log folder, and export logs. See [Game log](/en-US/user-guide/logs).
+
+## Security center
+
+When you click an external link in the app, SuperDucky first shows a confirmation dialog. Tick "Do not show this again for such links" to add the domain to **Trusted domains**, whose links then open directly. Here you can review and remove trusted domains, or clear them all.
+
+## Save gallery
+
+Shown for Escape from Duckov only. It holds the gallery's feature switch and the sorting of comparison properties.
+
+## Reporting problems
+
+For problems or suggestions, open an issue on [GitHub Issues](https://github.com/ducky7go/SuperDucky/issues). The Chat page has the community group information.

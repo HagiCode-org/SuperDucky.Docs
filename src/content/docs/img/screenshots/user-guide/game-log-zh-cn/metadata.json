@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "game-log-zh-cn",
+  "slug": "game-log-zh-cn",
+  "title": "游戏日志",
+  "description": "超级丫丫“日志系统”页面正在监控逃离鸭科夫的游戏日志,有“停止监控”“清空”“编辑器”“文件夹”“顶部”“底部”按钮、搜索框和自动滚动开关。",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "zh-CN",
+    "logs"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, zh-CN UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.568Z",
+    "updatedAt": "2026-11-23T17:48:18.569Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/game-log-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

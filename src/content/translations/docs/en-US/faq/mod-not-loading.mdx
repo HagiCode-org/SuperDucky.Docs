@@ -1,0 +1,46 @@
+---
+title: Mod Not Loading
+description: Steps to follow when a mod is enabled in SuperDucky but does nothing in the game - save, launch method, paths, dependencies, conflicts and logs.
+sidebar:
+  order: 10
+---
+
+First work out which layer fails: SuperDucky does not see the mod, it sees it but it is not enabled, or it was handed to the game and the game did not load it.
+
+## Step 1: Does SuperDucky see the mod?
+
+- Click **Refresh** in Mod Management.
+- The list is empty: check the **Local mod folder** and **Steam Workshop folder** in "Settings → Game options", or use **Auto-detect paths**.
+- Only one mod is missing:
+  - Escape from Duckov: the folder needs an `info.ini`.
+  - Probably Stolen: the folder needs a `manifest.xml` that contains `<Capabilities>`. A mod without `<Capabilities>` cannot be enabled.
+- Two Probably Stolen mods both show a conflict: they share the same `<ID>`. Remove one and the other can be enabled.
+
+## Step 2: Did you enable and save?
+
+- After enabling, the page says "You have unsaved changes". Click **Save changes**.
+- Use "Preview results" to confirm the mod appears in the final load list.
+
+## Step 3: Did you launch the right way?
+
+- **Probably Stolen** writes its save only when you click SuperDucky's **Launch game**. Starting from Steam uses whatever was written last.
+- A newly enabled mod with capabilities must be ticked and confirmed in the dialog. Cancelling the dialog writes nothing.
+- If you see "running, close the game first", quit the game and launch again.
+
+## Step 4: Are the dependencies healthy?
+
+If the banner at the top is not "Mod configuration is healthy", click **View report**:
+
+- missing dependency: subscribe to or install it;
+- dependency not enabled: enable it;
+- wrong order: move the dependency before the mod that needs it;
+- two mods with the same name enabled: keep only one.
+
+## Step 5: Read the game log
+
+Open [Game log](/en-US/user-guide/logs), click **Start monitoring**, launch the game, and search for the mod name. No lines at all means the game did not find the mod (back to step 1); lines with errors mean you should report them together with the exported log.
+
+## Still stuck
+
+- Set the log level to DEBUG in "Settings → Debug tools", reproduce the problem once, and **export recent logs**.
+- Open an issue on [GitHub Issues](https://github.com/ducky7go/SuperDucky/issues) with the game, the SuperDucky version (bottom of the navigation bar), the mod name and what you did.

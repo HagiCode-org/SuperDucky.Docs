@@ -1,0 +1,60 @@
+---
+title: Mod Marketplace
+description: Browse, search and subscribe to Steam Workshop mods in SuperDucky, check dependencies, and install local mods from ZIP archives in a folder.
+sidebar:
+  order: 5
+---
+
+The marketplace is where you find and install new mods. It has several sources, each one a **provider** that you switch between at the top of the page.
+
+| Provider | What it does | Games |
+|----------|--------------|-------|
+| **Steam Workshop** | Browse, search, subscribe to and unsubscribe from Workshop mods | Escape from Duckov, Probably Stolen |
+| **Local folder** | Install mods from ZIP archives in a folder | Both games |
+| **NuGet feed** | Get mods from a NuGet feed | Escape from Duckov only |
+
+:::note
+The Steam Workshop provider needs the Steam client to be running. If the page says no mod source is available, start Steam and try again.
+:::
+
+## Steam Workshop
+
+The page opens on **Trending mods**. Type a keyword, tag or author and click **Search** to see results.
+
+- **Sort**: relevance, recently updated, oldest updated, highest rated, lowest rated, most subscribed, least subscribed, most downloaded.
+- **View**: large (with previews and details), normal, and minimal (a list that shows more per screen). Set the default view and page size in "Settings → Mod market"; you can still switch temporarily on the page.
+- **Cards**: show author, rating, subscribers and update time. **View details** opens screenshots, the description and dependencies.
+
+### Subscribing and dependencies
+
+- Click **Subscribe** and Steam downloads the mod. A subscribed mod shows "Subscribed"; when a new version exists it shows "Update available" and an **Update** button.
+- Click **Unsubscribe** to remove the subscription.
+- The **Dependencies** panel in the details lists each dependency as installed, missing or unknown, and can **subscribe to all missing dependencies** at once. Circular dependencies are flagged.
+- If a mod has very few subscribers or its author is on your block list, the "Subscription safety" settings below apply.
+
+Subscribed mods download into the Workshop folder. Go back to Mod Management and click **Refresh**, and they appear in "Ungrouped".
+
+### Subscription safety
+
+Under "Settings → Mod market → Steam market settings":
+
+- **Minimum subscribers**: mods below this number disappear from lists, search and trending; `0` turns it off. Mods you already subscribed to always stay visible.
+- **Blocked authors**: enter a 17-digit Steam ID or a `steamcommunity.com/profiles/` link, and that author's mods stop appearing. Custom profile links (`/id/...`) are not accepted.
+- **Confirm before subscribing**: shows the subscriber count and the author's history before a Steam subscription starts; you can still continue.
+- **Steam mod auto-update**: detects updates to your subscribed mods and starts the download; "Update history" shows the record.
+
+## Local folder
+
+When mods come as ZIP archives, use this provider to install them in bulk:
+
+1. Click **Choose folder** and select the folder that holds the ZIPs. **Each ZIP is one mod**.
+2. The list shows the mod ID, version and file name read from each archive. An archive without a valid manifest shows "Cannot install" with the reason.
+3. Click **Install** next to one archive, or **Install all**.
+4. Each result is "Installed", "Replaced", "Skipped" or "Failed", with a summary at the bottom. A clash with an existing mod shows "Conflicts with …".
+
+The archive's mod identity is read first (`info.ini` for Escape from Duckov, `manifest.xml` for Probably Stolen) and checked again before the mod is placed; the mod ends up in a folder named after its ID. Installs are refused while Probably Stolen is running.
+
+## Escape from Duckov only: NuGet and BML
+
+- **NuGet feed**: can be enabled or disabled in "Settings → Mod market".
+- **BML import**: import a BML setup from profile management; see [Load order and profiles](/en-US/user-guide/load-order-and-profiles).

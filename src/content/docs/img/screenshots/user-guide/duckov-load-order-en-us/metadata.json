@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "duckov-load-order-en-us",
+  "slug": "duckov-load-order-en-us",
+  "title": "Load order preview",
+  "description": "SuperDucky \"Preview results\" mode for Escape from Duckov: all groups merged into one list in load order, with the footer note that drag sorting is not available in preview mode.",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "en-US",
+    "load-order"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, en-US UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.565Z",
+    "updatedAt": "2026-11-23T17:48:18.565Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/duckov-load-order-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

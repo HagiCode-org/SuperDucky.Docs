@@ -1,0 +1,54 @@
+---
+title: FAQ
+description: Common SuperDucky questions - supported games, mods that do not take effect, Steam saying the game is running, Probably Stolen capability approval, and where to report problems.
+sidebar:
+  order: 1
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Which games and platforms are supported?
+
+Escape from Duckov and Probably Stolen. SuperDucky is currently released only through the Microsoft Store and runs on Windows 10 / 11. See [Download and install](/en-US/installation).
+
+## Do the mods of the two games affect each other?
+
+No. Each game has its own mod paths, profiles, groups and caches, stored under `games/<game>/` in the user data folder. Switching games switches the whole app to that game's data.
+
+## I enabled a mod but it does nothing in the game
+
+Check in this order; the full steps are in [Mod not loading](/en-US/faq/mod-not-loading):
+
+1. Did you click **Save changes** after the change?
+2. Did you start through SuperDucky's **Launch game** button? (For Probably Stolen, the save is written only then.)
+3. Does the "Mod configuration is healthy" banner show a dependency error?
+4. Search the mod name in the [game log](/en-US/user-guide/logs).
+
+## Steam says "game is running" after I click Launch game
+
+When launching from SuperDucky, it briefly turns off its own Steam connection. If the wait is too short, the connection has not been released and Steam thinks the game is already running. Increase **Game launch wait time** in "Settings → Game options"; reference values are in [Settings](/en-US/user-guide/settings).
+
+## Why does Probably Stolen ask me to confirm capabilities?
+
+Only a **newly enabled** mod that declares capabilities, or an already enabled mod that **adds** a capability you have not approved, triggers the dialog. Each mod needs its own checkbox, there is no "approve all", and approvals are not remembered. Cancelling writes nothing. See [Probably Stolen](/en-US/user-guide/probably-stolen).
+
+## Probably Stolen says it is running and asks me to close it
+
+SuperDucky never edits the save while the game runs. Close the game and launch again. If the game is closed but you still see this, the process check failed and SuperDucky safely assumes the game is running; wait a moment or restart SuperDucky and retry.
+
+## My Workshop mod is missing from Mod Management
+
+Click **Refresh** to rescan, and check that the Steam Workshop folder path in "Settings → Game options" is correct. A mod you just subscribed to must finish downloading in Steam first.
+
+## Where is my data, and is it uploaded?
+
+See [Telemetry and privacy](/en-US/faq/data-and-privacy).
+
+## Where do I report problems?
+
+Open an issue on [GitHub Issues](https://github.com/ducky7go/SuperDucky/issues). Attaching the log exported from "Settings → Debug tools" makes it much easier to find the cause.
+
+<CardGrid>
+  <LinkCard title="Mod not loading" href="/en-US/faq/mod-not-loading" description="Steps from saving and launching to dependencies and logs." />
+  <LinkCard title="Telemetry and privacy" href="/en-US/faq/data-and-privacy" description="What is collected, what is not, and where data lives." />
+</CardGrid>

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "probably-stolen-mods-zh-cn",
+  "slug": "probably-stolen-mods-zh-cn",
+  "title": "深空当铺模组管理",
+  "description": "超级丫丫“模组管理”页面(深空当铺):“Shop helpers”分组显示 3 个模组,其中两个带有“能力”标记。",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "zh-CN",
+    "probably-stolen"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, zh-CN UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.571Z",
+    "updatedAt": "2026-11-23T17:48:18.572Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/probably-stolen-mods-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

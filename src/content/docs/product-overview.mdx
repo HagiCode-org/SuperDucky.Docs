@@ -1,8 +1,46 @@
 ---
 title: SuperDucky 产品概览
-description: SuperDucky 文档站的入口页面。正式文档内容将在这里陆续补充。
+description: SuperDucky(超级丫丫)是面向 Unity 游戏的桌面模组管理器:添加、启用、禁用模组,拖动调整加载顺序,用套件保存并切换配置,支持逃离鸭科夫和深空当铺。
 ---
 
-欢迎来到 SuperDucky 文档站。
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-这是文档站的基础结构占位页：站点框架、多语言、搜索、博客、更新说明和部署流程已经就绪，正式的产品介绍、安装指南和使用手册将在后续补充。
+SuperDucky(中文名“超级丫丫”)是一款面向 Unity 游戏的桌面模组管理器。它负责添加、移除、启用和禁用模组,设置模组的加载顺序,并把每一套模组配置保存成**套件**,需要时一键切换。
+
+它通过 Microsoft Store 发布,支持 Windows 10 / 11,每个游戏有自己独立的模组、套件和设置。
+
+## 支持的游戏
+
+| 游戏 | Steam 应用 ID | 模组清单 | 说明 |
+|------|--------------|----------|------|
+| 逃离鸭科夫(Escape from Duckov) | 3167020 | `info.ini` | 默认游戏,功能最全 |
+| 深空当铺(Probably Stolen) | 4348910 | `manifest.xml` | 启用模组时需要确认模组声明的能力,没有 NuGet 市场和存档图鉴 |
+
+两个游戏之间的差异见[深空当铺](/user-guide/probably-stolen)。
+
+## 主要功能
+
+![SuperDucky 模组管理页面:左侧是分组列表,右侧是已启用的模组卡片](./img/screenshots/user-guide/duckov-mods-zh-cn/original.png)
+
+- **模组管理**:扫描本地和 Steam 创意工坊的模组,一键启用或禁用,支持按来源、状态筛选和搜索。详见[模组与分组](/user-guide/mods-and-groups)。
+- **分组与加载顺序**:把模组放进不同分组,拖动调整顺序;“预览结果”可以在启动游戏前看到所有分组合并后的最终顺序。详见[加载顺序与套件](/user-guide/load-order-and-profiles)。
+- **套件**:把当前的分组和启用状态保存成套件,在不同玩法之间切换;每次保存都会留下历史版本,可以还原。
+- **依赖检查**:自动检查依赖是否存在、是否已启用、顺序是否正确、有没有循环依赖,发现问题时在页面顶部提示。
+- **模组市场**:浏览、订阅和取消订阅 Steam 创意工坊的模组,也可以从一个文件夹里的 ZIP 压缩包批量安装。详见[模组市场](/user-guide/marketplace)。
+- **日志查看**:实时查看游戏日志,用来判断某个模组为什么没有加载。详见[游戏日志](/user-guide/logs)。
+- **中文和英文界面**,亮色和暗色主题。
+
+![暗色主题下的 SuperDucky 模组管理页面](./img/screenshots/product/dark-theme-zh-cn/original.png)
+
+:::note
+文档中的截图使用虚构的演示模组(作者为 `DuckModder`),不代表任何真实的模组库。
+:::
+
+## 从哪里开始
+
+<CardGrid>
+  <LinkCard title="下载与安装" href="/installation" description="从 Microsoft Store 获取 SuperDucky(超级丫丫)。" />
+  <LinkCard title="首次启动" href="/quick-start/first-launch" description="选择语言和游戏,配置模组文件夹路径。" />
+  <LinkCard title="管理第一批模组" href="/quick-start/first-mods" description="分组、启用、预览顺序,然后启动游戏。" />
+  <LinkCard title="常见问题" href="/faq" description="模组没有加载、数据放在哪里、遥测与隐私。" />
+</CardGrid>

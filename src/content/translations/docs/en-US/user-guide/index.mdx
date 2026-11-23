@@ -1,0 +1,47 @@
+---
+title: Interface Overview
+description: Get to know the SuperDucky interface - the left navigation, the current game switcher, the theme, and what each page is for.
+sidebar:
+  order: 1
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+SuperDucky's interface has a navigation bar on the left and the page content on the right. This section covers each page in turn; jump straight to the one you are using.
+
+![Mod Management page in the dark theme with the navigation bar, the group list and the mod cards](../../img/screenshots/product/dark-theme-en-us/original.png)
+
+## Navigation bar
+
+From top to bottom:
+
+| Item | What it does |
+|------|--------------|
+| **Current game** | Switches the game you manage. Each game has its own mods, profiles and settings, and the whole app follows the switch |
+| **Theme button** | Switches between the light and dark themes |
+| **Home** | Quick actions |
+| **Mod Management** | Group, enable, sort and preview mods; see [Mods and groups](/en-US/user-guide/mods-and-groups) |
+| **Mod Marketplace** | Browse and subscribe to Workshop mods, install ZIPs from a folder; see [Mod marketplace](/en-US/user-guide/marketplace) |
+| **Save Gallery** | Collection progress of the in-game gallery; Escape from Duckov only |
+| **Log System** | Live game log; see [Game log](/en-US/user-guide/logs) |
+| **Chat** | Thanks and support page, with feedback and community links |
+| **Settings** | Paths, language, marketplace, debug and privacy; see [Settings](/en-US/user-guide/settings) |
+
+The bottom of the bar shows the app version and the **Launch game** button. Click the small arrow on the edge of the bar to collapse it to icons only.
+
+The items differ by game: Probably Stolen has no Save Gallery, so that item disappears when you switch to it.
+
+## Save Gallery
+
+The Save Gallery (Escape from Duckov only) shows your in-game collection progress. You can filter by tag or rarity, search, and add items to a comparison. The gallery data comes from item information exported by the SuperDucky.Connector mod on the game side. If the page says "Feature disabled", turn it on in "Settings → Gallery settings → Feature switches".
+
+## Page guides
+
+<CardGrid>
+  <LinkCard title="Mods and groups" href="/en-US/user-guide/mods-and-groups" description="Scanning, filtering, bulk actions and the dependency health check." />
+  <LinkCard title="Load order and profiles" href="/en-US/user-guide/load-order-and-profiles" description="Reorder, preview results, profiles and Restore history." />
+  <LinkCard title="Probably Stolen" href="/en-US/user-guide/probably-stolen" description="Mod manifests, capability approval and save backups." />
+  <LinkCard title="Mod marketplace" href="/en-US/user-guide/marketplace" description="Workshop subscriptions and local ZIP installs." />
+  <LinkCard title="Game log" href="/en-US/user-guide/logs" description="Use the log to find out why a mod did not load." />
+  <LinkCard title="Settings" href="/en-US/user-guide/settings" description="Paths, launch wait time, language and privacy." />
+</CardGrid>

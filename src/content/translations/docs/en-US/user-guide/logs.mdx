@@ -1,0 +1,49 @@
+---
+title: Game Log
+description: Read the game log live in SuperDucky's Log System page, search it, auto-scroll, open it in an editor, and tell whether a mod loaded.
+sidebar:
+  order: 6
+---
+
+When a mod does not take effect, the clearest clue is in the game log. The Log System page reads the current game's log live inside SuperDucky, so you do not have to look for the log file yourself.
+
+![Log System page monitoring the Escape from Duckov log with a loading line for each mod](../../img/screenshots/user-guide/game-log-en-us/original.png)
+
+## Use it
+
+1. Click **Log System** in the navigation bar.
+2. Click **Start monitoring**. A "Monitoring" badge appears at the top right and new lines are appended live.
+3. Click **Stop monitoring** when you want to read in peace.
+
+The toolbar:
+
+| Button | What it does |
+|--------|--------------|
+| **Stop monitoring** | Pauses reading new log lines |
+| **Clear** | Clears what the page shows |
+| **Editor** | Opens the log file in an editor |
+| **Folder** | Opens the folder that holds the log |
+| **Top / Bottom** | Jumps to the start or end of the log |
+| **Search logs** | Shows only the lines that contain the keyword |
+| **Auto-scroll** | Keeps the view on the newest line |
+
+The footer shows the monitoring state, the number of displayed lines (for example `18 / 18`) and the log size.
+
+## How to read it
+
+:::note
+The log in the screenshot is demo data, not the real output format of the game. A real log depends on the game and on each mod.
+:::
+
+When you debug a mod, use the log like this:
+
+- **Search by mod name**: type the mod name in the search box to see only its lines, with the number of matches. If nothing matches, the game probably never found the mod; go back to Mod Management and check that it is enabled and saved.
+- **Check the order**: the order in which the mods log their loading is the real load order, which you can compare with "Preview results".
+- **Look for errors**: search for `error`, `exception` or the mod name; the error usually sits next to that mod's loading lines.
+- **See whether it got to the end**: after a normal start the log keeps growing. A log that stops halfway means a mod or the game itself failed there.
+
+The two games keep their logs in different places and SuperDucky finds them itself. If the page is empty, make sure the game has been started once and that the game data path (Escape from Duckov) or save folder (Probably Stolen) is set in [Settings](/en-US/user-guide/settings).
+
+## SuperDucky's own log
+
+SuperDucky's own log is separate from the game log. Under "Settings → Debug tools" you can set the log level (DEBUG, INFO, WARN, ERROR) and log rotation, open the log folder, and **export recent logs / export all logs**. Attach an exported log when you report a problem.

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "game-log-en-us",
+  "slug": "game-log-en-us",
+  "title": "Game log viewer",
+  "description": "SuperDucky Log System page monitoring the Escape from Duckov log, with Stop monitoring, Clear, Editor, Folder, Top and Bottom buttons, a search box and an auto-scroll switch.",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "en-US",
+    "logs"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, en-US UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/game-log-en-us",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.568Z",
+    "updatedAt": "2026-11-23T17:48:18.568Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/game-log-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

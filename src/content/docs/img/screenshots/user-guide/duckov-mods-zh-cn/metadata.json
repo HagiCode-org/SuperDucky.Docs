@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "assetId": "duckov-mods-zh-cn",
+  "slug": "duckov-mods-zh-cn",
+  "title": "逃离鸭科夫模组管理",
+  "description": "超级丫丫“模组管理”页面(逃离鸭科夫):选中“Combat”分组,显示 3 个已启用的模组;工具栏有“启用全部”“禁用全部”“来源”“状态”和搜索框。",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "zh-CN",
+    "mods"
+  ],
+  "source": {
+    "type": "captured",
+    "note": "Real capture at 1920x1080, zh-CN UI, fictional demo mods (author DuckModder), from the Microsoft Store listing set of the SuperDucky app"
+  },
+  "paths": {
+    "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn",
+    "original": "original.png"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-23T17:48:18.567Z",
+    "updatedAt": "2026-11-23T17:48:18.567Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/duckov-mods-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  }
+}

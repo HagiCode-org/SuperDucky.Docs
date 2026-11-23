@@ -1,0 +1,48 @@
+---
+title: Manage Your First Mods
+description: The full flow in SuperDucky from grouping and enabling mods to previewing the final load order, saving, and launching the game.
+sidebar:
+  order: 2
+---
+
+Once the paths are set, click **Mod Management** on the left. SuperDucky scans the local folder and the Steam Workshop folder and lists what it finds. Newly scanned mods go into "Ungrouped" by default.
+
+![Mod Management page with the group list on the left, mod cards on the right, and the profile, Restore history and Refresh buttons at the top](../../img/screenshots/user-guide/duckov-mods-en-us/original.png)
+
+The page has three parts:
+
+- **Group list (left)**: each group's colour, name and mod count.
+- **Mod cards (right)**: each card shows the mod's icon, name, author, version and source, and a switch at the top right turns it on or off.
+- **Top bar**: the current profile, "Restore history" and "Refresh"; below it is the dependency health banner.
+
+## 1. Create groups
+
+1. Click **New** above the group list, type a name such as "Combat" or "Interface", and click **Create**.
+2. Drag mod cards into a group, or select cards and use **Move to group** on the bulk toolbar.
+3. Groups can be dragged to change their order, too.
+
+"Ungrouped" is the default group. It receives newly scanned mods and cannot be deleted.
+
+## 2. Enable mods
+
+- Click the switch at the top right of a card to enable or disable a single mod.
+- **Enable all** and **Disable all** in the toolbar act on the current filter result. Narrow the list with **Source**, **Status** or the search box first; it is safer.
+
+The green banner "Mod configuration is healthy" means no dependency problem was found. If a dependency is missing or the order is wrong, the banner shows the number of errors and warnings; open it to see the report, enable a missing dependency in one click, or ignore an issue.
+
+## 3. Preview the final order
+
+Click **Preview results** at the top right. All groups are merged into one list in the actual load order, so you can check it before launching the game. Drag sorting is not available in preview mode; click the button again to leave it.
+
+![Preview results with all groups merged into one list and a footer note that drag sorting is not available in preview mode](../../img/screenshots/user-guide/duckov-load-order-en-us/original.png)
+
+## 4. Save and launch
+
+- After a change, the page says "You have unsaved changes". Click **Save changes** to apply them.
+- Click **Launch game** at the bottom left. SuperDucky syncs the mod setup to the game first, then starts it through Steam.
+
+:::caution
+When launching, SuperDucky briefly turns off its own Steam connection so it does not conflict with the game. If Steam says "game is running", increase "Game launch wait time" in "Settings → Game options".
+:::
+
+If something goes wrong in the game, open [Game log](/en-US/user-guide/logs) to see whether the mod loaded.

@@ -1,0 +1,55 @@
+---
+title: Load Order and Profiles
+description: How SuperDucky orders mods, how to check the final order with Preview results, and how to save and switch setups with profiles and restore from history.
+sidebar:
+  order: 3
+---
+
+The load order of mods can change how they behave. This page explains how the order is worked out, how to preview it, and how to keep several setups as profiles.
+
+## How the order is built
+
+Lay out the groups from top to bottom, and inside each group the cards from first to last. That one long sequence is the load order, and earlier mods load first. So:
+
+- moving a **group** moves all the mods in it;
+- reordering **inside** a group affects only that group's mods;
+- only **enabled** mods take part in loading.
+
+## Preview results
+
+Click **Preview results** at the top right of Mod Management. All groups merge into one list, with each card tinted in its group colour, so you can confirm the final order before launching.
+
+![Preview results with all groups merged and cards coloured by group](../../img/screenshots/user-guide/duckov-load-order-en-us/original.png)
+
+Enable all, Disable all and drag sorting are unavailable in preview; click **Preview results** again to return. If nothing is enabled, the preview asks you to enable some mods first.
+
+## Profiles
+
+A **profile** is a complete mod setup: which groups exist, which mods are enabled, and in what order. Keep different profiles for different playstyles, for example "Daily" and "Testing", and switch whenever you like.
+
+The "Profile:" drop-down at the top shows the current profile. Click it to open profile management:
+
+| Action | What it does |
+|--------|--------------|
+| **New** | Create a profile. Choose "Create a blank profile" or "Copy from" an existing one |
+| **Rename** | Change the display name |
+| **Switch to** | Make the selected profile the current one (the "Active" mark moves to it) |
+| **Delete** | Remove a profile. At least one profile must remain, and the active profile cannot be deleted |
+| **BML Import** | Escape from Duckov only: import groups and enable state from BML's `ModGroupConfig.json` as a new profile |
+
+Each game has its own profiles, so they never affect each other.
+
+## Restore history
+
+Every time you save a profile, SuperDucky keeps a history version. Click **Restore history** at the top to see each version's time, group count, mod count and enabled count.
+
+Pick a version and click **Restore**. It is only loaded into the editor, so you can check it first and then click **Save changes**. If you do not like it, do not save; the saved setup stays untouched.
+
+## What happens on save
+
+"Save changes" writes the current profile to SuperDucky's own data. How it reaches the game depends on the game:
+
+- **Escape from Duckov**: saving also syncs the mod setup to the game's data folder.
+- **Probably Stolen**: saving groups and switching profiles do **not** write the game save. The write happens when you **launch the game**; see [Probably Stolen](/en-US/user-guide/probably-stolen).
+
+In both cases, **Launch game** at the bottom left syncs first and then starts the game through Steam.
