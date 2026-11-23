@@ -1,0 +1,354 @@
+---
+interface VideoItem {
+  provider: 'bilibili' | 'youtube';
+  embedId: string;
+  title: string;
+  description: string;
+  watchUrl: string;
+  ctaLabel: string;
+}
+
+interface Props {
+  locale?: 'zh-CN' | 'en';
+}
+
+const { locale = 'zh-CN' } = Astro.props;
+
+function getVideoProviderLabel(provider: VideoItem['provider']) {
+  return provider === 'youtube' ? 'YouTube' : 'Bilibili';
+}
+
+function getVideoEmbedUrl(video: Pick<VideoItem, 'provider' | 'embedId'>) {
+  if (video.provider === 'youtube') {
+    return `https://www.youtube.com/embed/${video.embedId}?rel=0&playsinline=1`;
+  }
+
+  return `https://player.bilibili.com/player.html?bvid=${video.embedId}&page=1&high_quality=1&danmaku=0&autoplay=0`;
+}
+
+const bundle = locale === 'en'
+  ? {
+      title: 'See Hagicode in real coding sessions',
+      description:
+        'Start with the English YouTube overview embedded below, then compare two supporting Bilibili demos without losing the product story or the direct watch links.',
+      featuredLabel: 'Featured walkthrough',
+      supportingLabel: 'Focused demo',
+      videos: [
+        {
+          provider: 'youtube',
+          embedId: 'AQ8oSTW6wNQ',
+          title: 'Hagicode Product Overview on YouTube',
+          description:
+            "This is the primary English-language product introduction, so readers can understand Hagicode's workflow, product scope, and multi-agent angle before leaving the docs page.",
+          watchUrl: 'https://www.youtube.com/watch?v=AQ8oSTW6wNQ',
+          ctaLabel: 'Open on YouTube',
+        },
+        {
+          provider: 'bilibili',
+          embedId: 'BV1KxwMzxEVK',
+          title: 'AI Playing Games While Coding',
+          description:
+            'A supporting Bilibili demo that shows the product feeling playful and alive during real coding sessions instead of behaving like a dry code generator.',
+          watchUrl: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
+          ctaLabel: 'Open on Bilibili',
+        },
+        {
+          provider: 'bilibili',
+          embedId: 'BV1yqPmzTEqP',
+          title: 'GPT Codex in Hagicode: Live Trial',
+          description:
+            'A narrower validation run that helps readers judge how GPT Codex behaves inside the actual Hagicode product after the main YouTube introduction.',
+          watchUrl: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
+          ctaLabel: 'Open on Bilibili',
+        },
+      ] satisfies VideoItem[],
+    }
+  : {
+      title: '视频实测：看看 Hagicode 真正怎么工作',
+      description:
+        '先看中文 Bilibili 主介绍视频，再补充两条专题演示；就算你暂时不跳出页面，也能先在这里读懂视频内容为什么值得看。',
+      featuredLabel: '主推荐视频',
+      supportingLabel: '补充演示',
+      videos: [
+        {
+          provider: 'bilibili',
+          embedId: 'BV1z4oWB3EpY',
+          title: 'Hagicode 中文完整介绍（Bilibili）',
+          description:
+            '中文产品总览视频会先讲清 Hagicode 是什么、为什么它不像传统 AI 编程聊天框，以及你应该优先理解哪些核心能力。',
+          watchUrl: 'https://www.bilibili.com/video/BV1z4oWB3EpY/',
+          ctaLabel: '打开 Bilibili',
+        },
+        {
+          provider: 'bilibili',
+          embedId: 'BV1KxwMzxEVK',
+          title: 'AI 居然 写代码时 玩游戏',
+          description:
+            '这条补充演示偏向趣味互动，让你在主介绍之外快速感受 Hagicode 在真实编码过程里的节奏与氛围。',
+          watchUrl: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
+          ctaLabel: '打开 Bilibili',
+        },
+        {
+          provider: 'bilibili',
+          embedId: 'BV1yqPmzTEqP',
+          title: 'GPT Codex in Hagicode 实测',
+          description:
+            '聚焦 GPT Codex 在 Hagicode 里的实际表现，帮助你在主介绍之后继续判断模型接入后的真实效果。',
+          watchUrl: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
+          ctaLabel: '打开 Bilibili',
+        },
+      ] satisfies VideoItem[],
+    };
+---
+
+<section class="product-video-showcase" aria-labelledby={`product-video-showcase-${locale}`}>
+  <div class="product-video-showcase__header">
+    <h2 id={`product-video-showcase-${locale}`} class="product-video-showcase__title">{bundle.title}</h2>
+    <p class="product-video-showcase__description">{bundle.description}</p>
+  </div>
+
+  <div class="product-video-showcase__grid">
+    {bundle.videos.map((video, index) => {
+      const isFeatured = index === 0;
+
+      return (
+        <article
+          class:list={[
+            'product-video-showcase__card',
+            isFeatured && 'product-video-showcase__card--featured',
+          ]}
+          data-video-provider={video.provider}
+        >
+          <div class="product-video-showcase__player">
+            <div class="product-video-showcase__frame">
+              <iframe
+                src={getVideoEmbedUrl(video)}
+                title={`${getVideoProviderLabel(video.provider)} player: ${video.title}`}
+                loading="lazy"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                sandbox="allow-forms allow-scripts allow-same-origin allow-presentation"
+              />
+            </div>
+          </div>
+
+          <div class="product-video-showcase__content">
+            <div class="product-video-showcase__meta">
+              <span class="product-video-showcase__label">
+                {isFeatured ? bundle.featuredLabel : bundle.supportingLabel}
+              </span>
+              <span class="product-video-showcase__platform">
+                {getVideoProviderLabel(video.provider)}
+              </span>
+            </div>
+            <h3 class="product-video-showcase__card-title">{video.title}</h3>
+            <p class="product-video-showcase__card-description">{video.description}</p>
+            <a
+              class="product-video-showcase__action"
+              href={video.watchUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${video.ctaLabel}: ${video.title}`}
+            >
+              {video.ctaLabel}
+            </a>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .product-video-showcase {
+    position: relative;
+    margin-top: 2.5rem;
+    padding: 0;
+  }
+
+  .product-video-showcase__header {
+    margin: 0 0 1.25rem;
+    max-width: 44rem;
+  }
+
+  .product-video-showcase__title {
+    margin: 0 0 0.6rem;
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .product-video-showcase__description {
+    margin: 0;
+    color: var(--sl-color-text-secondary);
+    font-size: 1.02rem;
+    line-height: 1.7;
+  }
+
+  .product-video-showcase__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .product-video-showcase__card {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 76%, transparent);
+    border-radius: 1rem;
+    background: var(--sl-color-bg-nav);
+  }
+
+  .product-video-showcase__card--featured {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.95fr);
+    align-items: center;
+  }
+
+  .product-video-showcase__player,
+  .product-video-showcase__content {
+    min-width: 0;
+  }
+
+  .product-video-showcase__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background: #000;
+  }
+
+  .product-video-showcase__frame::before {
+    content: '';
+    display: block;
+    padding-bottom: 56.25%;
+  }
+
+  .product-video-showcase__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .product-video-showcase__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.85rem;
+  }
+
+  .product-video-showcase__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    align-items: center;
+  }
+
+  .product-video-showcase__label {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.36rem 0.72rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--sl-color-accent-high) 14%, transparent);
+    color: var(--sl-color-accent-high);
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  .product-video-showcase__platform {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 74%, transparent);
+    background: color-mix(in srgb, var(--sl-color-bg-sidebar) 72%, transparent);
+    color: var(--sl-color-text-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .product-video-showcase__card-title {
+    margin: 0;
+    font-size: clamp(1.18rem, 2vw, 1.8rem);
+    line-height: 1.2;
+  }
+
+  .product-video-showcase__card-description {
+    margin: 0;
+    color: var(--sl-color-text-secondary);
+    line-height: 1.7;
+  }
+
+  .product-video-showcase__action {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.72rem 1rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--sl-color-accent-high) 28%, transparent);
+    background: var(--sl-color-accent);
+    color: #f8fbff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.14);
+    color: #f8fbff !important;
+    -webkit-text-fill-color: #f8fbff;
+  }
+
+  .product-video-showcase__action:link,
+  .product-video-showcase__action:visited,
+  .product-video-showcase__action:hover,
+  .product-video-showcase__action:active {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff;
+    text-decoration: none;
+  }
+
+  .product-video-showcase__action:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--sl-color-accent-high) 46%, transparent);
+    background: var(--sl-color-accent-high);
+    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.18);
+  }
+
+  .product-video-showcase__action:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--sl-color-accent) 38%, transparent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 62rem) {
+    .product-video-showcase__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-video-showcase__card--featured {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .product-video-showcase {
+      margin-top: 2rem;
+    }
+
+    .product-video-showcase__card {
+      padding: 0.8rem;
+      border-radius: 0.875rem;
+    }
+
+    .product-video-showcase__frame {
+      border-radius: 0.625rem;
+    }
+
+    .product-video-showcase__platform {
+      font-size: 0.72rem;
+    }
+  }
+</style>

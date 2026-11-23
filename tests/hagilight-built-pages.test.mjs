@@ -1,0 +1,167 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import test from 'node:test';
+
+const distDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../dist');
+
+function readRoute(route) {
+  return readFileSync(path.join(distDir, route), 'utf8');
+}
+
+function countMatches(value, expression) {
+  return [...value.matchAll(expression)].length;
+}
+
+// Hagilight header links use absolute docs-site URLs, so allow an optional origin prefix.
+function hasLinkText(html, href, label) {
+  const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const links = new RegExp(
+    `<a\\b(?=[^>]*\\bhref=["'](?:https?://[^"'/]+)?${escapeRegExp(href)}["'])[^>]*>([\\s\\S]*?)<\\/a>`,
+    'gi',
+  );
+  return [...html.matchAll(links)].some((match) => match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() === label);
+}
+
+function assertSharedShell(html, fallbackId) {
+  assert.equal(countMatches(html, /<hagilight-promoto-banner\b/g), 1);
+  assert.equal(countMatches(html, /data-promoto-dismiss\b/g), 1);
+  assert.match(html, new RegExp(`data-fallback="[^"]*${fallbackId}`));
+  assert.equal(countMatches(html, /<hagilight-language-chooser\b/g), 1);
+  assert.ok(countMatches(html, /googletagmanager\.com\/gtag\/js/g) <= 1);
+  assert.ok(countMatches(html, /sdk\.51\.la\/js-sdk-pro\.min\.js/g) <= 1);
+  assert.ok(countMatches(html, /clarity\.ms\/tag/g) <= 1);
+}
+
+// Reads the Hagilight analytics tags (`data-ga-*`) that built HTML carries.
+function readGaTags(html) {
+  return [...html.matchAll(/<[a-z][^>]*\bdata-ga-category="([^"]*)"[^>]*>/gi)].map((match) => {
+    const attribute = (name) => match[0].match(new RegExp(`\\bdata-ga-${name}="([^"]*)"`))?.[1];
+    return {
+      category: match[1],
+      label: attribute('label'),
+      location: attribute('location'),
+    };
+  });
+}
+
+function hasGaTag(html, expected) {
+  return readGaTags(html).some((tag) => Object.entries(expected).every(([key, value]) => tag[key] === value));
+}
+
+test('root and localized pages tag the shared header links with Hagilight labels', () => {
+  const pages = [
+    readRoute('blog/index.html'),
+    readRoute('en-US/blog/index.html'),
+    readRoute('product-overview/index.html'),
+    readRoute('en-US/product-overview/index.html'),
+  ];
+
+  for (const html of pages) {
+    assert.ok(hasGaTag(html, { category: 'navigation', label: 'blog', location: 'header' }));
+    const headerTags = readGaTags(html).filter((tag) => tag.location === 'header');
+    assert.ok(headerTags.length > 0);
+    for (const tag of headerTags) {
+      assert.ok(['download', 'store', 'navigation', 'community', 'promotion'].includes(tag.category));
+      assert.ok(tag.label?.trim());
+      assert.ok(tag.location?.trim());
+    }
+  }
+});
+
+// Starlight pages (blog, docs) are consent-gated by Hagilight: they carry one inert descriptor and gtag.js is only
+// loaded by the consent gate after a grant, so their built HTML never contains the loader. The hand-written landing
+// pages (`src/pages/index.astro`, `src/pages/[locale]/index.astro`) render <GoogleAnalytics> without `consent`, so
+// they still ship the static loader exactly once.
+const GA_DESCRIPTOR = /data-hagilight-analytics="googleAnalytics"/g;
+
+test('production pages initialize Google Analytics once, and the 404 page not at all', () => {
+  const consentGated = [
+    readRoute('blog/index.html'),
+    readRoute('en-US/blog/index.html'),
+    readRoute('product-overview/index.html'),
+  ];
+  const staticLoader = [readRoute('index.html'), readRoute('en-US/index.html')];
+
+  for (const html of consentGated) {
+    assert.equal(countMatches(html, GA_DESCRIPTOR), 1);
+    assert.equal(countMatches(html, /googletagmanager\.com\/gtag\/js/g), 0);
+    assert.equal(countMatches(html, /gtag\('config'/g), 0);
+  }
+
+  for (const html of staticLoader) {
+    assert.equal(countMatches(html, GA_DESCRIPTOR), 0);
+    assert.equal(countMatches(html, /googletagmanager\.com\/gtag\/js/g), 1);
+    assert.equal(countMatches(html, /gtag\('config'/g), 1);
+  }
+
+  const notFound = readRoute('404.html');
+  assert.equal(countMatches(notFound, GA_DESCRIPTOR), 0);
+  assert.equal(countMatches(notFound, /googletagmanager\.com\/gtag\/js/g), 0);
+  assert.equal(countMatches(notFound, /gtag\('config'/g), 0);
+});
+
+test('root and localized blog navigation use the Hagilight header links', () => {
+  const chineseBlog = readRoute('blog/index.html');
+  const englishBlog = readRoute('en-US/blog/index.html');
+
+  assert.ok(hasLinkText(chineseBlog, '/blog/', '博客'));
+  assert.ok(hasLinkText(englishBlog, '/en-US/blog/', 'Blog'));
+  assertSharedShell(chineseBlog, 'docs-product-overview-fallback-zh');
+  assertSharedShell(englishBlog, 'docs-product-overview-fallback-en');
+});
+
+test('docs and translated docs retain shared width, disclosures, and article promotion', () => {
+  const chineseDocs = readRoute('product-overview/index.html');
+  const englishDocs = readRoute('en-US/product-overview/index.html');
+
+  for (const html of [chineseDocs, englishDocs]) {
+    assert.equal(countMatches(html, /data-hagilight-content-width-choice=/g), 2);
+    assert.match(html, /hagilight-content-width/);
+    assert.match(html, /class="[^"]*\bhagilight-article-promotion\b/);
+    assert.match(html, /class="[^"]*\bhagilight-ai-disclosure\b/);
+  }
+
+  assertSharedShell(chineseDocs, 'docs-product-overview-fallback-zh');
+  assertSharedShell(englishDocs, 'docs-product-overview-fallback-en');
+});
+
+test('blog, release-notes, and 404 pages keep one shared shell and their local content', () => {
+  const blogPost = readRoute('blog/2026-11-22-welcome/index.html');
+  const releaseNotes = readRoute('release-notes/index.html');
+  const notFound = readRoute('404.html');
+
+  assert.match(blogPost, /blog-header-promo-container/);
+  assert.match(blogPost, /blog-footer-promo/);
+  assert.match(blogPost, /class="[^"]*\bblog-cta\b/);
+  assert.doesNotMatch(blogPost, /class="[^"]*\bhagilight-article-promotion\b/);
+  assert.match(releaseNotes, /release-notes-toc-list/);
+  assert.match(notFound, /not-found-hero/);
+  assert.match(notFound, /recovery-action/);
+
+  assertSharedShell(blogPost, 'docs-product-overview-fallback-zh');
+  assertSharedShell(releaseNotes, 'docs-product-overview-fallback-zh');
+  assertSharedShell(notFound, 'docs-product-overview-fallback-zh');
+});
+
+test('standalone locale redirects preserve targets and inject analytics at most once', () => {
+  const rootRedirect = readRoute('index.html');
+  const englishRedirect = readRoute('en-US/index.html');
+  const standaloneGo = readRoute('go/index.html');
+
+  assert.match(rootRedirect, /\/product-overview\//);
+  assert.match(englishRedirect, /\/en-US\/product-overview\//);
+  assert.equal(countMatches(rootRedirect, /googletagmanager\.com\/gtag\/js/g), 1);
+  assert.equal(countMatches(englishRedirect, /googletagmanager\.com\/gtag\/js/g), 1);
+  assert.ok(countMatches(standaloneGo, /googletagmanager\.com\/gtag\/js/g) <= 1);
+});
+
+test('shared discovery publishes the default robots policy and sitemap index', () => {
+  const robots = readRoute('robots.txt');
+  const sitemap = readRoute('sitemap-index.xml');
+
+  assert.match(robots, /User-agent: \*\nAllow: \//u);
+  assert.match(robots, /Sitemap: https:\/\/sd\.hagicode\.com\/sitemap-index\.xml/u);
+  assert.match(sitemap, /https:\/\/sd\.hagicode\.com\/sitemap-0\.xml/u);
+});

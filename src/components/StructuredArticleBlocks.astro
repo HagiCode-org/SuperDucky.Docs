@@ -1,0 +1,702 @@
+---
+import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
+import { localizeDocsHref } from '@/lib/articles.mjs';
+import { fillCopyTemplate, groupDecisionBlocks } from '@/lib/comparison-layout.mjs';
+import InlineText from './InlineText.astro';
+
+// `role` is set for recognised comparison articles (see comparison-layout.mjs) and null for everything else.
+const { blocks = [], locale = 'zh-CN', role = null, agentName = '', hagicodeName = '', chooseWhen = '' } = Astro.props;
+
+const view = role === 'decide' ? groupDecisionBlocks(blocks) : blocks;
+const capabilitySide = role === 'agent' ? 'agent' : role === 'hagicode' ? 'hagicode' : undefined;
+// Table columns read [aspect, agent, HagiCode]; the two product columns carry a side so each keeps one identity.
+const columnSide = (headers, index) => (headers.length === 3 ? [undefined, 'agent', 'hagicode'][index] : undefined);
+const isVerdict = role === 'verdict' || role === 'bottom';
+---
+
+<div class="structured-blocks not-content">
+{view.map((block) => {
+  switch (block.type) {
+    case 'rich-text':
+      return (
+        <div class:list={['structured-block', 'structured-rich-text', role === 'verdict' && 'is-verdict']}>
+          {block.content.map((paragraph) => <p><InlineText text={paragraph} /></p>)}
+        </div>
+      );
+    case 'bullet-list':
+      if (role === 'together' && String(block.id).endsWith('-steps')) {
+        return (
+          <ol class="structured-block structured-steps" role="list">
+            {block.items.map((item) => <li><span><InlineText text={item} /></span></li>)}
+          </ol>
+        );
+      }
+      return (
+        <ul class:list={['structured-block', 'structured-bullet-list', isVerdict && 'is-verdict']}>
+          {block.items.map((item) => <li><InlineText text={item} /></li>)}
+        </ul>
+      );
+    case 'decision-split':
+      return (
+        <div class="structured-block decision-split">
+          {[
+            { side: 'agent', name: agentName, items: block.agent.items },
+            { side: 'hagicode', name: hagicodeName, items: block.hagicode.items },
+          ].map((column) => (
+            <div class="decision-side" data-side={column.side}>
+              <h3>{fillCopyTemplate(chooseWhen, { name: column.name })}</h3>
+              <ul>
+                {column.items.map((item) => <li><InlineText text={item} /></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      );
+    case 'capability-list':
+      return (
+        <div class="structured-block structured-capability-list" data-side={capabilitySide}>
+          {block.items.map((item) => (
+            <article class="capability-item">
+              <h3><InlineText text={item.title} /></h3>
+              <div class="capability-item__body">
+                {item.content.map((paragraph) => <p><InlineText text={paragraph} /></p>)}
+                {item.bullets?.length ? (
+                  <ul>
+                    {item.bullets.map((entry) => <li><InlineText text={entry} /></li>)}
+                  </ul>
+                ) : null}
+              </div>
+            </article>
+          ))}
+        </div>
+      );
+    case 'comparison-grid':
+      return (
+        <div class="structured-block structured-comparison-grid">
+          {block.items.map((item) => (
+            <article class="comparison-card">
+              <h3>{item.label}</h3>
+              <dl>
+                <div>
+                  <dt>Agent</dt>
+                  <dd>{item.agent}</dd>
+                </div>
+                <div>
+                  <dt>HagiCode</dt>
+                  <dd>{item.hagicode}</dd>
+                </div>
+                {item.combinedValue ? (
+                  <div>
+                    <dt>Combined value</dt>
+                    <dd>{item.combinedValue}</dd>
+                  </div>
+                ) : null}
+              </dl>
+            </article>
+          ))}
+        </div>
+      );
+    case 'comparison-table':
+      return (
+        <div class="structured-block structured-table-wrap">
+          <table class="structured-table">
+            {block.caption ? <caption>{block.caption}</caption> : null}
+            <thead>
+              <tr>
+                {block.headers.map((header, index) => (
+                  <th scope="col" data-col={columnSide(block.headers, index)}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row) => (
+                <tr>
+                  {row.cells.map((cell, index) =>
+                    index === 0 ? (
+                      <th scope="row"><InlineText text={cell} /></th>
+                    ) : (
+                      <td data-label={block.headers[index]} data-col={columnSide(block.headers, index)}><InlineText text={cell} /></td>
+                    ),
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    case 'callout':
+      return (
+        <aside class={`structured-block structured-callout tone-${block.tone}`}>
+          {block.title ? <p class="structured-callout__title">{block.title}</p> : null}
+          {block.content.map((paragraph) => <p><InlineText text={paragraph} /></p>)}
+        </aside>
+      );
+    case 'cta-group':
+      return (
+        <div class="structured-block structured-cta-group">
+          {block.items.map((item) => (
+            <a
+              class={item.variant === 'secondary' ? 'secondary' : 'primary'}
+              href={localizeDocsHref(item.href, locale)}
+              {...gaEventAttributes({
+                category: 'navigation',
+                label: item.variant === 'secondary' ? 'articleCtaSecondary' : 'articleCtaPrimary',
+                location: 'article_cta',
+              })}
+            >{item.label}</a>
+          ))}
+        </div>
+      );
+    default:
+      throw new Error(`Unsupported structured article block type: ${block.type}`);
+  }
+})}
+</div>
+
+<style>
+  /*
+   * One colour language for the whole comparison: the agent is neutral grey, HagiCode is the accent blue.
+   * Every place that speaks for one side (table column, strengths list, "choose when" column) carries that
+   * side's rule, so a reader always knows whose side they are reading. Names are always written out too.
+   */
+  .structured-blocks {
+    --side-agent: var(--sl-color-gray-3);
+    --side-hagicode: var(--sl-color-accent);
+    --table-sticky-top: calc(var(--sl-nav-height, 3.5rem) + var(--sl-mobile-toc-height, 0rem));
+
+    display: grid;
+    gap: 1.1rem;
+    container-type: inline-size;
+  }
+
+  .structured-block p,
+  .structured-block ul,
+  .structured-block ol,
+  .structured-block dl,
+  .structured-block h3 {
+    margin: 0;
+  }
+
+  .structured-rich-text,
+  .structured-callout,
+  .structured-cta-group {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .structured-rich-text p {
+    line-height: 1.7;
+  }
+
+  .structured-bullet-list {
+    display: grid;
+    gap: 0.5rem;
+    padding-inline-start: 1.25rem;
+    line-height: 1.65;
+  }
+
+  /* Verdict panels: the short answer at the top and the bottom line at the end share one surface. */
+  .is-verdict {
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    background: var(--sl-color-bg-nav);
+  }
+
+  .structured-rich-text.is-verdict {
+    gap: 0;
+  }
+
+  .structured-rich-text.is-verdict p:first-child {
+    font-size: var(--sl-text-lg);
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--sl-color-white);
+  }
+
+  .structured-rich-text.is-verdict p:not(:first-child) {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  .structured-bullet-list.is-verdict {
+    gap: 0;
+    padding-inline-start: 1.25rem;
+    list-style: none;
+  }
+
+  .structured-bullet-list.is-verdict li {
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  .structured-bullet-list.is-verdict li:first-child {
+    padding-top: 0;
+    border-top: none;
+    font-size: var(--sl-text-lg);
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--sl-color-white);
+  }
+
+  .structured-bullet-list.is-verdict li:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Ordered steps: the sequence is the information, so the numbers stay. */
+  .structured-steps {
+    display: grid;
+    gap: 0.7rem;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .structured-steps li {
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: 0.75rem;
+    counter-increment: step;
+    line-height: 1.65;
+  }
+
+  .structured-steps li::before {
+    content: counter(step);
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-top: 0.1rem;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 50%;
+    font-size: var(--sl-text-xs);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--sl-color-white);
+  }
+
+  /* Strengths of one side: a definition layout, so the left column of titles can be scanned on its own. */
+  .structured-capability-list {
+    display: grid;
+    gap: 0;
+  }
+
+  .structured-capability-list[data-side='agent'] {
+    --side: var(--side-agent);
+  }
+
+  .structured-capability-list[data-side='hagicode'] {
+    --side: var(--side-hagicode);
+  }
+
+  .structured-capability-list[data-side] {
+    border-top: 3px solid var(--side);
+  }
+
+  .capability-item {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  .structured-capability-list[data-side] .capability-item:first-child {
+    border-top: none;
+  }
+
+  /* Other locales keep the plain stream: a hairline rail and no top rule. */
+  .structured-capability-list:not([data-side]) .capability-item {
+    padding-block: 0;
+    padding-inline-start: 1rem;
+    border-top: none;
+    border-inline-start: 1px solid var(--sl-color-gray-4);
+  }
+
+  .structured-capability-list:not([data-side]) {
+    gap: 1.6rem;
+  }
+
+  .capability-item h3 {
+    font-size: var(--sl-text-h4);
+    line-height: 1.3;
+    text-wrap: balance;
+    color: var(--sl-color-white);
+  }
+
+  .capability-item__body {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .capability-item p,
+  .capability-item li {
+    line-height: 1.7;
+  }
+
+  .capability-item ul {
+    display: grid;
+    gap: 0.35rem;
+    padding-inline-start: 1.25rem;
+  }
+
+  @container (min-width: 36rem) {
+    .structured-capability-list[data-side] .capability-item {
+      grid-template-columns: 11rem minmax(0, 1fr);
+      column-gap: 1.5rem;
+      align-items: start;
+    }
+  }
+
+  /* Decision: two columns, one per side, each opened by the same rule colour its table column uses. */
+  .decision-split {
+    display: grid;
+    gap: 1.6rem;
+  }
+
+  .decision-side {
+    display: grid;
+    gap: 0.7rem;
+    align-content: start;
+    padding-top: 0.8rem;
+    border-top: 3px solid var(--side);
+  }
+
+  .decision-side[data-side='agent'] {
+    --side: var(--side-agent);
+  }
+
+  .decision-side[data-side='hagicode'] {
+    --side: var(--side-hagicode);
+  }
+
+  .decision-side h3 {
+    font-size: var(--sl-text-h4);
+    line-height: 1.3;
+    text-wrap: balance;
+    color: var(--sl-color-white);
+  }
+
+  .decision-side ul {
+    display: grid;
+    gap: 0.65rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .decision-side li {
+    position: relative;
+    padding-inline-start: 1.1rem;
+    line-height: 1.65;
+  }
+
+  .decision-side li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.62em;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--side);
+  }
+
+  @container (min-width: 36rem) {
+    .decision-split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  /* Legacy comparison-grid blocks (other locales): label plus a two-line definition list, single column. */
+  .structured-comparison-grid {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .comparison-card {
+    padding-inline-start: 1rem;
+    border-inline-start: 1px solid var(--sl-color-gray-4);
+  }
+
+  .comparison-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: var(--sl-text-h4);
+    color: var(--sl-color-white);
+  }
+
+  .comparison-card dl {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .comparison-card dt {
+    font-size: var(--sl-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sl-color-text-2);
+  }
+
+  .comparison-card dd {
+    margin: 0.15rem 0 0;
+    line-height: 1.6;
+  }
+
+  /*
+   * Side-by-side table. Equal-width product columns keep the comparison fair, the header sticks under the site
+   * header so the reader never loses which column is which, and the hovered row is lifted as a reading ruler.
+   * When the column is too narrow for three columns the table becomes one card per aspect (container query).
+   */
+  .structured-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: inherit;
+    font-size: var(--sl-text-sm);
+    line-height: 1.6;
+  }
+
+  .structured-table caption {
+    padding: 0.6rem 0;
+    text-align: start;
+    caption-side: bottom;
+    color: var(--sl-color-text-2);
+  }
+
+  .structured-table th,
+  .structured-table td {
+    padding: 0.75rem 0.9rem;
+    text-align: start;
+    vertical-align: top;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    overflow-wrap: anywhere;
+    transition: background-color 120ms ease-out;
+  }
+
+  .structured-table thead th {
+    position: sticky;
+    top: var(--table-sticky-top);
+    z-index: 1;
+    padding-block: 0.7rem;
+    border-top: 3px solid transparent;
+    border-bottom: 1px solid var(--sl-color-gray-4);
+    background: var(--sl-color-bg);
+    font-size: var(--sl-text-base);
+    font-weight: 700;
+    color: var(--sl-color-white);
+  }
+
+  .structured-table thead th:first-child {
+    width: 7.5rem;
+    font-size: var(--sl-text-sm);
+    font-weight: 600;
+    color: var(--sl-color-text);
+  }
+
+  .structured-table thead th[data-col='agent'] {
+    border-top-color: var(--side-agent);
+  }
+
+  .structured-table thead th[data-col='hagicode'] {
+    border-top-color: var(--side-hagicode);
+    background: color-mix(in srgb, var(--sl-color-accent) 8%, var(--sl-color-bg));
+  }
+
+  .structured-table tbody th {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+
+  .structured-table td[data-col='hagicode'] {
+    background: color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+  }
+
+  .structured-table tbody tr:hover > * {
+    background: color-mix(in srgb, var(--sl-color-gray-5) 55%, transparent);
+  }
+
+  .structured-table tbody tr:hover > td[data-col='hagicode'] {
+    background: color-mix(in srgb, var(--sl-color-accent) 13%, transparent);
+  }
+
+  /* The last row is the verdict of the table ("best for"): set apart and slightly heavier. */
+  .structured-table tbody tr:last-child > * {
+    border-top: 2px solid var(--sl-color-gray-4);
+    border-bottom: none;
+    font-weight: 500;
+    color: var(--sl-color-white);
+  }
+
+  .structured-table tbody tr:last-child > th {
+    font-weight: 700;
+  }
+
+  @container (max-width: 35.99rem) {
+    .structured-table,
+    .structured-table tbody,
+    .structured-table tr,
+    .structured-table th,
+    .structured-table td {
+      display: block;
+    }
+
+    .structured-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .structured-table tr {
+      margin-bottom: 0.9rem;
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.6rem;
+      overflow: hidden;
+    }
+
+    .structured-table tbody tr:last-child {
+      margin-bottom: 0;
+      border-color: var(--sl-color-gray-3);
+    }
+
+    .structured-table tbody th {
+      background: var(--sl-color-bg-nav);
+      border-bottom: 1px solid var(--sl-color-gray-5);
+    }
+
+    .structured-table tbody tr:last-child > * {
+      border-top: none;
+    }
+
+    .structured-table td {
+      border-top: 2px solid var(--side-agent);
+      border-bottom: none;
+    }
+
+    .structured-table td[data-col='hagicode'] {
+      border-top-color: var(--side-hagicode);
+    }
+
+    .structured-table td::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: var(--sl-text-xs);
+      font-weight: 700;
+      color: var(--sl-color-white);
+    }
+
+    .structured-table tbody tr:hover > * {
+      background: none;
+    }
+
+    .structured-table tbody tr:hover > th {
+      background: var(--sl-color-bg-nav);
+    }
+
+    .structured-table tbody tr:hover > td[data-col='hagicode'] {
+      background: color-mix(in srgb, var(--sl-color-accent) 5%, transparent);
+    }
+  }
+
+  /* Callouts: a full hairline in the tone colour plus a tint; the title names the tone, colour is never alone. */
+  .structured-callout {
+    --tone: var(--sl-color-gray-3);
+
+    padding: 0.9rem 1.1rem;
+    border: 1px solid color-mix(in srgb, var(--tone) 55%, var(--sl-color-gray-5));
+    border-radius: 0.6rem;
+    background: color-mix(in srgb, var(--tone) 8%, var(--sl-color-bg));
+  }
+
+  .structured-callout__title {
+    font-weight: 700;
+    color: var(--sl-color-white);
+  }
+
+  .structured-callout p {
+    line-height: 1.65;
+  }
+
+  .structured-callout.tone-info {
+    --tone: var(--sl-color-accent);
+  }
+
+  .structured-callout.tone-success {
+    --tone: var(--sl-color-green);
+  }
+
+  .structured-callout.tone-warning {
+    --tone: var(--sl-color-orange);
+  }
+
+  .structured-cta-group {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, max-content));
+  }
+
+  .structured-cta-group a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.9rem;
+    padding: 0.72rem 1.1rem;
+    border-radius: 0.95rem;
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1.2;
+    box-shadow: 0 10px 26px rgb(37 99 235 / 0.08);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .structured-cta-group a::after {
+    content: '->';
+    font-size: 0.82em;
+  }
+
+  .structured-cta-group a:hover {
+    transform: translateY(-1px);
+  }
+
+  .structured-cta-group a.primary {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--sl-color-accent) 88%, white),
+      var(--sl-color-accent)
+    );
+    color: var(--sl-color-white);
+    box-shadow: 0 14px 30px rgb(37 99 235 / 0.16);
+  }
+
+  .structured-cta-group a.secondary {
+    border-color: var(--sl-color-gray-5);
+    color: var(--sl-color-text);
+    background: color-mix(in srgb, var(--sl-color-bg) 94%, var(--sl-color-bg-nav) 6%);
+  }
+
+  .structured-cta-group a.secondary:hover {
+    border-color: color-mix(in srgb, var(--sl-color-accent) 28%, var(--sl-color-gray-5));
+    color: var(--sl-color-accent-high);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .structured-table th,
+    .structured-table td,
+    .structured-cta-group a {
+      transition: none;
+    }
+
+    .structured-cta-group a:hover {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,264 @@
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import test from 'node:test';
+
+import { rehype } from 'rehype';
+
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const distDir = path.join(rootDir, 'dist');
+
+const BLOG_POST = 'blog/2026-11-22-welcome/index.html';
+const LOCALIZED_BLOG_POST = `en-US/${BLOG_POST}`;
+const DESKTOP_INSTALL_PAGES = ['installation/desktop/index.html', 'en-US/installation/desktop/index.html'];
+const STRUCTURED_ARTICLE = 'en-US/faq/claude-vs-hagicode/index.html';
+
+// Pages that only exist once the matching content is authored. A check on an absent page is skipped
+// rather than failed, and starts running as soon as the page is built.
+const pageExists = (route) => existsSync(path.join(distDir, route));
+const missingPages = (routes) => routes.filter((route) => !pageExists(route));
+const skipUnless = (routes) => {
+  const missing = missingPages(routes);
+  return missing.length > 0 ? { skip: `page not built: ${missing.join(', ')}` } : {};
+};
+
+const CATEGORIES = ['download', 'store', 'navigation', 'community', 'promotion'];
+// Components that Docs embeds in article content on purpose; plain in-content links stay untagged.
+const EMBEDDED_CTA_LOCATIONS = ['docs_install_button', 'article_cta'];
+
+const parser = rehype();
+
+function readPage(route) {
+  return parser.parse(readFileSync(path.join(distDir, route), 'utf8'));
+}
+
+function classes(node) {
+  const value = node.properties?.className;
+  return Array.isArray(value) ? value : value ? String(value).split(/\s+/) : [];
+}
+
+// Every element in the page with its ancestors, outermost first.
+function elements(root) {
+  const found = [];
+  const visit = (node, ancestors) => {
+    if (node.type !== 'root' && node.type !== 'element') return;
+    if (node.type === 'element') found.push({ node, ancestors });
+    for (const child of node.children ?? []) visit(child, node.type === 'element' ? [...ancestors, node] : ancestors);
+  };
+  visit(root, []);
+  return found;
+}
+
+function text(node) {
+  if (node.type === 'text') return node.value;
+  return (node.children ?? []).map(text).join('');
+}
+
+function isTagged(node) {
+  return node.properties?.dataGaCategory !== undefined || node.properties?.dataGaLabel !== undefined;
+}
+
+function tagOf(node) {
+  return {
+    category: node.properties.dataGaCategory,
+    label: node.properties.dataGaLabel,
+    location: node.properties.dataGaLocation,
+  };
+}
+
+function taggedElements(root) {
+  // Hagilight owns the shared footer and its analytics tags.
+  return elements(root).filter(({ node }) => isTagged(node) && !node.properties.dataGaLocation?.startsWith('footer'));
+}
+
+function tagsAt(root, location) {
+  return taggedElements(root)
+    .map(({ node }) => tagOf(node))
+    .filter((tag) => tag.location === location);
+}
+
+const regions = {
+  sidebar: ({ node, ancestors }) =>
+    [...ancestors, node].some((element) => element.tagName === 'sl-sidebar-pane' || (element.tagName === 'nav' && classes(element).includes('sidebar'))),
+  'table of contents': ({ node, ancestors }) =>
+    [...ancestors, node].some((element) => element.tagName === 'starlight-toc' || element.tagName === 'mobile-starlight-toc'),
+  'edit link': ({ node }) => node.properties?.dataDocsEditLink !== undefined || classes(node).includes('docs-edit-link'),
+  'language chooser': ({ node, ancestors }) => [...ancestors, node].some((element) => element.tagName === 'hagilight-language-chooser'),
+  search: ({ node, ancestors }) => [...ancestors, node].some((element) => element.tagName === 'site-search'),
+};
+
+function assertValidTags(root) {
+  for (const { node, ancestors } of taggedElements(root)) {
+    const { category, label, location } = tagOf(node);
+    assert.ok(CATEGORIES.includes(category), `unknown category ${category}`);
+    assert.ok(label?.trim(), 'tag without label');
+    assert.ok(location?.trim(), 'tag without location');
+    assert.ok(!ancestors.some(isTagged), `tagged element nested in another tagged element: ${label}`);
+    assert.notEqual(label.trim(), text(node).trim(), `label repeats link text: ${label}`);
+  }
+}
+
+// Returns how many elements each untracked region matched, so callers can prove the check is not vacuous.
+function assertUntrackedRegions(root) {
+  const matched = Object.fromEntries(Object.keys(regions).map((name) => [name, 0]));
+
+  for (const entry of elements(root)) {
+    for (const [name, inRegion] of Object.entries(regions)) {
+      if (inRegion(entry)) {
+        matched[name] += 1;
+        assert.ok(!isTagged(entry.node), `${name} element carries a data-ga tag`);
+      }
+    }
+  }
+
+  return matched;
+}
+
+function assertUntaggedContentLinks(root) {
+  const contentLinks = elements(root).filter(
+    ({ node, ancestors }) => node.tagName === 'a' && ancestors.some((element) => classes(element).includes('sl-markdown-content')),
+  );
+
+  assert.ok(contentLinks.length > 0, 'expected in-content links to check');
+  for (const { node } of contentLinks) {
+    if (!isTagged(node)) continue;
+    assert.ok(
+      EMBEDDED_CTA_LOCATIONS.includes(node.properties.dataGaLocation),
+      `plain in-content link carries a data-ga tag: ${node.properties.href}`,
+    );
+  }
+}
+
+test('blog posts tag the Store, pricing, and promotion calls to action', () => {
+  const post = readPage(BLOG_POST);
+
+  assert.deepEqual(tagsAt(post, 'blog_cta'), [
+    { category: 'store', label: 'microsoftStore', location: 'blog_cta' },
+    { category: 'navigation', label: 'productOverview', location: 'blog_cta' },
+  ]);
+
+  const headerAd = tagsAt(post, 'blog_header_ad');
+  const footerAd = tagsAt(post, 'blog_footer_ad');
+  assert.ok(headerAd.length > 0);
+  assert.ok(footerAd.length > 0);
+  for (const tag of [...headerAd, ...footerAd]) {
+    assert.equal(tag.category, 'promotion');
+    assert.match(tag.label, /^[a-z0-9][a-z0-9-]*$/i, 'promotion label is the promotion id, not display text');
+  }
+
+  assertValidTags(post);
+  assertUntaggedContentLinks(post);
+
+  const matched = assertUntrackedRegions(post);
+  for (const [name, count] of Object.entries(matched)) {
+    assert.ok(count > 0, `expected the ${name} region to exist on a blog post`);
+  }
+});
+
+test('blog calls to action report the same labels in every locale', () => {
+  const chinese = readPage(BLOG_POST);
+  const english = readPage(LOCALIZED_BLOG_POST);
+
+  for (const location of ['blog_cta', 'blog_header_ad', 'blog_footer_ad']) {
+    assert.deepEqual(tagsAt(english, location), tagsAt(chinese, location), location);
+  }
+  assertValidTags(english);
+  assertUntrackedRegions(english);
+});
+
+test('the desktop install page carries the shared header tags and no tags on untracked links', skipUnless(DESKTOP_INSTALL_PAGES), () => {
+  for (const route of DESKTOP_INSTALL_PAGES) {
+    const page = readPage(route);
+
+    assert.ok(tagsAt(page, 'header').length > 0, `${route} header tags`);
+    assertValidTags(page);
+    assertUntrackedRegions(page);
+    assertUntaggedContentLinks(page);
+  }
+});
+
+test('structured articles tag only the shared header, promotions, and their CTA slots', skipUnless([STRUCTURED_ARTICLE]), () => {
+  const article = readPage(STRUCTURED_ARTICLE);
+  const allowed = new Set(['header', 'article_promotion', 'promoto_banner', ...EMBEDDED_CTA_LOCATIONS]);
+
+  for (const { node } of taggedElements(article)) {
+    assert.ok(allowed.has(node.properties.dataGaLocation), `unexpected location ${node.properties.dataGaLocation}`);
+  }
+  for (const { node } of taggedElements(article)) {
+    if (node.properties.dataGaLocation === 'article_cta') {
+      assert.ok(['articleCtaPrimary', 'articleCtaSecondary'].includes(node.properties.dataGaLabel));
+    }
+  }
+  assertValidTags(article);
+  assertUntrackedRegions(article);
+});
+
+// The structured-article snapshot currently defines no CTA, so no built page renders one. Pin the
+// markup contract at the source until a built page can exercise it.
+test('structured article CTA components tag the primary and secondary slots', () => {
+  for (const file of ['StructuredArticleCtaSection.astro', 'StructuredArticleBlocks.astro']) {
+    const source = readFileSync(path.join(rootDir, 'src/components', file), 'utf8');
+
+    assert.match(source, /gaEventAttributes\(/);
+    assert.match(source, /articleCtaPrimary/);
+    assert.match(source, /articleCtaSecondary/);
+    assert.match(source, /location: 'article_cta'/);
+    assert.match(source, /category: 'navigation'/);
+  }
+});
+
+// Store listings report as `store`. Blog promotion ads that link to a store listing keep the
+// `promotion` category, as the docs spec requires for promotion ads.
+const STORE_HOSTS = ['apps.microsoft.com', 'store.steampowered.com'];
+const PROMOTION_AD_LOCATIONS = ['blog_header_ad', 'blog_footer_ad'];
+
+function targetsOf(node) {
+  return [node.properties?.href, node.properties?.dataGaUrl].filter((value) => typeof value === 'string' && value);
+}
+
+function isStoreHost(url) {
+  try {
+    return STORE_HOSTS.includes(new URL(url).hostname);
+  } catch {
+    return false;
+  }
+}
+
+function assertStoreHostTags(root) {
+  for (const { node } of taggedElements(root)) {
+    const { category, location, label } = tagOf(node);
+    const toStore = targetsOf(node).some(isStoreHost);
+
+    if (toStore) {
+      const promotionAd = category === 'promotion' && PROMOTION_AD_LOCATIONS.includes(location);
+      assert.ok(category === 'store' || promotionAd, `store-host link tagged ${category} (${location}, ${label})`);
+    } else {
+      assert.notEqual(category, 'store', `non-store link tagged store (${location}, ${label})`);
+    }
+  }
+}
+
+test('store-host links carry the store category and no other link does', () => {
+  for (const route of [BLOG_POST, LOCALIZED_BLOG_POST, ...DESKTOP_INSTALL_PAGES, STRUCTURED_ARTICLE]) {
+    if (!pageExists(route)) continue;
+    assertStoreHostTags(readPage(route));
+  }
+});
+
+test('the store-host guard rejects a mis-tagged link', () => {
+  const misTagged = parser.parse(
+    '<a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="blog_cta">Store</a>',
+  );
+  assert.throws(() => assertStoreHostTags(misTagged), /store-host link tagged download/);
+
+  const storeOnInstaller = parser.parse(
+    '<a href="https://example.com/setup.exe" data-ga-category="store" data-ga-label="downloadClient" data-ga-location="blog_cta">Setup</a>',
+  );
+  assert.throws(() => assertStoreHostTags(storeOnInstaller), /non-store link tagged store/);
+
+  const promotionAd = parser.parse(
+    '<a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" data-ga-category="promotion" data-ga-label="desktop-microsoft-store-2026-06-10" data-ga-location="blog_footer_ad">Ad</a>',
+  );
+  assert.doesNotThrow(() => assertStoreHostTags(promotionAd));
+});

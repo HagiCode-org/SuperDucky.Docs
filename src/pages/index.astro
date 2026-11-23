@@ -1,0 +1,23 @@
+---
+import RootTransit from '@hagicode/hagilight-core/RootTransit';
+import GoogleAnalytics from '@hagicode/hagilight-core/GoogleAnalytics';
+import { DEFAULT_DOCS_ENTRY_LOCALE, DOCS_LOCALE_METADATA, buildDocsRoutePath } from '../lib/i18n';
+
+const entryPath = '/product-overview/';
+const links = DOCS_LOCALE_METADATA
+  .filter((locale) => locale.code !== DEFAULT_DOCS_ENTRY_LOCALE)
+  .map((locale) => ({
+    destination: buildDocsRoutePath(locale.code, entryPath),
+    label: locale.label,
+    lang: locale.htmlLang,
+  }));
+---
+
+<RootTransit
+  destination={buildDocsRoutePath(DEFAULT_DOCS_ENTRY_LOCALE, entryPath)}
+  siteName="SuperDucky Docs"
+  locale="en-US"
+  links={links}
+>
+  <GoogleAnalytics slot="head" measurementId="G-EN03FMT2Q4" />
+</RootTransit>

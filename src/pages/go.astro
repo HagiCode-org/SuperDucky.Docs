@@ -1,0 +1,221 @@
+---
+import {
+  TRAFFIC_ENTRY_FALLBACK_URL,
+  TRAFFIC_ENTRY_PLATFORM_QUERY_PARAM,
+  TRAFFIC_ENTRY_ROUTE_PATH,
+  TRAFFIC_ENTRY_TARGET_QUERY_PARAM,
+  SUPPORTED_TRAFFIC_ENTRY_PLATFORM_IDS,
+} from '../lib/traffic-entry.mjs';
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Redirecting to SuperDucky Docs</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f3efe7;
+        --panel: rgba(255, 252, 245, 0.92);
+        --text: #1f2d2f;
+        --muted: #5a6d6b;
+        --accent: #b54b33;
+        --border: rgba(31, 45, 47, 0.12);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family:
+          var(--font-body, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "WenQuanYi Micro Hei", "Segoe UI", system-ui, sans-serif);
+        background:
+          radial-gradient(circle at top, rgba(181, 75, 51, 0.18), transparent 35%),
+          linear-gradient(135deg, #efe6d2 0%, var(--bg) 45%, #dfe8e5 100%);
+        color: var(--text);
+      }
+
+      main {
+        width: min(36rem, calc(100vw - 2rem));
+        padding: 2rem;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: var(--panel);
+        box-shadow: 0 24px 80px rgba(31, 45, 47, 0.14);
+      }
+
+      h1 {
+        margin: 0 0 0.75rem;
+        font-family:
+          var(--font-heading, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "WenQuanYi Micro Hei", "Segoe UI", system-ui, sans-serif);
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: 1.05;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      code {
+        color: var(--accent);
+        font-size: 0.95em;
+      }
+
+      .status {
+        margin-top: 1rem;
+      }
+
+      .destination {
+        margin-top: 1rem;
+      }
+
+      .destination a {
+        color: var(--accent);
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>SuperDucky Docs Traffic Entry</p>
+      <h1>正在跳转到文档正文</h1>
+      <p id="message">
+        正在检查 <code>{TRAFFIC_ENTRY_ROUTE_PATH}</code> 的平台与目标参数，请稍候。
+      </p>
+      <p class="destination">
+        即将前往：
+        <a id="destination-link" href={TRAFFIC_ENTRY_FALLBACK_URL}>{TRAFFIC_ENTRY_FALLBACK_URL}</a>
+      </p>
+      <p class="status" id="status">如果没有跳转，请点击之后自动跳转</p>
+      <noscript>
+        <p class="status">当前入口页需要浏览器 JavaScript 才能自动跳转，你也可以直接点击上方链接继续访问。</p>
+      </noscript>
+    </main>
+
+    <script
+      is:inline
+      define:vars={{
+        fallbackUrl: TRAFFIC_ENTRY_FALLBACK_URL,
+        routePath: TRAFFIC_ENTRY_ROUTE_PATH,
+        platformParam: TRAFFIC_ENTRY_PLATFORM_QUERY_PARAM,
+        targetParam: TRAFFIC_ENTRY_TARGET_QUERY_PARAM,
+        supportedPlatforms: SUPPORTED_TRAFFIC_ENTRY_PLATFORM_IDS,
+      }}
+    >
+      const message = document.getElementById('message');
+      const destinationLink = document.getElementById('destination-link');
+      const status = document.getElementById('status');
+      const reservedParams = new Set([platformParam, targetParam]);
+
+      function ensureTrailingSlash(pathname) {
+        return pathname.endsWith('/') ? pathname : `${pathname}/`;
+      }
+
+      function buildRedirectUrl(baseUrl, sourceUrl) {
+        const redirectUrl = new URL(baseUrl);
+
+        sourceUrl.searchParams.forEach((value, key) => {
+          if (!reservedParams.has(key)) {
+            redirectUrl.searchParams.append(key, value);
+          }
+        });
+
+        return redirectUrl;
+      }
+
+      function normalizeTargetPath(targetPath) {
+        if (typeof targetPath !== 'string') {
+          throw new Error('Traffic-entry target must be a string');
+        }
+
+        const trimmed = targetPath.trim();
+        if (!trimmed) {
+          throw new Error('Traffic-entry target is required');
+        }
+
+        if (/^[a-z]+:/i.test(trimmed) || trimmed.startsWith('//')) {
+          throw new Error('Traffic-entry target must be a site-relative path');
+        }
+
+        const normalized = trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+        const url = new URL(normalized, fallbackUrl);
+        const pathname = ensureTrailingSlash(url.pathname);
+
+        if (!pathname.startsWith('/blog/')) {
+          throw new Error('Traffic-entry target must stay within /blog/');
+        }
+
+        if (pathname.includes('..')) {
+          throw new Error('Traffic-entry target cannot contain traversal segments');
+        }
+
+        return pathname;
+      }
+
+      function hasTrafficEntryParams(url) {
+        return url.searchParams.has(platformParam) || url.searchParams.has(targetParam);
+      }
+
+      function createFallbackResolution(url, hasParams) {
+        const redirectUrl = buildRedirectUrl(fallbackUrl, url);
+
+        return {
+          valid: false,
+          hasTrafficEntryParams: hasParams,
+          redirectUrl: redirectUrl.toString(),
+        };
+      }
+
+      function resolveTrafficEntryRequest(input) {
+        const url = input instanceof URL ? input : new URL(String(input));
+        const platformId = url.searchParams.get(platformParam);
+        const rawTarget = url.searchParams.get(targetParam);
+
+        if (!hasTrafficEntryParams(url)) {
+          return createFallbackResolution(url, false);
+        }
+
+        if (!platformId || !supportedPlatforms.includes(platformId) || !rawTarget) {
+          return createFallbackResolution(url, true);
+        }
+
+        try {
+          const targetPath = normalizeTargetPath(rawTarget);
+          const redirectUrl = buildRedirectUrl(new URL(targetPath, url.origin), url);
+
+          return {
+            valid: true,
+            hasTrafficEntryParams: true,
+            platformId,
+            targetPath,
+            redirectUrl: redirectUrl.toString(),
+          };
+        } catch {
+          return createFallbackResolution(url, true);
+        }
+      }
+
+      const resolution = resolveTrafficEntryRequest(new URL(window.location.href));
+      const destinationUrl = resolution.redirectUrl;
+
+      destinationLink.href = destinationUrl;
+      destinationLink.textContent = destinationUrl;
+      status.textContent = '如果没有跳转，请点击之后自动跳转';
+
+      if (!resolution.valid) {
+        message.textContent = resolution.hasTrafficEntryParams
+          ? '未能识别准确文档目标，正在返回 sd.hagicode.com 主站。'
+          : '缺少可识别的流量入口参数，正在返回 sd.hagicode.com 主站。';
+        window.location.replace(destinationUrl);
+      } else {
+        message.textContent = `平台 ${resolution.platformId} 正在跳转到 ${resolution.targetPath}`;
+        window.location.replace(destinationUrl);
+      }
+    </script>
+  </body>
+</html>
