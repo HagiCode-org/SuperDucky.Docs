@@ -1,0 +1,229 @@
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
+import starlightBlog from "./src/integrations/starlight-blog-no-tags/index.mjs";
+import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
+import react from "@astrojs/react";
+import hagilight from "@hagicode/hagilight-starlight";
+import { locales as HAGILIGHT_LOCALES } from "@hagicode/hagilight-starlight/locales";
+import { hagilight as hagilightDiscovery } from "@hagicode/hagilight/integration";
+
+import cachedLinkValidator from "./src/integrations/link-check-result-cache.js";
+import { rehypePagefindOptimize } from "./src/integrations/rehype-pagefind-optimize.mjs";
+import { DOCS_SIDEBAR } from "./src/config/sidebar.ts";
+import {
+  BLOG_UI_TRANSLATIONS,
+  DOCS_LOCALE_RESOURCES,
+  DOCS_LOCALES,
+} from "./src/i18n/generated/docs-locale-resources.mjs";
+// rehype-raw 暂时禁用，可能与 MDX 处理冲突
+// import rehypeRaw from "rehype-raw";
+import rehypeExternalLinks from "rehype-external-links";
+
+const DEFAULT_DOCS_UI = DOCS_LOCALE_RESOURCES["zh-CN"].starlight;
+const HAGILIGHT_LOCALES_BY_LANG = new Map(
+  Object.values(HAGILIGHT_LOCALES).map((locale) => [locale.lang, locale]),
+);
+const DOCS_LOCALE_CONFIG = Object.fromEntries(
+  Object.entries(DOCS_LOCALES).map(([routeLocale, locale]) => {
+    const sharedLocale = HAGILIGHT_LOCALES_BY_LANG.get(locale.lang);
+    if (!sharedLocale) {
+      throw new Error(`Hagilight does not define Docs locale "${locale.lang}".`);
+    }
+    return [routeLocale, { ...sharedLocale, ...locale }];
+  }),
+);
+
+const docsLinkCheckCacheTtlHours = Number.parseInt(
+  process.env.DOCS_LINK_CHECK_CACHE_TTL_HOURS ?? "48",
+  10,
+);
+const docsLinkCheckCacheTtlMs = Number.isFinite(docsLinkCheckCacheTtlHours)
+  ? docsLinkCheckCacheTtlHours * 60 * 60 * 1000
+  : 48 * 60 * 60 * 1000;
+// 默认不在常规构建后执行链接校验；需要时显式设置 DOCS_ENABLE_LINK_CHECK=true。
+const docsEnableLinkCheck = process.env.DOCS_ENABLE_LINK_CHECK === "true";
+const resolvedNodeEnv = process.env.NODE_ENV ?? (process.argv.includes("build") ? "production" : "development");
+
+// 获取 base 路径：文档站点独立部署在 sd.hagicode.com，开发和生产都使用根路径
+const getBasePath = () => {
+  // 文档站点现在独立部署在 sd.hagicode.com
+  // 不再需要 /docs 前缀，开发和生产都使用根路径
+  return "/";
+};
+
+// https://astro.build/config
+export default defineConfig({
+  // 站点完整 URL,用于生成 sitemap 和 canonical URL
+  site: "https://sd.hagicode.com",
+  build: {
+    inlineStylesheets: "never",
+  },
+  // 文档站点部署路径：独立部署在 sd.hagicode.com，使用根路径
+  base: getBasePath(),
+  // Retired Docker Compose installation page: old links (blog posts and external references) keep landing on the installation index.
+  redirects: {
+    "/installation/docker-compose": "/installation/",
+    ...Object.fromEntries(
+      [
+        "de-DE",
+        "en-US",
+        "es-ES",
+        "fr-FR",
+        "ja-JP",
+        "ko-KR",
+        "pt-BR",
+        "ru-RU",
+        "zh-Hant",
+      ].map((locale) => [
+        `/${locale}/installation/docker-compose`,
+        `/${locale}/installation/`,
+      ]),
+    ),
+  },
+  // 中间件配置 - 暂时禁用，由页面级别处理重定向
+  // middleware: './src/middleware.ts',
+  markdown: {
+    syntaxHighlight: {
+      type: "shiki",
+      excludeLangs: ["math"],
+    },
+    rehypePlugins: [
+      // rehypeRaw 暂时禁用，可能与 MDX 处理冲突
+      // rehypeRaw,
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: ["noopener", "noreferrer"],
+        },
+      ],
+      [rehypePagefindOptimize, {}],
+    ],
+  },
+  // 配置 Vite 环境变量
+  vite: {
+    resolve: {
+      alias: {
+        "@": new URL("./src", import.meta.url).pathname,
+        "@shared": new URL("./shared/src", import.meta.url).pathname,
+      },
+    },
+    define: {
+      'import.meta.env.PROD': JSON.stringify(
+        resolvedNodeEnv === 'production'
+      ),
+    },
+    // Keep core external for the SSR build: it resolves its article data root from import.meta.url,
+    // which would point into dist/ if Vite bundled it.
+    ssr: {
+      external: ['@hagicode/hagilight-core'],
+    },
+  },
+  integrations: [
+    starlight({
+      title: DEFAULT_DOCS_UI.site.title,
+      description: DEFAULT_DOCS_UI.site.description,
+      favicon: "/favicon.ico",
+      // i18n configuration - Use the desktop-aligned locale catalog.
+      // Keep Chinese on / and English on /en-US/.
+      defaultLocale: "root",
+      locales: DOCS_LOCALE_CONFIG,
+      social: [
+        {
+          icon: "github",
+          label: DEFAULT_DOCS_UI.social.githubRepository,
+          href: "https://github.com/HagiCode-org/SuperDucky.Docs",
+        },
+      ],
+      components: {
+        EditLink: "./src/components/StarlightEditLink.astro",
+        PageTitle: "./src/components/StarlightPageTitle.astro",
+        TableOfContents: "./src/components/StarlightTableOfContents.astro",
+        MarkdownContent: "./src/components/MarkdownContent.astro",
+        PageFrame: "./src/components/DocsPageFrame.astro",
+      },
+      sidebar: DOCS_SIDEBAR,
+      customCss: ["./src/styles/starlight-override.css"],
+      editLink: {
+        baseUrl: "https://github.com/HagiCode-org/SuperDucky.Docs/edit/main/",
+      },
+      plugins: [
+        hagilight({
+          links: {
+            siteId: "superducky-docs",
+            siteUrl: "https://sd.hagicode.com/",
+          },
+          aiDisclosures: {
+            isAITranslation: true,
+            isAIAuthor: true,
+            sourceLocale: "root",
+          },
+          contentComponents: {
+            pageTitle: false,
+            markdownContent: false,
+          },
+          contentImages: { enabled: true },
+          promoto: { enabled: false },
+        }),
+        {
+          name: "docs-blog-zhcn-i18n-compat",
+          hooks: {
+            "i18n:setup": ({ injectTranslations }) => {
+              // Starlight can resolve root Chinese routes with different lang tags
+              // across environments. Inject all known variants to avoid key leaks.
+              injectTranslations(BLOG_UI_TRANSLATIONS);
+            },
+            "config:setup": () => {},
+          },
+        },
+        starlightBlog({
+          // Localize the blog title per language. starlight-blog only localizes
+          // when `title` is a lang-keyed record; the default string "Blog" would
+          // render untranslated on every locale (e.g. zh-CN showed "Blog" instead
+          // of "博客"), failing verify:blog-sidebar-i18n. Every locale must be
+          // listed explicitly because getBlogTitle falls back to the default
+          // language (zh-CN) when a key is missing.
+          title: {
+            'zh-CN': '博客',
+            'en-US': 'Blog',
+            'zh-Hant': '部落格',
+            'ja-JP': 'ブログ',
+            'ko-KR': '블로그',
+            'de-DE': 'Blog',
+            'fr-FR': 'Blog',
+            'es-ES': 'Blog',
+            'pt-BR': 'Blog',
+            'ru-RU': 'Блог',
+          },
+        }),
+      ],
+    }),
+    sitemap(),
+    hagilightDiscovery({ llms: { title: "SuperDucky Docs", summary: "SuperDucky 的产品文档、安装指南、版本更新说明与博客。" } }),
+    partytown(),
+    react(),
+    ...(docsEnableLinkCheck
+      ? [
+          cachedLinkValidator({
+            // 仅在 CI 环境中启用外部链接检查，避免本地构建时间过长
+            checkExternal: process.env.CI === "true",
+            // 外部链接超时时间（毫秒）
+            externalTimeout: 10000,
+            // 仅复用近期成功的外链结果，避免长期信任旧缓存。
+            cacheDir: ".tmp/link-check-cache",
+            cacheTtlMs: docsLinkCheckCacheTtlMs,
+            // 链接检查不再阻塞构建，仅发出警告
+            // 独立的链接检查由 .github/workflows/link-check.yml 负责
+            failOnBrokenLinks: false,
+            // 详细输出（用于调试）
+            verbose: process.env.CI === "true",
+            // 排除某些路径（如 API 端点、管理后台）
+            exclude: [],
+          }),
+        ]
+      : []),
+  ],
+  scopedStyleStrategy: "where",
+});

@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Turbo
+.turbo/
+
+# Testing
+coverage/
+
+# Production
+build/
+.dist/
+dist/
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Docusaurus
+.docusaurus/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+.claude/skills/ui-ux-pro-max/scripts/__pycache__/
+.astro/
+tsconfig.tsbuildinfo
+
+.tmp/
+.tmp/link-check-cache/
+src/content/.generated/
+
+# Local deja session-rule export (auto-extracted from agent sessions; not committed)
+.deja/

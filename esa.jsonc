@@ -1,0 +1,10 @@
+{
+  "name": "superducky docs",
+  "entry": "./src/index.js",
+  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm run build",
+  "assets": {
+    "directory": "./dist",
+    "notFoundStrategy": "singlePageApplication"
+  }
+}
