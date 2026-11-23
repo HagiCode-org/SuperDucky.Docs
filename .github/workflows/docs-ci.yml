@@ -1,0 +1,72 @@
+name: Docs CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+concurrency:
+  group: docs-ci-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build_and_verify:
+    runs-on: ubuntu-latest
+    name: Build and Verify Docs
+    permissions:
+      contents: read
+    env:
+      NODE_VERSION: "24"
+      DOCS_LINK_CHECK_CACHE_DIR: .tmp/link-check-cache
+      DOCS_LINK_CHECK_CACHE_SCOPE: ${{ github.head_ref || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify install and lockfile stability
+        run: |
+          test -d node_modules
+          git diff --exit-code -- pnpm-lock.yaml
+
+      - name: Registry neutrality
+        run: pnpm run check:registry
+
+      - name: Restore docs link-check cache
+        id: docs-link-check-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.DOCS_LINK_CHECK_CACHE_DIR }}
+          key: docs-link-check-${{ runner.os }}-${{ env.DOCS_LINK_CHECK_CACHE_SCOPE }}-${{ github.sha }}
+          restore-keys: |
+            docs-link-check-${{ runner.os }}-${{ env.DOCS_LINK_CHECK_CACHE_SCOPE }}-
+
+      - name: Build and verify docs
+        run: pnpm run build:ci
+
+      - name: Guard banned Azure ACR tokens
+        run: |
+          ! rg -n "azurecr\\.io|azure-acr|Azure ACR|Azure Container Registry|AZURE_ACR_|NUGEX_AzureAcr|NUGEX_?AzureAcr|PushToAzureAcr|version-monitor-docker-azure|docker-build-azure-acr|AzureAcr|edgeacr|az acr" src/content/docs src/content/translations/docs
+
+      - name: Save docs link-check cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.DOCS_LINK_CHECK_CACHE_DIR }}
+          key: docs-link-check-${{ runner.os }}-${{ env.DOCS_LINK_CHECK_CACHE_SCOPE }}-${{ github.sha }}
