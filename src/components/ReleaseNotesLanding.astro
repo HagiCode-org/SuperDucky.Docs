@@ -1,0 +1,182 @@
+---
+import {
+  getManagedReleaseNotesLanding,
+} from '../lib/release-notes.mjs';
+
+const locale = typeof Astro.props.locale === 'string' ? Astro.props.locale : 'zh-CN';
+const { copy, entries } = getManagedReleaseNotesLanding(locale);
+---
+
+<section class="release-notes-landing">
+  {copy.intro ? <p class="release-notes-intro">{copy.intro}</p> : null}
+
+  {entries.length === 0 ? (
+    <div class="release-notes-empty">
+      <p>{copy.empty}</p>
+    </div>
+  ) : (
+    <div class="release-notes-list">
+      {entries.map((entry) => (
+        <article class="release-notes-entry">
+          <header class="release-notes-entry-header">
+            <div class="release-notes-entry-heading">
+              {entry.releaseDate ? <p class="release-notes-entry-kicker">{entry.releaseDate}</p> : null}
+              <h2 id={entry.anchorId || undefined}>{entry.tag}</h2>
+            </div>
+            {entry.anchorId ? (
+              <p class="release-notes-anchor-row">
+                <a class="release-notes-anchor" href={entry.anchorHref}>#{entry.anchorId}</a>
+              </p>
+            ) : null}
+            <p class="release-notes-summary">{entry.summary}</p>
+          </header>
+
+          <div class="release-notes-meta">
+            <span>{entry.repositoryCount} {copy.repositoryLabel}</span>
+            <span>{entry.totalCommitCount} {copy.commitLabel}</span>
+            {entry.releaseDate ? <time datetime={entry.releaseDate}>{entry.releaseDate}</time> : null}
+          </div>
+
+          <div class="release-notes-body" set:html={entry.bodyHtml}></div>
+        </article>
+      ))}
+    </div>
+  )}
+</section>
+
+<style>
+  .release-notes-landing {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .release-notes-intro,
+  .release-notes-empty p {
+    margin: 0;
+    color: var(--sl-color-text-2);
+    max-width: 58rem;
+  }
+
+  .release-notes-empty,
+  .release-notes-entry {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--sl-color-bg) 94%, var(--sl-color-bg-nav) 6%);
+    box-shadow: 0 12px 28px rgb(15 23 42 / 0.06);
+  }
+
+  .release-notes-empty {
+    padding: 1.25rem;
+  }
+
+  .release-notes-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .release-notes-entry {
+    padding: 1.4rem;
+  }
+
+  .release-notes-entry-header {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .release-notes-entry-heading h2,
+  .release-notes-entry-kicker,
+  .release-notes-summary,
+  .release-notes-meta {
+    margin: 0;
+  }
+
+  .release-notes-entry-kicker {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sl-color-text-2);
+  }
+
+  .release-notes-anchor-row {
+    margin: 0;
+  }
+
+  .release-notes-anchor {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--sl-color-gray-5);
+    background: color-mix(in srgb, var(--sl-color-bg-nav) 88%, transparent);
+    color: var(--sl-color-text-2);
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .release-notes-anchor:hover {
+    color: var(--sl-color-text);
+    border-color: var(--sl-color-accent);
+  }
+
+  .release-notes-entry-heading h2 {
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin-top: 0.3rem;
+    scroll-margin-top: calc(var(--sl-nav-height) + 5rem);
+  }
+
+  .release-notes-summary {
+    color: var(--sl-color-text-2);
+    font-size: 1rem;
+  }
+
+  .release-notes-meta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--sl-color-text-2);
+  }
+
+  .release-notes-meta span,
+  .release-notes-meta time {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--sl-color-gray-5);
+    background: color-mix(in srgb, var(--sl-color-bg-nav) 88%, transparent);
+  }
+
+  .release-notes-body {
+    margin-top: 1.25rem;
+    color: var(--sl-color-text);
+  }
+
+  .release-notes-body :global(h1) {
+    display: none;
+  }
+
+  .release-notes-body :global(h2),
+  .release-notes-body :global(h3) {
+    margin-top: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .release-notes-body :global(p),
+  .release-notes-body :global(ul),
+  .release-notes-body :global(ol),
+  .release-notes-body :global(blockquote) {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 720px) {
+    .release-notes-entry {
+      padding: 1.1rem;
+    }
+  }
+</style>
