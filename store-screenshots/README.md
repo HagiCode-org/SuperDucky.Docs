@@ -34,4 +34,4 @@ Suggested order for a ten-image store listing: 01, 02, 04, 05, 07, 08, 10, 11, 1
 Headless Chromium (Playwright) at 1920x1080, scale 1, `en-US`, `pcode-theme=dark`, against the web dev server.
 Project, session, message, vault, plan, agent and Git responses are replaced with English demo data, all other
 requests are read-only passthrough, writes are blocked and the SignalR socket is faked. To refresh them after a UI
-change, re-run the same scenes, keep the filenames and copy the lossless PNGs to `img/screenshots/product/<slug>/original.png`.
+change, re-run the same scenes, keep the filenames and copy the lossless PNGs into the staging folder and run `pnpm run screenshots:sync`, which writes `img/screenshots/product/<slug>/original.avif`.

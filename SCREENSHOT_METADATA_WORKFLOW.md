@@ -110,7 +110,7 @@ repos/docs/
     └── quick-start/
         └── create-project/
             └── step1-click-new-project-button/
-                ├── original.png
+                ├── original.avif
                 └── metadata.json
 ```
 
@@ -222,7 +222,7 @@ When a screenshot batch is already imported, treat the checked-in metadata as th
    - Chinese route, for example `/adventure-team-introduction`
    - English mirror route, for example `/en/adventure-team-introduction`
    - section name that owns each screenshot
-3. Write the MDX page with the managed screenshot path, usually `.../original.png`.
+3. Write the MDX page with the managed screenshot path, usually `.../original.avif`.
 4. Keep the screenshot-to-section mapping in maintainer notes, change artifacts, or planning docs instead of the published page when the public docs should stay reader-focused.
 5. Add related links only after the page body is stable, so navigation changes stay minimal and reviewable.
 
@@ -319,7 +319,7 @@ Completed without failures.
 
 Verify these files exist:
 
-- `src/content/docs/img/screenshots/<category>/<slug>/original.png`
+- `src/content/docs/img/screenshots/<category>/<slug>/original.avif`
 - `src/content/docs/img/screenshots/<category>/<slug>/metadata.json`
 - `src/content/docs/img/screenshots/manifest.json`
 
@@ -332,12 +332,12 @@ After a successful import or refresh:
 
 Manifest entries expose a static image path like:
 
-- `img/screenshots/quick-start/create-project/step1-click-new-project-button/original.png`
+- `img/screenshots/quick-start/create-project/step1-click-new-project-button/original.avif`
 
 From a docs file such as `src/content/docs/quick-start/create-first-project.mdx`, the Markdown relative path is:
 
 ```md
-![Create new project button](../img/screenshots/quick-start/create-project/step1-click-new-project-button/original.png)
+![Create new project button](../img/screenshots/quick-start/create-project/step1-click-new-project-button/original.avif)
 ```
 
 The helper at `src/utils/screenshot-manifest.js` can also resolve manifest entries into Markdown-ready paths.
