@@ -19,10 +19,10 @@
         "dark-theme",
         "dark-ui"
       ],
-      "relativeImagePath": "img/screenshots/product/dark-theme-en-us/original.png",
+      "relativeImagePath": "img/screenshots/product/dark-theme-en-us/original.avif",
       "assetDir": "src/content/docs/img/screenshots/product/dark-theme-en-us",
       "metadataPath": "src/content/docs/img/screenshots/product/dark-theme-en-us/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/product/dark-theme-en-us/original.png",
+      "originalPath": "src/content/docs/img/screenshots/product/dark-theme-en-us/original.avif",
       "updatedAt": "2026-11-23T17:48:18.562Z",
       "analysisStatus": "skipped"
     },
@@ -43,10 +43,10 @@
         "dark-theme",
         "dark-ui"
       ],
-      "relativeImagePath": "img/screenshots/product/dark-theme-zh-cn/original.png",
+      "relativeImagePath": "img/screenshots/product/dark-theme-zh-cn/original.avif",
       "assetDir": "src/content/docs/img/screenshots/product/dark-theme-zh-cn",
       "metadataPath": "src/content/docs/img/screenshots/product/dark-theme-zh-cn/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/product/dark-theme-zh-cn/original.png",
+      "originalPath": "src/content/docs/img/screenshots/product/dark-theme-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.563Z",
       "analysisStatus": "skipped"
     },
@@ -66,10 +66,10 @@
         "en-US",
         "load-order"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/duckov-load-order-en-us/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/duckov-load-order-en-us/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-en-us/original.avif",
       "updatedAt": "2026-11-23T17:48:18.565Z",
       "analysisStatus": "skipped"
     },
@@ -89,10 +89,10 @@
         "zh-CN",
         "load-order"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/duckov-load-order-zh-cn/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/duckov-load-order-zh-cn/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-load-order-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.566Z",
       "analysisStatus": "skipped"
     },
@@ -112,10 +112,10 @@
         "en-US",
         "mods"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/duckov-mods-en-us/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/duckov-mods-en-us/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-en-us/original.avif",
       "updatedAt": "2026-11-23T17:48:18.567Z",
       "analysisStatus": "skipped"
     },
@@ -135,10 +135,10 @@
         "zh-CN",
         "mods"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/duckov-mods-zh-cn/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/duckov-mods-zh-cn/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/duckov-mods-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.567Z",
       "analysisStatus": "skipped"
     },
@@ -158,10 +158,10 @@
         "en-US",
         "logs"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/game-log-en-us/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/game-log-en-us/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/game-log-en-us",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/game-log-en-us/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/game-log-en-us/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/game-log-en-us/original.avif",
       "updatedAt": "2026-11-23T17:48:18.568Z",
       "analysisStatus": "skipped"
     },
@@ -181,10 +181,10 @@
         "zh-CN",
         "logs"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/game-log-zh-cn/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/game-log-zh-cn/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.569Z",
       "analysisStatus": "skipped"
     },
@@ -204,10 +204,10 @@
         "en-US",
         "probably-stolen"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-all-groups-en-us/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-all-groups-en-us/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-en-us/original.avif",
       "updatedAt": "2026-11-23T17:48:18.570Z",
       "analysisStatus": "skipped"
     },
@@ -227,10 +227,10 @@
         "zh-CN",
         "probably-stolen"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-all-groups-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.570Z",
       "analysisStatus": "skipped"
     },
@@ -250,10 +250,10 @@
         "en-US",
         "probably-stolen"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-mods-en-us/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-mods-en-us/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-en-us/original.avif",
       "updatedAt": "2026-11-23T17:48:18.571Z",
       "analysisStatus": "skipped"
     },
@@ -273,10 +273,10 @@
         "zh-CN",
         "probably-stolen"
       ],
-      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-mods-zh-cn/original.png",
+      "relativeImagePath": "img/screenshots/user-guide/probably-stolen-mods-zh-cn/original.avif",
       "assetDir": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn",
       "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn/metadata.json",
-      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn/original.png",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.572Z",
       "analysisStatus": "skipped"
     }
