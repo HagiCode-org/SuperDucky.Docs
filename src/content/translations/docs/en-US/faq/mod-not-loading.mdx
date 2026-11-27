@@ -14,7 +14,9 @@ First work out which layer fails: SuperDucky does not see the mod, it sees it bu
 - Only one mod is missing:
   - Escape from Duckov: the folder needs an `info.ini`.
   - Probably Stolen: the folder needs a `manifest.xml` that contains `<Capabilities>`. A mod without `<Capabilities>` cannot be enabled.
+  - The Binding of Isaac: the folder needs a `metadata.xml`.
 - Two Probably Stolen mods both show a conflict: they share the same `<ID>`. Remove one and the other can be enabled.
+- The same The Binding of Isaac mod in both the local `mods` folder and the Workshop folder shows a conflict. Remove one of the two copies.
 
 ## Step 2: Did you enable and save?
 
@@ -24,6 +26,7 @@ First work out which layer fails: SuperDucky does not see the mod, it sees it bu
 ## Step 3: Did you launch the right way?
 
 - **Probably Stolen** writes its save only when you click SuperDucky's **Launch game**. Starting from Steam uses whatever was written last.
+- **The Binding of Isaac** writes the mod enable state when you save groups, switch suites or launch the game. Starting from Steam uses whatever state was written last.
 - A newly enabled mod with capabilities must be ticked and confirmed in the dialog. Cancelling the dialog writes nothing.
 - If you see "running, close the game first", quit the game and launch again.
 

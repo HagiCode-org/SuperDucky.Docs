@@ -16,7 +16,7 @@ SuperDucky Docs is the documentation site for SuperDucky. It brings product intr
 
 ## About SuperDucky
 
-SuperDucky (超级丫丫) is a cross-platform desktop mod manager for Unity games. It supports Escape from Duckov and Probably Stolen (深空当铺), and handles mods, load order, groups, suites and the Steam Workshop market.
+SuperDucky (超级丫丫) is a cross-platform desktop mod manager for PC games. It supports Escape from Duckov, Probably Stolen (深空当铺) and The Binding of Isaac (以撒的结合), and handles mods, load order where a game has one, groups, suites and the Steam Workshop market.
 
 ![SuperDucky introduction](readme-assets/introduction-en.gif)
 

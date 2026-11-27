@@ -1,0 +1,109 @@
+---
+title: The Binding of Isaac
+description: Manage The Binding of Isaac (Steam 250900) mods with SuperDucky - metadata.xml, enabling and disabling, no load order, plus mod history, saves, logs and known limits.
+sidebar:
+  order: 7
+---
+
+SuperDucky supports The Binding of Isaac (以撒的结合, Steam app ID 250900). Rebirth, Repentance and Repentance+ are treated as one game here. Mod management works much as it does for the other two games, with two clear differences: there is **no load order**, and there is **no capability approval**.
+
+The first time you switch to this game you need to set it up; see [First launch](/en-US/quick-start/first-launch).
+
+:::note
+Anything written with "usually" or "normally" on this page is inferred from the game's files and common practice. It has not been checked on a real machine. Windows paths have not been checked on a real machine either. SuperDucky cannot read which mods the game actually loaded.
+:::
+
+## Mod format
+
+A mod for The Binding of Isaac is a folder with a `metadata.xml` inside. SuperDucky reads the name, directory, `<id>`, version and tags from that file. It reads only this file, not the Lua code in the mod.
+
+- **Local mods** go in the `mods` folder of the game directory, one subfolder per mod. Normally this is `steamapps/common/The Binding of Isaac Rebirth/mods`.
+- **Workshop mods** are in Steam's Workshop content folder `steamapps/workshop/content/250900/`, one folder per subscribed mod, named after its Workshop item number.
+
+SuperDucky tells mods apart by their identity. A local mod's identity is the `<id>` in `metadata.xml`, or its `<directory>` if there is no `<id>`, or its folder name if there is neither. A Workshop mod's identity is its folder name, which is the Workshop item number.
+
+- A `metadata.xml` without an `<id>` gives a warning. A mod whose file is damaged, or whose identity cannot be read, is marked invalid and cannot be enabled.
+- If the same mod appears both locally and on the Workshop with the same identity, both copies are marked as a conflict and neither can be enabled. Remove one of them first.
+
+## Paths
+
+The Binding of Isaac is a native game, and SuperDucky does not use a Proton prefix for it.
+
+- **Game data folder** (called "Game data folder" in Settings): the folder that holds the game's data. On Linux it is normally `~/.local/share/binding of isaac afterbirth+/`; on Windows it is normally `%UserProfile%\Documents\My Games\Binding of Isaac Repentance+\` (Windows paths not checked on a real machine).
+- **Install folder and Workshop folder**: SuperDucky detects these through Steam's library folders.
+- **Mods folder** (the local `mods` folder): SuperDucky detects it automatically only when it already exists. If it is not detected, choose the `mods` folder in the game directory by hand in Settings.
+
+## Enabling and disabling
+
+- **Enabled**: the mod's folder has **no** `disable.it` in it.
+- **Disabled**: the mod's folder has an empty `disable.it` file in it.
+
+The game normally uses this file to recognise a disabled mod. Whether it takes effect in both the local `mods` folder and the Workshop folder has not been checked on a real machine.
+
+SuperDucky only creates or deletes this file. It does not change any other file in the mod and does not delete the mod. A disabled mod stays in the list.
+
+Sync happens at two moments: once when you save groups or switch suites, and once more when you click **Launch game**.
+
+Rules for writing:
+
+- Writes are **refused while the game is running**. Close the game first. If SuperDucky cannot tell whether the game is running, it also treats the game as running.
+- Before it writes, SuperDucky remembers the original state of each `disable.it`. If a write fails part way, it restores the files it had changed from that record. No backup file is created.
+- If SuperDucky is forcibly stopped during a write, those changes cannot be restored automatically.
+
+## No load order
+
+The Binding of Isaac has no load order, and SuperDucky does not write one. The controls that depend on order are hidden: "Move to front" and "Move to end", the up and down moves inside a group, drag-to-sort inside a group, and the order part of the suite guide.
+
+Groups, enabling and disabling still work, and dragging a mod into a group works as before. SuperDucky does not check the order in which the game loads mods.
+
+## No capability approval
+
+Mods for The Binding of Isaac do not need capability approval. Launching the game never shows the "Confirm mod capabilities" dialog.
+
+## Workshop, market and achievements
+
+- **Mod marketplace**: browse, subscribe to and unsubscribe from Workshop mods for Steam app ID 250900. See [Mod marketplace](/en-US/user-guide/marketplace).
+- **ZIP install**: when you install a ZIP from a folder, SuperDucky identifies the mod from its `metadata.xml`. Installs are refused while The Binding of Isaac is running.
+- **Achievements page**: available.
+
+## Mod history and persistent suites
+
+Mod history is on. It works together with the [Mod Local Repository](/en-US/user-guide/mod-local-repository), which is off by default and is turned on per game in Settings.
+
+- When a mod's files change (files added, changed or removed), that counts as a new version.
+- Enabling or disabling a mod (adding or removing `disable.it`) does **not** create a new version.
+- The preview image in the mod's root folder (for example `previewpic.jpg`) counts towards a version, so changing the preview creates a new version.
+- When a persistent suite restores a version's contents, it keeps each mod's current enable state: a mod that was disabled before the restore stays disabled.
+
+## Saves
+
+SuperDucky lists up to three save files, newest first by modified time: `persistentgamedata1.dat` to `persistentgamedata3.dat` in the data folder. The file names may carry a `rep_`, `rep+` or `abp_` prefix. The file name pattern has not been checked on a real machine.
+
+SuperDucky only reads the save list and never changes a save. Binding a suite to a save is temporarily switched off. Bindings that already exist can still be seen.
+
+## Logs
+
+The game log is normally `log.txt` in the data folder. You can read it on the [Game log](/en-US/user-guide/logs) page. Its location and file name have not been checked on a real machine.
+
+## How it differs from the other games
+
+| Feature | Escape from Duckov | Probably Stolen | The Binding of Isaac |
+|---------|-------------------|-----------------|----------------------|
+| Mod manifest | `info.ini` | `manifest.xml` | `metadata.xml` |
+| Workshop market | Yes | Yes | Yes |
+| Game log | Yes | Yes | Yes (location not checked on a real machine) |
+| Load order | Yes | Yes | No |
+| Capability approval | No | Yes | No |
+| Save gallery | Yes | No | No |
+| NuGet market | Yes | No | No |
+| BML import | Yes | No | No |
+| Launcher dependency check | Yes | No | No |
+| When sync fails | Still launches the game | Blocks the launch | Still launches the game |
+
+## Known limits
+
+- There is no load order and no debug interface. SuperDucky cannot confirm which mods the game actually loaded, or whether `disable.it` takes effect as expected.
+- macOS is not supported.
+- The title pack currently covers only a small sample of Workshop titles, so most mods show the name from `metadata.xml`.
+- Save gallery, NuGet market, BML import, launcher dependency check, capability approval and hot reload are not offered.
+- This page has no interface screenshots yet.

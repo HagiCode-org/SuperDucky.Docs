@@ -16,7 +16,7 @@ SuperDucky Docs 是 SuperDucky 的文档站，把产品介绍、安装说明、�
 
 ## 关于 SuperDucky
 
-SuperDucky(超级丫丫)是一款面向 Unity 游戏的跨平台桌面模组管理器,支持逃离鸭科夫和深空当铺(Probably Stolen),可以管理模组、加载顺序、分组、套件,并浏览 Steam 创意工坊市场。
+SuperDucky(超级丫丫)是一款面向 PC 游戏的跨平台桌面模组管理器,支持逃离鸭科夫、深空当铺(Probably Stolen)和以撒的结合(The Binding of Isaac),可以管理模组、加载顺序(仅限支持的游戏)、分组、套件,并浏览 Steam 创意工坊市场。
 
 ![超级丫丫介绍](readme-assets/introduction-zh.gif)
 

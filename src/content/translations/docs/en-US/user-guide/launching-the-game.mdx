@@ -17,7 +17,7 @@ The progress page shows four phases in this order:
 |-------|---------|
 | Check the suite | Checks each member of the current suite |
 | Check the mod files | A persistent suite compares each mod's files here; see below |
-| Write the save | Writes the enabled mods and their load order into the game |
+| Write the save | Writes the enabled mods and their load order into the game (The Binding of Isaac has no load order and writes only the enable state) |
 | Hand off to Steam | The game has been handed to Steam; the page waits for the game to appear |
 
 While preparing, the title reads "Preparing `<game>`". After the hand-off it reads "Handing `<game>` to Steam", with a countdown that shows how many seconds are left before the Workshop reconnects.
@@ -43,7 +43,7 @@ Before each launch, SuperDucky checks what it is about to hand to the game. What
 - **A persistent suite.** Before the save is synced, SuperDucky compares every file of each mod with the recorded version. A mod whose files all match is only read, never written. A mod that differs is replaced with the recorded version. The replacement is copied to a temporary folder next to the mod, checked, and only then swapped in; any failure rolls back.
   - If a mod cannot be compared, or its recorded version is no longer in the repository, the launch is refused. Nothing is written and the game does not start. The page then offers three choices: **Repair and launch** (clean up what an interrupted swap left and check the repository again), **Launch anyway** (no check this time, nothing written), or **Cancel**.
 - **Probably Stolen capability approval.** A newly enabled mod that declares capabilities first shows an approval dialog. The progress page steps aside until you have dealt with the dialog.
-- **Sync failures.** If the sync fails in Escape from Duckov, the game still starts. In Probably Stolen, a failed sync stops the launch, and the game does not start.
+- **Sync failures.** If the sync fails in Escape from Duckov or The Binding of Isaac, the game still starts and the error is shown on the progress page. In Probably Stolen, a failed sync stops the launch, and the game does not start.
 
 The checks of a persistent suite use a cache. SuperDucky remembers each file's hash, so a file that has not changed is not read again and later checks are faster. The result is the same as reading every file. SuperDucky reads every file again on the first check, on every 20th check, or when more than 24 hours have passed since the last full check.
 
@@ -52,4 +52,5 @@ For persistent suites, see [Load order and suites](/en-US/user-guide/load-order-
 ## Launch refused, or Steam says the game is already running
 
 - Probably Stolen refuses to write the save while the game is running. If you see "Probably Stolen is running. Close the game, then start again.", quit the game first.
+- The Binding of Isaac refuses to write its mod enable state while the game is running. If you see "The Binding of Isaac is running. Close the game before syncing.", quit the game first.
 - If Steam says the game is already running, the Steam connection that SuperDucky holds for a moment has not been released yet. Increase **Game launch wait time** in [Settings](/en-US/user-guide/settings).

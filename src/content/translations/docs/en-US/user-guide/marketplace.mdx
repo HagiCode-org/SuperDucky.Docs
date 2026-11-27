@@ -9,8 +9,8 @@ The marketplace is where you find and install new mods. It has several sources, 
 
 | Provider | What it does | Games |
 |----------|--------------|-------|
-| **Steam Workshop** | Browse, search, subscribe to and unsubscribe from Workshop mods | Escape from Duckov, Probably Stolen |
-| **Local folder** | Install mods from ZIP archives in a folder | Both games |
+| **Steam Workshop** | Browse, search, subscribe to and unsubscribe from Workshop mods | Escape from Duckov, Probably Stolen, The Binding of Isaac |
+| **Local folder** | Install mods from ZIP archives in a folder | All three games |
 | **NuGet feed** | Get mods from a NuGet feed | Escape from Duckov only |
 
 :::note
@@ -52,7 +52,7 @@ When mods come as ZIP archives, use this provider to install them in bulk:
 3. Click **Install** next to one archive, or **Install all**.
 4. Each result is "Installed", "Replaced", "Skipped" or "Failed", with a summary at the bottom. A clash with an existing mod shows "Conflicts with …".
 
-The archive's mod identity is read first (`info.ini` for Escape from Duckov, `manifest.xml` for Probably Stolen) and checked again before the mod is placed; the mod ends up in a folder named after its ID. Installs are refused while Probably Stolen is running.
+The archive's mod identity is read first (`info.ini` for Escape from Duckov, `manifest.xml` for Probably Stolen, `metadata.xml` for The Binding of Isaac) and checked again before the mod is placed; the mod ends up in a folder named after its ID. Installs are refused while Probably Stolen or The Binding of Isaac is running.
 
 ## Escape from Duckov only: NuGet and BML
 

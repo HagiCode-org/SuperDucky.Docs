@@ -7,6 +7,10 @@ sidebar:
 
 The load order of mods can change how they behave. This page explains how the order is worked out, how to preview it, and how to keep several setups as profiles.
 
+:::note
+The Binding of Isaac has no load order. Its mods are only enabled or disabled. Groups and profiles work as usual, but Preview results, sorting inside a group and "Move to front / end" do not appear for it. See [The Binding of Isaac](/en-US/user-guide/isaac).
+:::
+
 ## How the order is built
 
 Lay out the groups from top to bottom, and inside each group the cards from first to last. That one long sequence is the load order, and earlier mods load first. So:
@@ -69,5 +73,6 @@ Pick a version and click **Restore**. It is only loaded into the editor, so you 
 
 - **Escape from Duckov**: saving also syncs the mod setup to the game's data folder.
 - **Probably Stolen**: saving groups and switching profiles do **not** write the game save. The write happens when you **launch the game**; see [Probably Stolen](/en-US/user-guide/probably-stolen).
+- **The Binding of Isaac**: it has no load order. Saving groups and switching profiles writes the mod enable state (`disable.it`); see [The Binding of Isaac](/en-US/user-guide/isaac).
 
 In both cases, **Launch game** at the bottom left syncs first and then starts the game through Steam. The progress page shown during a launch, and how to abort one, are described in [Launching the game](/en-US/user-guide/launching-the-game).
