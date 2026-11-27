@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "first-run-quiz-zh-cn",
+  "slug": "first-run-quiz-zh-cn",
+  "title": "First Run Quiz Zh Cn",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "first-run",
+    "quiz",
+    "zh-CN"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/first-run-quiz-zh-cn.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/first-run-quiz-zh-cn",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:28.616Z",
+    "updatedAt": "2026-11-27T00:25:29.888Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/first-run-quiz-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "首次启动:快速检查的一道题",
+    "description": "超级丫丫快速检查的一道题(第 4 题,共 10 题):四个选项,顶部显示当前题号和进度。"
+  }
+}

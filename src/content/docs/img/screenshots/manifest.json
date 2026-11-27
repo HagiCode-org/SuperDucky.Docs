@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T17:48:18.572Z",
+  "generatedAt": "2026-11-27T00:26:42.067Z",
   "libraryRoot": "src/content/docs/img/screenshots",
   "items": [
     {
@@ -143,6 +143,104 @@
       "analysisStatus": "skipped"
     },
     {
+      "id": "user-guide/first-run-disclosure-en-us",
+      "slug": "first-run-disclosure-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "First launch: risk disclosure sealed",
+      "alt": "SuperDucky system setup agreement page: the risk disclosure is sealed, and all six agreements are sealed so the user can continue.",
+      "description": "SuperDucky system setup agreement page: the risk disclosure is sealed, and all six agreements are sealed so the user can continue.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "first-run",
+        "agreements",
+        "risk-disclosure",
+        "en-US"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/first-run-disclosure-en-us/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/first-run-disclosure-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/first-run-disclosure-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/first-run-disclosure-en-us/original.avif",
+      "updatedAt": "2026-11-27T00:25:25.428Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/first-run-disclosure-zh-cn",
+      "slug": "first-run-disclosure-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "首次启动:风险披露已盖章",
+      "alt": "超级丫丫系统设置的协议页面:风险披露一项已盖章,全部六份协议已盖章后即可继续。",
+      "description": "超级丫丫系统设置的协议页面:风险披露一项已盖章,全部六份协议已盖章后即可继续。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "first-run",
+        "agreements",
+        "risk-disclosure",
+        "zh-CN"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/first-run-disclosure-zh-cn/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/first-run-disclosure-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/first-run-disclosure-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/first-run-disclosure-zh-cn/original.avif",
+      "updatedAt": "2026-11-27T00:25:27.265Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/first-run-quiz-en-us",
+      "slug": "first-run-quiz-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "First launch: one quick check question",
+      "alt": "SuperDucky quick check, question 4 of 10: four options, with the current question number and progress at the top.",
+      "description": "SuperDucky quick check, question 4 of 10: four options, with the current question number and progress at the top.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "first-run",
+        "quiz",
+        "en-US"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/first-run-quiz-en-us/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/first-run-quiz-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/first-run-quiz-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/first-run-quiz-en-us/original.avif",
+      "updatedAt": "2026-11-27T00:25:28.615Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/first-run-quiz-zh-cn",
+      "slug": "first-run-quiz-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "首次启动:快速检查的一道题",
+      "alt": "超级丫丫快速检查的一道题(第 4 题,共 10 题):四个选项,顶部显示当前题号和进度。",
+      "description": "超级丫丫快速检查的一道题(第 4 题,共 10 题):四个选项,顶部显示当前题号和进度。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "first-run",
+        "quiz",
+        "zh-CN"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/first-run-quiz-zh-cn/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/first-run-quiz-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/first-run-quiz-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/first-run-quiz-zh-cn/original.avif",
+      "updatedAt": "2026-11-27T00:25:29.888Z",
+      "analysisStatus": "skipped"
+    },
+    {
       "id": "user-guide/game-log-en-us",
       "slug": "game-log-en-us",
       "category": "user-guide",
@@ -186,6 +284,150 @@
       "metadataPath": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn/metadata.json",
       "originalPath": "src/content/docs/img/screenshots/user-guide/game-log-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.569Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/launch-stage-en-us",
+      "slug": "launch-stage-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Game launch progress page",
+      "alt": "Full-screen game launch progress page (Escape from Duckov): check the suite, check the mod files and write the save are done; the hand-off to Steam is in progress; the Abort launch button is at the bottom right.",
+      "description": "Full-screen game launch progress page (Escape from Duckov): check the suite, check the mod files and write the save are done; the hand-off to Steam is in progress; the Abort launch button is at the bottom right.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "launch",
+        "progress",
+        "en-US"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/launch-stage-en-us/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/launch-stage-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/launch-stage-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/launch-stage-en-us/original.avif",
+      "updatedAt": "2026-11-27T00:25:35.294Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/launch-stage-zh-cn",
+      "slug": "launch-stage-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "游戏启动进度页面",
+      "alt": "全屏的游戏启动进度页面(逃离鸭科夫):检查套件、检查模组文件、写入存档已完成,交给 Steam 启动进行中,右下角有中止启动按钮。",
+      "description": "全屏的游戏启动进度页面(逃离鸭科夫):检查套件、检查模组文件、写入存档已完成,交给 Steam 启动进行中,右下角有中止启动按钮。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "launch",
+        "progress",
+        "zh-CN"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/launch-stage-zh-cn/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/launch-stage-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/launch-stage-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/launch-stage-zh-cn/original.avif",
+      "updatedAt": "2026-11-27T00:25:40.680Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/mod-local-repository-list-en-us",
+      "slug": "mod-local-repository-list-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Mod Local Repository list",
+      "alt": "Mod Local Repository page (Escape from Duckov): 8 mods and 9 versions, one row per mod with its version count, and a Check now button at the top.",
+      "description": "Mod Local Repository page (Escape from Duckov): 8 mods and 9 versions, one row per mod with its version count, and a Check now button at the top.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "mod-local-repository",
+        "list",
+        "en-US"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/mod-local-repository-list-en-us/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/mod-local-repository-list-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-list-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-list-en-us/original.avif",
+      "updatedAt": "2026-11-27T00:25:45.403Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/mod-local-repository-list-zh-cn",
+      "slug": "mod-local-repository-list-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "模组本地仓库列表",
+      "alt": "模组本地仓库页面(逃离鸭科夫):8 个模组、9 个版本,每个模组一行并显示版本数量,顶部有立即检查按钮。",
+      "description": "模组本地仓库页面(逃离鸭科夫):8 个模组、9 个版本,每个模组一行并显示版本数量,顶部有立即检查按钮。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "mod-local-repository",
+        "list",
+        "zh-CN"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/mod-local-repository-list-zh-cn/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/mod-local-repository-list-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-list-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-list-zh-cn/original.avif",
+      "updatedAt": "2026-11-27T00:25:49.988Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/mod-local-repository-versions-en-us",
+      "slug": "mod-local-repository-versions-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Mod Local Repository: one mod's version history",
+      "alt": "Version history of one demo mod (DM_BiggerBackpack) in the Mod Local Repository: two archived versions, each with its fingerprint, manifest hash and content hash, and the current version marked.",
+      "description": "Version history of one demo mod (DM_BiggerBackpack) in the Mod Local Repository: two archived versions, each with its fingerprint, manifest hash and content hash, and the current version marked.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "mod-local-repository",
+        "versions",
+        "en-US"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/mod-local-repository-versions-en-us/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-en-us/original.avif",
+      "updatedAt": "2026-11-27T00:25:55.745Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/mod-local-repository-versions-zh-cn",
+      "slug": "mod-local-repository-versions-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "模组本地仓库:一个模组的版本历史",
+      "alt": "模组本地仓库中一个演示模组(DM_BiggerBackpack)的版本历史:两个已归档版本,各自带有指纹、清单哈希和内容哈希,当前版本已标注。",
+      "description": "模组本地仓库中一个演示模组(DM_BiggerBackpack)的版本历史:两个已归档版本,各自带有指纹、清单哈希和内容哈希,当前版本已标注。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "mod-local-repository",
+        "versions",
+        "zh-CN"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/mod-local-repository-versions-zh-cn/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-zh-cn/original.avif",
+      "updatedAt": "2026-11-27T00:26:01.277Z",
       "analysisStatus": "skipped"
     },
     {
@@ -278,6 +520,102 @@
       "metadataPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn/metadata.json",
       "originalPath": "src/content/docs/img/screenshots/user-guide/probably-stolen-mods-zh-cn/original.avif",
       "updatedAt": "2026-11-23T17:48:18.572Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/settings-language-en-us",
+      "slug": "settings-language-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Display language in Settings",
+      "alt": "SuperDucky Settings page, Display language: the ten interface languages are listed, with English (US) selected.",
+      "description": "SuperDucky Settings page, Display language: the ten interface languages are listed, with English (US) selected.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "settings",
+        "display-language",
+        "en-US"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/settings-language-en-us/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/settings-language-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/settings-language-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/settings-language-en-us/original.avif",
+      "updatedAt": "2026-11-27T00:26:05.293Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/settings-language-zh-cn",
+      "slug": "settings-language-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "设置中的显示语言",
+      "alt": "超级丫丫设置页面的“显示语言”选项,列出十种界面语言,当前选中简体中文。",
+      "description": "超级丫丫设置页面的“显示语言”选项,列出十种界面语言,当前选中简体中文。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "settings",
+        "display-language",
+        "zh-CN"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/settings-language-zh-cn/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/settings-language-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/settings-language-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/settings-language-zh-cn/original.avif",
+      "updatedAt": "2026-11-27T00:26:09.188Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/suite-guide-en-us",
+      "slug": "suite-guide-en-us",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "Suite guide: what a suite is",
+      "alt": "Suite guide in Profile Management (the What a suite is tab): a suite is a list of mods and a load order; switching suites replaces the whole list and no mod file moves. Includes sample names.",
+      "description": "Suite guide in Profile Management (the What a suite is tab): a suite is a list of mods and a load order; switching suites replaces the whole list and no mod file moves. Includes sample names.",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "suite-guide",
+        "profiles",
+        "en-US"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/suite-guide-en-us/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/suite-guide-en-us",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/suite-guide-en-us/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/suite-guide-en-us/original.avif",
+      "updatedAt": "2026-11-27T00:26:13.813Z",
+      "analysisStatus": "skipped"
+    },
+    {
+      "id": "user-guide/suite-guide-zh-cn",
+      "slug": "suite-guide-zh-cn",
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "title": "套件说明:套件是什么",
+      "alt": "模组套件管理中的套件说明(“套件是什么”标签):套件是一份模组清单加一个加载顺序,切换套件会整体替换清单,模组文件不会移动。图中含示例名称。",
+      "description": "模组套件管理中的套件说明(“套件是什么”标签):套件是一份模组清单加一个加载顺序,切换套件会整体替换清单,模组文件不会移动。图中含示例名称。",
+      "tags": [
+        "superducky",
+        "demo-data",
+        "suite-guide",
+        "profiles",
+        "zh-CN"
+      ],
+      "relativeImagePath": "img/screenshots/user-guide/suite-guide-zh-cn/original.avif",
+      "assetDir": "src/content/docs/img/screenshots/user-guide/suite-guide-zh-cn",
+      "metadataPath": "src/content/docs/img/screenshots/user-guide/suite-guide-zh-cn/metadata.json",
+      "originalPath": "src/content/docs/img/screenshots/user-guide/suite-guide-zh-cn/original.avif",
+      "updatedAt": "2026-11-27T00:26:18.148Z",
       "analysisStatus": "skipped"
     }
   ]

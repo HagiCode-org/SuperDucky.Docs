@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "first-run-quiz-en-us",
+  "slug": "first-run-quiz-en-us",
+  "title": "First Run Quiz En Us",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "first-run",
+    "quiz",
+    "en-US"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/first-run-quiz-en-us.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/first-run-quiz-en-us",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:27.266Z",
+    "updatedAt": "2026-11-27T00:25:28.615Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/first-run-quiz-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "First launch: one quick check question",
+    "description": "SuperDucky quick check, question 4 of 10: four options, with the current question number and progress at the top."
+  }
+}

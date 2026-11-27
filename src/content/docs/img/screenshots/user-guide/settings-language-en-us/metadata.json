@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "settings-language-en-us",
+  "slug": "settings-language-en-us",
+  "title": "Settings Language En Us",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "settings",
+    "display-language",
+    "en-US"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/settings-language-en-us.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/settings-language-en-us",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:26:01.278Z",
+    "updatedAt": "2026-11-27T00:26:05.293Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/settings-language-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "Display language in Settings",
+    "description": "SuperDucky Settings page, Display language: the ten interface languages are listed, with English (US) selected."
+  }
+}

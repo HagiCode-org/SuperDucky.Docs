@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "mod-local-repository-versions-en-us",
+  "slug": "mod-local-repository-versions-en-us",
+  "title": "Mod Local Repository Versions En Us",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "mod-local-repository",
+    "versions",
+    "en-US"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/mod-local-repository-versions-en-us.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-en-us",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:49.989Z",
+    "updatedAt": "2026-11-27T00:25:55.745Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/mod-local-repository-versions-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "Mod Local Repository: one mod's version history",
+    "description": "Version history of one demo mod (DM_BiggerBackpack) in the Mod Local Repository: two archived versions, each with its fingerprint, manifest hash and content hash, and the current version marked."
+  }
+}

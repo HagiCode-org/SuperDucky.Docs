@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "suite-guide-zh-cn",
+  "slug": "suite-guide-zh-cn",
+  "title": "Suite Guide Zh Cn",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "suite-guide",
+    "profiles",
+    "zh-CN"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/suite-guide-zh-cn.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/suite-guide-zh-cn",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:26:13.814Z",
+    "updatedAt": "2026-11-27T00:26:18.148Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/suite-guide-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "套件说明:套件是什么",
+    "description": "模组套件管理中的套件说明(“套件是什么”标签):套件是一份模组清单加一个加载顺序,切换套件会整体替换清单,模组文件不会移动。图中含示例名称。"
+  }
+}

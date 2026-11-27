@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "mod-local-repository-list-en-us",
+  "slug": "mod-local-repository-list-en-us",
+  "title": "Mod Local Repository List En Us",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "mod-local-repository",
+    "list",
+    "en-US"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/mod-local-repository-list-en-us.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/mod-local-repository-list-en-us",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:40.681Z",
+    "updatedAt": "2026-11-27T00:25:45.403Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/mod-local-repository-list-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "Mod Local Repository list",
+    "description": "Mod Local Repository page (Escape from Duckov): 8 mods and 9 versions, one row per mod with its version count, and a Check now button at the top."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 2,
+  "assetId": "first-run-disclosure-en-us",
+  "slug": "first-run-disclosure-en-us",
+  "title": "First Run Disclosure En Us",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "first-run",
+    "agreements",
+    "risk-disclosure",
+    "en-US"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/first-run-disclosure-en-us.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/first-run-disclosure-en-us",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:23.493Z",
+    "updatedAt": "2026-11-27T00:25:25.428Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/first-run-disclosure-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "First launch: risk disclosure sealed",
+    "description": "SuperDucky system setup agreement page: the risk disclosure is sealed, and all six agreements are sealed so the user can continue."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "mod-local-repository-versions-zh-cn",
+  "slug": "mod-local-repository-versions-zh-cn",
+  "title": "Mod Local Repository Versions Zh Cn",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "mod-local-repository",
+    "versions",
+    "zh-CN"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/mod-local-repository-versions-zh-cn.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/mod-local-repository-versions-zh-cn",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:55.746Z",
+    "updatedAt": "2026-11-27T00:26:01.277Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/mod-local-repository-versions-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "模组本地仓库:一个模组的版本历史",
+    "description": "模组本地仓库中一个演示模组(DM_BiggerBackpack)的版本历史:两个已归档版本,各自带有指纹、清单哈希和内容哈希,当前版本已标注。"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "launch-stage-zh-cn",
+  "slug": "launch-stage-zh-cn",
+  "title": "Launch Stage Zh Cn",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "launch",
+    "progress",
+    "zh-CN"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/launch-stage-zh-cn.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/launch-stage-zh-cn",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:35.294Z",
+    "updatedAt": "2026-11-27T00:25:40.680Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/launch-stage-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "游戏启动进度页面",
+    "description": "全屏的游戏启动进度页面(逃离鸭科夫):检查套件、检查模组文件、写入存档已完成,交给 Steam 启动进行中,右下角有中止启动按钮。"
+  }
+}

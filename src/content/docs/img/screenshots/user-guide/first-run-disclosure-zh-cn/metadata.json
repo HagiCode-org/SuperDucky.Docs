@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 2,
+  "assetId": "first-run-disclosure-zh-cn",
+  "slug": "first-run-disclosure-zh-cn",
+  "title": "First Run Disclosure Zh Cn",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "first-run",
+    "agreements",
+    "risk-disclosure",
+    "zh-CN"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/first-run-disclosure-zh-cn.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/first-run-disclosure-zh-cn",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:25.429Z",
+    "updatedAt": "2026-11-27T00:25:27.265Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/first-run-disclosure-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "首次启动:风险披露已盖章",
+    "description": "超级丫丫系统设置的协议页面:风险披露一项已盖章,全部六份协议已盖章后即可继续。"
+  }
+}

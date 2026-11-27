@@ -1,21 +1,42 @@
 ---
 title: First Launch
-description: Choose a language and a game the first time you open SuperDucky, detect or set the mod folder paths, and finish setup.
+description: Read and accept the agreements, including the risk disclosure, pass the quick check, then choose a game, detect or set the mod folder paths and finish setup.
 sidebar:
   order: 1
 ---
 
-The first time you open SuperDucky, a setup wizard starts. It takes a few minutes and does three things: picks a language, picks the game you want to use, and tells the app where your mods are.
+The first time you open SuperDucky, it opens **System setup** before the game setup wizard. System setup applies to every game and is done only once: choose the display language, accept the agreements, and pass the quick check. The wizard after it works on one game at a time: choose the game and tell the app where your mods are.
 
 ## 1. Choose a language
 
-Pick the interface language (Simplified Chinese or English) at the start of the wizard. You can change it later in "Settings → Basic"; the change takes effect immediately.
+On the "Choose display language" step, pick the interface language. SuperDucky supports ten languages; the full list is in [Settings](/en-US/user-guide/settings#display-language). You can change it later in "Settings → Basic"; the change takes effect immediately.
 
-## 2. Choose a game
+## 2. Read and accept the agreements
+
+There are six agreements: Age requirement, Beta notice, Risk disclosure, End user license agreement, Privacy policy and Data collection.
+
+- Each one must be **sealed** by pressing and holding its button ("Hold to seal"), or by holding Space or Enter. Once an agreement is sealed, the next one opens by itself.
+- Read each agreement before you seal it. You can withdraw a seal until you click **Accept and continue**.
+- When all six are sealed, the page says they are ready to continue; then click **Accept and continue**. While any is still open, the page says "Accept every agreement to continue."
+
+![The risk disclosure agreement after it is sealed](../../img/screenshots/user-guide/first-run-disclosure-en-us/original.avif)
+
+## 3. Pass the quick check
+
+After the agreements comes a ten-question quick check that confirms you understand the app.
+
+- The first three questions are additions, with both addends and the sum between 0 and 100. The other seven are multiple-choice questions about SuperDucky.
+- Each question has four options, and the order of the options changes every time the question is shown.
+- A wrong answer is marked, and the question stays as it is until you pick the right option.
+- All ten must be answered correctly before you can continue. Once you pass, the check does not appear again, including when you set up another game later.
+
+![One question of the quick check: four options, with the current question number at the top](../../img/screenshots/user-guide/first-run-quiz-en-us/original.avif)
+
+## 4. Choose a game
 
 The first step of "Game setup" is **Choose game**. Each game is set up on its own, so choose only the one you use. A game that is already set up is marked "Set up", and the others "Not set up yet". You can set up another game later whenever you want to manage it.
 
-## 3. Configure paths
+## 5. Configure paths
 
 The "Configure paths" step asks where your mods are:
 
@@ -34,8 +55,7 @@ The default locations for each game:
 | Escape from Duckov | `Duckov_Data/Mods` in the game folder | `%UserProfile%\AppData\LocalLow\TeamSoda\Duckov\` |
 | Probably Stolen | `Mods` in the game folder, one subfolder per mod with a `manifest.xml` inside | `%UserProfile%\AppData\LocalLow\Questing Goose Studio\Probably Stolen\` |
 
-
-## 4. Finish
+## 6. Finish
 
 The last page lists the main features. Click **Finish and start using SuperDucky** to begin. You can change the paths in Settings at any time after the wizard.
 

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "mod-local-repository-list-zh-cn",
+  "slug": "mod-local-repository-list-zh-cn",
+  "title": "Mod Local Repository List Zh Cn",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "mod-local-repository",
+    "list",
+    "zh-CN"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/mod-local-repository-list-zh-cn.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/mod-local-repository-list-zh-cn",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:45.404Z",
+    "updatedAt": "2026-11-27T00:25:49.988Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/mod-local-repository-list-zh-cn.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "模组本地仓库列表",
+    "description": "模组本地仓库页面(逃离鸭科夫):8 个模组、9 个版本,每个模组一行并显示版本数量,顶部有立即检查按钮。"
+  }
+}

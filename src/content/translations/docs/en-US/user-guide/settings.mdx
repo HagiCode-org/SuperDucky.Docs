@@ -2,22 +2,42 @@
 title: Settings
 description: SuperDucky's Settings page - basic settings, game options and launch wait time, install wizard, mod market, debug tools, security center and save gallery.
 sidebar:
-  order: 7
+  order: 9
 ---
 
 Click **Settings** in the navigation bar. The categories are on the left and their options on the right. After a change, watch the save state on the page (saving, saved or failed).
 
 ## Basic
 
-- **Display language**: the language of the whole app (Simplified Chinese or English). It applies immediately and stays after a restart.
+- **Display language**: the language of the whole app. There are ten languages, listed in [Display language](#display-language) below. It applies immediately and stays after a restart.
 - **Config and data location**: shows the config file and data folder in use, useful for backups and troubleshooting.
 - **Privacy and telemetry**: view and control data collection; see [Telemetry and privacy](/en-US/faq/data-and-privacy).
+
+## Display language
+
+SuperDucky supports the ten interface languages below. You can choose one in the "Choose display language" step of the first launch, and here in Settings. The whole app switches at once.
+
+| Interface language | Code |
+|--------------------|------|
+| 简体中文 | zh-CN |
+| 繁體中文 | zh-Hant |
+| English (US) | en-US |
+| 日本語 | ja-JP |
+| 한국어 | ko-KR |
+| Deutsch | de-DE |
+| Français | fr-FR |
+| Español | es-ES |
+| Português (Brasil) | pt-BR |
+| Русский | ru-RU |
+
+![The display language selector in Settings, listing the ten languages](../../img/screenshots/user-guide/settings-language-en-us/original.avif)
 
 ## Game options
 
 This page is about the **current game**; switch the game and it shows that game's settings.
 
 - **Auto-detect paths**: let SuperDucky find the game folders. Check the result afterwards.
+- **Mod Local Repository**: turns the Mod Local Repository on or off, sets the comparison interval, and runs Check now. See [Mod Local Repository](/en-US/user-guide/mod-local-repository).
 - **Local mod folder**: the folder with mods you installed by hand.
 - **Steam Workshop folder**: where Steam downloads Workshop mods.
 - **Game data path** (Escape from Duckov) / **Save folder** (Probably Stolen): used to sync the mod setup to the game.
@@ -37,6 +57,8 @@ Make sure that **the game has fully started within this time** after you click l
 ## Install wizard
 
 You can **reset the wizard state** so the setup wizard shows again next time. The reset applies only to the current game, which must be set up again before you can use it.
+
+The display language and the agreements of the first launch do not belong to one game, so a reset does not bring them back. A quiz you have already passed is not asked again after a reset either. See [First launch](/en-US/quick-start/first-launch).
 
 ## Mod market
 

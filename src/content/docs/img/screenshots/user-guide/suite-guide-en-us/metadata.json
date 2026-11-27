@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "suite-guide-en-us",
+  "slug": "suite-guide-en-us",
+  "title": "Suite Guide En Us",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "suite-guide",
+    "profiles",
+    "en-US"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/suite-guide-en-us.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/suite-guide-en-us",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:26:09.188Z",
+    "updatedAt": "2026-11-27T00:26:13.813Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/suite-guide-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "Suite guide: what a suite is",
+    "description": "Suite guide in Profile Management (the What a suite is tab): a suite is a list of mods and a load order; switching suites replaces the whole list and no mod file moves. Includes sample names."
+  }
+}

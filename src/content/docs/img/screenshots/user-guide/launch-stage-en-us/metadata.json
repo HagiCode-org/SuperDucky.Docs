@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "assetId": "launch-stage-en-us",
+  "slug": "launch-stage-en-us",
+  "title": "Launch Stage En Us",
+  "description": "",
+  "tags": [
+    "superducky",
+    "demo-data",
+    "launch",
+    "progress",
+    "en-US"
+  ],
+  "source": {
+    "type": "imported",
+    "originalPath": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/screenshot-staging/user-guide/launch-stage-en-us.png"
+  },
+  "paths": {
+    "assetDir": "/home/newbe36524/repos/hagi/hagicode-mono/repos/SuperDucky.Docs/src/content/docs/img/screenshots/user-guide/launch-stage-en-us",
+    "original": "original.avif"
+  },
+  "status": {
+    "generation": "skipped",
+    "recognition": "skipped",
+    "thumbnail": "skipped"
+  },
+  "timestamps": {
+    "createdAt": "2026-11-27T00:25:29.889Z",
+    "updatedAt": "2026-11-27T00:25:35.294Z"
+  },
+  "extra": {
+    "docsScreenshot": {
+      "category": "user-guide",
+      "categorySegments": [
+        "user-guide"
+      ],
+      "relativeSourcePath": "user-guide/launch-stage-en-us.png",
+      "duplicateStrategy": "direct"
+    }
+  },
+  "manual": {
+    "title": "Game launch progress page",
+    "description": "Full-screen game launch progress page (Escape from Duckov): check the suite, check the mod files and write the save are done; the hand-off to Steam is in progress; the Abort launch button is at the bottom right."
+  }
+}

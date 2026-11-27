@@ -1,0 +1,70 @@
+---
+title: Mod Local Repository
+description: With the Mod Local Repository on, SuperDucky keeps every version each mod has had. This page covers the switch, Check now, the version history, reuse of archived versions, and why stored versions are never deleted for their age.
+sidebar:
+  order: 5
+---
+
+The Mod Local Repository keeps, on this computer, every version each mod has had. It covers Steam Workshop mods and the local `Mods` folder of the game. Use it to look back at what an update changed, and to find an earlier version when an update breaks a mod.
+
+It only stores and shows versions. The game always loads what is in the mod folder now, and SuperDucky does not switch to an old version for you. The only thing that puts a stored version back into the mod folder is a [persistent suite](/en-US/user-guide/load-order-and-profiles), and only at launch.
+
+![Mod Local Repository page: archived mods, one card per mod](../../img/screenshots/user-guide/mod-local-repository-list-en-us/original.avif)
+
+## Where to find it
+
+- **Mod Local Repository** in the navigation bar, after **Mod Management**. Every game has this entry. It is not available until the game has finished its setup.
+- The game's Settings page also has a Mod Local Repository block with the switch and a link to the page.
+
+## Off by default
+
+The Mod Local Repository is set per game and is off by default. While it is off, SuperDucky archives nothing and runs no scheduled comparison.
+
+When it is on:
+
+- SuperDucky compares the mods at an interval and archives any new version it finds. The default interval is 60 minutes; you can set a whole number of minutes from 5 to 1440.
+- **Check now** runs one comparison straight away. While the switch is off, Check now is not available, and the page asks you to turn the switch on first.
+
+| Label in the app | Where |
+|------------------|-------|
+| Keep a history of Workshop and local mod versions | The switch in Settings |
+| Off by default. While it is off, DML archives nothing and runs no scheduled check. | Note under the switch |
+| Compare every | Text before the interval box |
+| minutes (5 to 1440) | Text after the interval box |
+| Check now | Button in Settings and on the repository page |
+
+:::note
+"DML" in the app's labels is the old name of SuperDucky itself.
+:::
+
+## Repository page
+
+- **While off:** the page explains what the Mod Local Repository is and offers **Enable Mod Local Repository**. Mods archived earlier stay readable below, read only, with the note that nothing new is archived while it is off.
+- **While on:** the page shows the totals, **Check now**, and one row per stored mod. Open a row to see that mod's versions.
+
+![Version history of one mod: each archived version with its fingerprint and the version the mod declares](../../img/screenshots/user-guide/mod-local-repository-versions-en-us/original.avif)
+
+## How versions are told apart
+
+- **Each version is identified by its content fingerprint.** A comparison that finds the same content again adds no version.
+- **The version time is when SuperDucky archived it**, in local time. It is not the date the author published the mod. The version number the author wrote is shown only as secondary text.
+- **Returning to an archived version reuses it.** If a mod folder goes back to a version that is already stored, SuperDucky uses the stored copy and does not store a second one.
+- **Current content that is not archived yet is shown first, in its own row:** "Steam current, not archived yet" or "Current in the Mods folder, not archived yet". This row has no time.
+
+## Never deleted for their age
+
+- A stored version is not removed because it is old, has not been used for a long time, or has not been seen on Steam for a while. No scheduled task deletes stored versions.
+- SuperDucky has no action that deletes an archived version.
+- The page shows the repository size.
+
+## Limits
+
+- **Originals are only read.** SuperDucky copies from the Steam folder and the local `Mods` folder and never changes them.
+- **It uses the bundled Git.** Archiving uses the Git that ships with SuperDucky. If Git cannot run, the repository pauses: nothing is archived or read, and the page says why.
+- **A damaged repository affects only its mod.** If one mod's repository cannot be read, the page reports the problem for that mod only. It is left as it is and is not repaired, rebuilt or deleted.
+- **You cannot pick an old version to load.** There is no "switch to this version" function yet.
+
+## Related pages
+
+- [Load order and suites](/en-US/user-guide/load-order-and-profiles): how a persistent suite uses stored versions at launch.
+- [Launching the game](/en-US/user-guide/launching-the-game): the checks before launch and how to abort a launch.

@@ -1,0 +1,55 @@
+---
+title: Launching the game
+description: What the full-screen "Game launch progress" page shows for each phase, how to abort a launch in progress, and what the checks before launch do.
+sidebar:
+  order: 4
+---
+
+Click **Launch game** at the bottom of the navigation bar, and SuperDucky hands the mod setup to the game and then starts it through Steam. During the launch, a full-screen "Game launch progress" page covers the window. It shows each phase, and you can abort the launch from it.
+
+![Full-screen Game launch progress page: four phases in order, with the Abort launch button below](../../img/screenshots/user-guide/launch-stage-en-us/original.avif)
+
+## Four phases
+
+The progress page shows four phases in this order:
+
+| Phase | Meaning |
+|-------|---------|
+| Check the suite | Checks each member of the current suite |
+| Check the mod files | A persistent suite compares each mod's files here; see below |
+| Write the save | Writes the enabled mods and their load order into the game |
+| Hand off to Steam | The game has been handed to Steam; the page waits for the game to appear |
+
+While preparing, the title reads "Preparing `<game>`". After the hand-off it reads "Handing `<game>` to Steam", with a countdown that shows how many seconds are left before the Workshop reconnects.
+
+If you do not want to keep the page open, click **Continue in the background** (or press `Esc`). The launch carries on; the page simply stops covering the window.
+
+## Abort launch
+
+The progress page has an **Abort launch** button, and the same button sits under the launch button. An abort does not interrupt the launch at any moment:
+
+- It stops only at safe points: between the members of a suite, between the mod checks, and before the save is written or the game is handed to Steam.
+- The save is never left half written. If the save was already written before the abort, that write stays, and its backup file is next to it.
+- After a successful abort the game does not start, and the page says "Launch aborted. The game was not started."
+
+:::caution
+After the game has been handed to Steam, an abort only stops SuperDucky's wait and restores the Workshop connection. If Steam has already begun starting the game, SuperDucky cannot take that back. The page then says "Stopped waiting. Steam may still open the game."
+:::
+
+## Checks before launch
+
+Before each launch, SuperDucky checks what it is about to hand to the game. What it checks depends on the suite and the game:
+
+- **A persistent suite.** Before the save is synced, SuperDucky compares every file of each mod with the recorded version. A mod whose files all match is only read, never written. A mod that differs is replaced with the recorded version. The replacement is copied to a temporary folder next to the mod, checked, and only then swapped in; any failure rolls back.
+  - If a mod cannot be compared, or its recorded version is no longer in the repository, the launch is refused. Nothing is written and the game does not start. The page then offers three choices: **Repair and launch** (clean up what an interrupted swap left and check the repository again), **Launch anyway** (no check this time, nothing written), or **Cancel**.
+- **Probably Stolen capability approval.** A newly enabled mod that declares capabilities first shows an approval dialog. The progress page steps aside until you have dealt with the dialog.
+- **Sync failures.** If the sync fails in Escape from Duckov, the game still starts. In Probably Stolen, a failed sync stops the launch, and the game does not start.
+
+The checks of a persistent suite use a cache. SuperDucky remembers each file's hash, so a file that has not changed is not read again and later checks are faster. The result is the same as reading every file. SuperDucky reads every file again on the first check, on every 20th check, or when more than 24 hours have passed since the last full check.
+
+For persistent suites, see [Load order and suites](/en-US/user-guide/load-order-and-profiles). For stored versions, see [Mod Local Repository](/en-US/user-guide/mod-local-repository).
+
+## Launch refused, or Steam says the game is already running
+
+- Probably Stolen refuses to write the save while the game is running. If you see "Probably Stolen is running. Close the game, then start again.", quit the game first.
+- If Steam says the game is already running, the Steam connection that SuperDucky holds for a moment has not been released yet. Increase **Game launch wait time** in [Settings](/en-US/user-guide/settings).
