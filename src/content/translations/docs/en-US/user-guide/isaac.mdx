@@ -10,15 +10,15 @@ SuperDucky supports The Binding of Isaac (以撒的结合, Steam app ID 250900).
 The first time you switch to this game you need to set it up; see [First launch](/en-US/quick-start/first-launch).
 
 :::note
-Anything written with "usually" or "normally" on this page is inferred from the game's files and common practice. It has not been checked on a real machine. Windows paths have not been checked on a real machine either. SuperDucky cannot read which mods the game actually loaded.
+Anything written with "usually" or "normally" on this page is inferred from the game's files and common practice. It has not been checked on a real machine. The Linux data folder, the mod copy folder, how enabling and disabling take effect, the log location and the process name have been checked on a real Linux machine (see below). Windows paths and behaviour have not been checked on a real machine. SuperDucky cannot read which mods the game actually loaded.
 :::
 
 ## Mod format
 
 A mod for The Binding of Isaac is a folder with a `metadata.xml` inside. SuperDucky reads the name, directory, `<id>`, version and tags from that file. It reads only this file, not the Lua code in the mod.
 
-- **Local mods** go in the `mods` folder of the game directory, one subfolder per mod. Normally this is `steamapps/common/The Binding of Isaac Rebirth/mods`.
-- **Workshop mods** are in Steam's Workshop content folder `steamapps/workshop/content/250900/`, one folder per subscribed mod, named after its Workshop item number.
+- **Local mods** go in the `mods` folder in the game's install folder, one subfolder per mod. Whether the game loads this folder on Linux has not been checked yet.
+- **Workshop mods** are in Steam's Workshop content folder `steamapps/workshop/content/250900/`, one folder per subscribed mod, named after its Workshop item number. On Linux the game loads the copy it makes of each Workshop mod instead; see "Enabling and disabling" below.
 
 SuperDucky tells mods apart by their identity. A local mod's identity is the `<id>` in `metadata.xml`, or its `<directory>` if there is no `<id>`, or its folder name if there is neither. A Workshop mod's identity is its folder name, which is the Workshop item number.
 
@@ -29,16 +29,23 @@ SuperDucky tells mods apart by their identity. A local mod's identity is the `<i
 
 The Binding of Isaac is a native game, and SuperDucky does not use a Proton prefix for it.
 
-- **Game data folder** (called "Game data folder" in Settings): the folder that holds the game's data. On Linux it is normally `~/.local/share/binding of isaac afterbirth+/`; on Windows it is normally `%UserProfile%\Documents\My Games\Binding of Isaac Repentance+\` (Windows paths not checked on a real machine).
+- **Game data folder** (called "Game data folder" in Settings): the folder that holds the game's saves, log and settings. On Linux it is `~/.local/share/binding of isaac afterbirth+/`. On Windows it is normally `%UserProfile%\Documents\My Games\Binding of Isaac Repentance+\` (Windows paths not checked on a real machine).
+- **Mod copy folder** (Linux only): `~/.local/share/binding of isaac afterbirth+ mods/`, next to the game data folder. The game copies each Workshop mod into it and loads only from there. SuperDucky finds it from the game data folder; it is not a setting. It is detected only when this folder already exists.
 - **Install folder and Workshop folder**: SuperDucky detects these through Steam's library folders.
-- **Mods folder** (the local `mods` folder): SuperDucky detects it automatically only when it already exists. If it is not detected, choose the `mods` folder in the game directory by hand in Settings.
+- **Local mods folder**: SuperDucky detects it automatically only when it already exists. If it is not detected, choose the `mods` folder in the game directory by hand in Settings.
 
 ## Enabling and disabling
 
 - **Enabled**: the mod's folder has **no** `disable.it` in it.
 - **Disabled**: the mod's folder has an empty `disable.it` file in it.
 
-The game normally uses this file to recognise a disabled mod. Whether it takes effect in both the local `mods` folder and the Workshop folder has not been checked on a real machine.
+On Linux the game loads Workshop mods only from the copy folder, so enabling and disabling work like this:
+
+- A `disable.it` in the copy: the game does not load the mod, and the file stays in place.
+- A `disable.it` only in the Workshop folder, when the copy already exists: the game ignores it and the mod loads as normal.
+- When the copy has not been made yet, a `disable.it` in the Workshop folder is copied into the new copy with it, so the game does not load that mod either.
+
+So SuperDucky creates or deletes `disable.it` in both the copy and the Workshop folder, and keeps the two the same. A copy the game makes later starts in the same state. Whether the game keeps a copy's `disable.it` when it updates a Workshop mod has not been checked yet.
 
 SuperDucky only creates or deletes this file. It does not change any other file in the mod and does not delete the mod. A disabled mod stays in the list.
 
@@ -74,16 +81,17 @@ Mod history is on. It works together with the [Mod Local Repository](/en-US/user
 - Enabling or disabling a mod (adding or removing `disable.it`) does **not** create a new version.
 - The preview image in the mod's root folder (for example `previewpic.jpg`) counts towards a version, so changing the preview creates a new version.
 - When a persistent suite restores a version's contents, it keeps each mod's current enable state: a mod that was disabled before the restore stays disabled.
+- On Linux, history reads and writes the copy the game loads. For a Workshop mod that has been copied, "restore version" writes to the copy, so the game loads the restored content. Whether a Workshop update overwrites restored content in the copy has not been checked yet; see the known limits below.
 
 ## Saves
 
-SuperDucky lists up to three save files, newest first by modified time: `persistentgamedata1.dat` to `persistentgamedata3.dat` in the data folder. The file names may carry a `rep_`, `rep+` or `abp_` prefix. The file name pattern has not been checked on a real machine.
+On Linux the game writes its save as `<date>.abp_persistentgamedata1.dat` (slot 1 is the one measured), with `options.ini` beside it. SuperDucky's save list has one entry per slot 1 to 3. A name may carry a `<date>.` prefix, and may also carry a `rep_`, `rep+` or `abp_` prefix. When one slot has several dated files, only the most recently modified one is listed; the others are not saves. The file name pattern on Windows (no date) has not been checked on a real machine.
 
 SuperDucky only reads the save list and never changes a save. Binding a suite to a save is temporarily switched off. Bindings that already exist can still be seen.
 
 ## Logs
 
-The game log is normally `log.txt` in the data folder. You can read it on the [Game log](/en-US/user-guide/logs) page. Its location and file name have not been checked on a real machine.
+The game log is `log.txt` in the game data folder (checked on Linux). The game rewrites it on every launch rather than appending to it, so it holds only the most recent launch. You can read it on the [Game log](/en-US/user-guide/logs) page. Its location on Windows has not been checked on a real machine.
 
 ## How it differs from the other games
 
@@ -91,7 +99,7 @@ The game log is normally `log.txt` in the data folder. You can read it on the [G
 |---------|-------------------|-----------------|----------------------|
 | Mod manifest | `info.ini` | `manifest.xml` | `metadata.xml` |
 | Workshop market | Yes | Yes | Yes |
-| Game log | Yes | Yes | Yes (location not checked on a real machine) |
+| Game log | Yes | Yes | Yes (Windows location not checked on a real machine) |
 | Load order | Yes | Yes | No |
 | Capability approval | No | Yes | No |
 | Save gallery | Yes | No | No |
@@ -102,7 +110,11 @@ The game log is normally `log.txt` in the data folder. You can read it on the [G
 
 ## Known limits
 
-- There is no load order and no debug interface. SuperDucky cannot confirm which mods the game actually loaded, or whether `disable.it` takes effect as expected.
+- There is no load order and no debug interface. SuperDucky cannot confirm which mods the game actually loaded; it can only see the `disable.it` state in the mod folder (the copy on Linux).
+- On Linux, history reads and writes the copy for a Workshop mod that has one, and the Workshop folder for one that does not. Whether a Workshop update overwrites restored content in the copy has not been checked yet.
+- After an unsubscribe, a copy the game left behind shows up as a local mod.
+- Whether the game keeps a copy's `disable.it` when it updates a Workshop mod has not been checked yet.
+- On some Linux desktops (XWayland), the game itself can crash at startup. This is a problem in the game; SuperDucky does not change the game to get around it.
 - macOS is not supported.
 - The title pack currently covers only a small sample of Workshop titles, so most mods show the name from `metadata.xml`.
 - Save gallery, NuGet market, BML import, launcher dependency check, capability approval and hot reload are not offered.
