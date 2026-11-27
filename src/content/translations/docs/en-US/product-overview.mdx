@@ -1,15 +1,134 @@
 ---
 title: SuperDucky Product Overview
-description: SuperDucky is a desktop mod manager for PC games. Add, enable and disable mods, drag to set the load order where a game has one, and save and switch setups as profiles. It supports Escape from Duckov, Probably Stolen and The Binding of Isaac.
+description: SuperDucky is a desktop mod manager for PC games. Keep dozens of mods under control, save every version of each mod, drag to set and preview the load order, switch whole setups with profiles, and manage Steam Workshop subscriptions and dependencies. It supports Escape from Duckov, Probably Stolen and The Binding of Isaac.
 ---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-SuperDucky is a desktop mod manager for PC games. It adds, removes, enables and disables mods, sets their load order in games that have one, and saves each mod setup as a **profile** you can switch between.
+SuperDucky (中文名“超级丫丫”) is a desktop mod manager for PC games. Installing a mod is easy; the trouble starts once you have dozens: you cannot find them, the order is wrong, an update breaks something, and switching to another playstyle risks a mess. SuperDucky puts all of that in one place.
 
-It is released through the Microsoft Store and GitHub Releases and runs on Windows 10 / 11. Each game has its own mods, profiles and settings.
+## Problems you may be running into
 
-## Supported games
+1. [With dozens of mods installed, how do I keep order?](#with-dozens-of-mods-installed-how-do-i-keep-order)
+2. [An update broke a mod. Can I see what changed and get the old version back?](#an-update-broke-a-mod-can-i-see-what-changed-and-get-the-old-version-back)
+3. [How is the load order decided, and can I check it before launching?](#how-is-the-load-order-decided-and-can-i-check-it-before-launching)
+4. [How do I switch a whole set of mods in one click for a different playstyle?](#how-do-i-switch-a-whole-set-of-mods-in-one-click-for-a-different-playstyle)
+5. [How do I subscribe to, unsubscribe from and update Workshop mods?](#how-do-i-subscribe-to-unsubscribe-from-and-update-workshop-mods)
+6. [A dependency is missing or in the wrong order. How do I find and fix it?](#a-dependency-is-missing-or-in-the-wrong-order-how-do-i-find-and-fix-it)
+7. [A mod is not working. Where exactly does it get stuck?](#a-mod-is-not-working-where-exactly-does-it-get-stuck)
+
+The first four are the core of SuperDucky: mod management, the Mod Local Repository, mod ordering and profile management. The last three are supporting features around them. The answers follow one by one.
+
+## With dozens of mods installed, how do I keep order?
+
+**Answer: manage everything on the Mod Management page, and gather mods into groups.**
+
+![SuperDucky Mod Management page with the group list on the left and enabled mod cards on the right](../img/screenshots/user-guide/duckov-mods-en-us/original.avif)
+
+- **One list for every source**: SuperDucky scans the local Mod folder and the Steam Workshop folder, and every mod appears in the same list with its source on the card. Newly scanned mods land in "Ungrouped" first, so they never slip into your setup unnoticed.
+- **Find things quickly**: filter by source (local / Workshop) and status (enabled / disabled), search by name, author or description (press `/` to focus the search box), and pick the default, compact or single-line view.
+- **Act on a batch at once**: after filtering, "Enable filtered" or "Disable filtered" affects only the mods you can see; select several cards to enable, disable, move to a group, or send to the start or end of a group together.
+- **Organise with groups**: "Combat", "Interface", "Shop helpers" and so on. Each group has its own name and colour, and creating, editing, deleting and reordering all happen on the group list. Deleting a group that holds mods asks where they should go, so nothing is lost.
+- **Changes stay under control**: after a move or an enable the page says "You have unsaved changes", and nothing takes effect until you click "Save changes".
+
+See [Mods and groups](/en-US/user-guide/mods-and-groups).
+
+## An update broke a mod. Can I see what changed and get the old version back?
+
+**Answer: turn on the Mod Local Repository. SuperDucky keeps every version each mod has had.**
+
+![Mod Local Repository page: archived mods, one card per mod](../img/screenshots/user-guide/mod-local-repository-list-en-us/original.avif)
+
+- **Automatic archiving**: sources are the Steam Workshop and the game's local `Mods` folder. SuperDucky compares mods at an interval (60 minutes by default, 5 to 1440 minutes allowed) and stores any new version, and "Check now" runs a comparison whenever you want.
+- **Versions are told apart by content**: each version is identified by a content fingerprint, so repeated comparisons of the same content add nothing; the time shown is when SuperDucky archived it, not when the author published it.
+- **What an update changed is easy to see**: every mod has its own version history, and current content that is not archived yet is marked as not archived.
+- **Stored versions are never deleted for age**: no schedule cleans them up and there is no delete-a-version action; when the mod folder returns to a version that was already stored, that copy is reused instead of stored again.
+- **Your original files stay untouched**: SuperDucky only copies from the Steam folder and the local `Mods` folder and never modifies them.
+- **Off by default, turned on per game**: while it is off, nothing is archived and no scheduled comparison runs.
+
+It only saves and shows. The only thing that puts a stored version back into the mod folder is a solidified profile, and only at launch (see the profile section below). See [Mod Local Repository](/en-US/user-guide/mod-local-repository).
+
+## How is the load order decided, and can I check it before launching?
+
+**Answer: drag to reorder, then use "Preview results" to see the merged final order.**
+
+![Preview results: all groups merged, with cards coloured by group](../img/screenshots/user-guide/duckov-load-order-en-us/original.avif)
+
+- **The rule is simple**: all groups are unrolled from top to bottom, and each group is laid out from front to back. That single total order is the load order. Earlier loads first, and only enabled mods take part.
+- **Two levels of adjustment**: drag a group to move all of its mods together; drag a card inside a group to affect only that group. The card menu also offers move up, move down, move to the start or end of the group, and send to a group.
+- **Confirm before launch**: "Preview results" merges all groups into one list, and every card carries the colour of its group. You can see whether the order is right before the game starts.
+- **Cross-check with the log**: the order in which mods actually load in the game can be compared with the preview.
+
+The Binding of Isaac has no load order, only enabled and disabled. See [Load order and profiles](/en-US/user-guide/load-order-and-profiles).
+
+## How do I switch a whole set of mods in one click for a different playstyle?
+
+**Answer: save each playstyle as a profile, switch whenever you like, and undo if needed.**
+
+![The Suite guide "What is a suite" tab: a suite records the enabled mods and their order, so changing suite changes the whole list](../img/screenshots/user-guide/suite-guide-en-us/original.avif)
+
+- **What a profile is**: a complete mod setup: which groups exist, whether each mod is enabled, and in what order. "Daily" and "Testing" can be two independent profiles, and switching only replaces that list as a whole; the mod files themselves do not move.
+- **Full management**: create (blank, or copied from an existing profile), rename, switch and delete. At least one profile must remain, and the one in use cannot be deleted. For Escape from Duckov you can also import from a BML `ModGroupConfig.json`.
+- **Every save leaves a history**: "Restore history" shows each version's time, group count, mod count and enabled count. Restoring only loads it into the editor first; check it, then save. If you do not like it, do not save, and the saved setup is not changed.
+- **Persistence**: when on, SuperDucky compares the mods in the profile before every launch and restores them to the recorded versions; if one cannot be restored the launch is refused and you choose "Repair and launch", "Launch anyway" or "Cancel". It relies on the Mod Local Repository.
+- **Save binding**: a profile can record the save name it belongs to, which helps tell them apart. It is only a record; SuperDucky does not copy, switch or rewrite saves.
+- **Profiles of different games are independent.**
+
+See [Load order and profiles](/en-US/user-guide/load-order-and-profiles).
+
+## How do I subscribe to, unsubscribe from and update Workshop mods?
+
+**Answer: manage the Steam Workshop directly in the Mod Marketplace, without switching back and forth to a browser.**
+
+- **Browse and search**: popular mods are shown by default; search by keyword, tag or author, sort by relevance, last updated, top rated, most subscribed, most downloaded and more, and switch between the large, normal and minimal views.
+- **Subscribe and unsubscribe**: subscribe in one click and Steam downloads the mod. A subscribed mod shows "Subscribed", and "Update available" appears when there is a new version, which one click updates. Click "Unsubscribe" when you no longer need it. After subscribing, click "Refresh" in Mod Management and the mod appears in "Ungrouped".
+- **Subscription safety**: set a minimum subscriber count (mods below it are hidden from lists, and the ones you already subscribe to always stay visible), block specific authors, and confirm the subscriber count and the author's history before subscribing.
+- **Automatic updates**: SuperDucky detects updates for subscribed mods and starts the download, and "Update history" keeps the record.
+- **Works with launching**: when you click "Launch game", SuperDucky first syncs the mod setup, then hands the game to Steam, and briefly gives up its own Steam connection so Steam does not report "game already running".
+- **Got a ZIP archive instead?** Install local mods in bulk from a folder. The mod identity is checked first, and results are installed, replaced, skipped or failed.
+
+See [Mod marketplace](/en-US/user-guide/marketplace) and [Launching the game](/en-US/user-guide/launching-the-game).
+
+## A dependency is missing or in the wrong order. How do I find and fix it?
+
+**Answer: the dependency health check at the top of the page watches for you and offers fix buttons in place.**
+
+- **Five checks**: whether a dependency is installed, whether it is enabled, whether it sits before the mods that need it, whether there is a dependency cycle, and whether several mods with the same name are enabled.
+- **The result at a glance**: when all is well it shows "Mod configuration is healthy"; with problems, the banner shows the number of errors and warnings.
+- **Fix in place**: in the report you can "Enable" a missing or disabled dependency directly or subscribe to it on Steam; use "Locate dependency" and "Locate mod" to find the mods in the list; and "Ignore" a problem you know is harmless, with the option to restore it later.
+- **The marketplace helps too**: the dependency panel in a mod's details lists each dependency as installed, missing or unknown, and subscribes to all missing ones at once.
+
+Fix errors before saving; warnings can be saved as they are. See [Mods and groups](/en-US/user-guide/mods-and-groups#dependency-health-check).
+
+## A mod is not working. Where exactly does it get stuck?
+
+**Answer: open the Log System and read the game log live, without hunting for the log file yourself.**
+
+![Log System page monitoring the Escape from Duckov log, listing the load messages of each mod](../img/screenshots/user-guide/game-log-en-us/original.avif)
+
+- Click "Start monitoring" and new lines are appended live; search for keywords, turn on auto-scroll, or open the log file in an editor or its folder.
+- Search for the mod name: if no line matches, the game usually never found the mod; search for `error` or `exception` and the error is usually right next to that mod's load record.
+- The three games keep their logs in different places, and SuperDucky finds them itself.
+
+See [Game log](/en-US/user-guide/logs).
+
+## Summary
+
+| What you want to do | Feature | In one line |
+|---------------------|---------|-------------|
+| Keep many mods under control | Mod management and groups | One list, filter and search, batch actions, groups |
+| Review updates, keep old versions | Mod Local Repository | Every version saved by content fingerprint, never deleted for age |
+| Get the load order right | Drag ordering and Preview results | See the merged final order before launch |
+| Switch between several setups | Profile management | Copy, switch, history restore, persistence, save binding |
+| Manage the Steam Workshop | Mod marketplace | Subscribe, unsubscribe, update, subscription safety, automatic updates |
+| Fix dependency problems | Dependency health check | Five checks, enable or subscribe in place, locate and ignore |
+| Find out why a mod did not load | Log System | Live monitoring, search, auto-scroll |
+
+There are also the full-screen launch progress page (where you can abort a launch), the first-launch agreements and quick check, ten interface languages and light and dark themes. These are nice extras and do not change the core use above.
+
+### Supported games
+
+Each game has its own mods, profiles and settings. SuperDucky is released through the Microsoft Store and GitHub Releases and runs on Windows 10 / 11.
 
 | Game | Steam app ID | Mod manifest | Notes |
 |------|--------------|--------------|-------|
@@ -18,28 +137,6 @@ It is released through the Microsoft Store and GitHub Releases and runs on Windo
 | The Binding of Isaac (以撒的结合) | 250900 | `metadata.xml` | No load order and no capability approval; no save gallery or NuGet market; a mod is enabled or disabled through its `disable.it` file |
 
 The differences are listed in [Probably Stolen](/en-US/user-guide/probably-stolen) and [The Binding of Isaac](/en-US/user-guide/isaac).
-
-## Main features
-
-![SuperDucky Mod Management page with the group list on the left and enabled mod cards on the right](../img/screenshots/user-guide/duckov-mods-en-us/original.avif)
-
-- **Mod management**: scan local and Steam Workshop mods, enable or disable them in one click, and filter by source or status or search. See [Mods and groups](/en-US/user-guide/mods-and-groups).
-- **Groups and load order**: put mods in groups and drag to reorder them; "Preview results" shows the final order of all groups merged before you launch the game. See [Load order and profiles](/en-US/user-guide/load-order-and-profiles).
-- **Profiles and the suite guide**: save the current groups and enable state as a profile and switch between playstyles. Every save leaves a history version you can restore. The Suite guide in Profile Management explains what a suite is, what persistence does and how a save is bound. See [Load order and profiles](/en-US/user-guide/load-order-and-profiles).
-- **Mod Local Repository**: keeps every version each mod has had, so you can see what an update changed. It is off by default and turned on per game in Settings, and stored versions are never deleted for their age. See [Mod Local Repository](/en-US/user-guide/mod-local-repository).
-- **Full-screen launch page**: launching shows four phases (check the suite, check the mod files, write the save, hand off to Steam), and you can abort the launch at a safe point. See [Launching the game](/en-US/user-guide/launching-the-game).
-- **First-launch agreements and quick check**: read and accept the agreements, including the risk disclosure, then pass a ten-question quick check. See [First launch](/en-US/quick-start/first-launch).
-- **Scan progress**: a scan shows its four real steps and the time elapsed. See [Mods and groups](/en-US/user-guide/mods-and-groups).
-- **Dependency checks**: SuperDucky checks that dependencies exist, are enabled, load in the right order and contain no cycles, and reports problems at the top of the page.
-- **Mod marketplace**: browse, subscribe to and unsubscribe from Steam Workshop mods, or install ZIP archives from a folder in one go. See [Mod marketplace](/en-US/user-guide/marketplace).
-- **Log viewer**: read the game log live to find out why a mod did not load. See [Game log](/en-US/user-guide/logs).
-- **Ten interface languages**, with light and dark themes. See [Settings](/en-US/user-guide/settings#display-language).
-
-![SuperDucky Mod Management page in the dark theme](../img/screenshots/product/dark-theme-en-us/original.avif)
-
-![Mod Local Repository page: archived mods, one card per mod](../img/screenshots/user-guide/mod-local-repository-list-en-us/original.avif)
-
-![Full-screen Game launch progress page: four phases in order, with the Abort launch button below](../img/screenshots/user-guide/launch-stage-en-us/original.avif)
 
 :::note
 Screenshots in this documentation use fictional demo mods (author `DuckModder`). They do not show anyone's real mod library.
