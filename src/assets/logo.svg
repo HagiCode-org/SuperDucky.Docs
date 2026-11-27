@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<title>SuperDucky</title>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F8FF"/><stop offset="1" stop-color="#C9DCFF"/></linearGradient>
+<linearGradient id="gear" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E3A6E"/><stop offset="1" stop-color="#0F1B38"/></linearGradient>
+<linearGradient id="duck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD84D"/><stop offset="1" stop-color="#FFB817"/></linearGradient>
+</defs>
+<rect width="512" height="512" rx="112" fill="url(#bg)"/>
+<g fill="url(#gear)">
+<circle cx="256" cy="256" r="150"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(0 256 256)"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(45 256 256)"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(90 256 256)"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(135 256 256)"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(180 256 256)"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(225 256 256)"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(270 256 256)"/>
+<rect x="224" y="50" width="64" height="80" rx="14" transform="rotate(315 256 256)"/>
+</g>
+<circle cx="256" cy="256" r="118" fill="none" stroke="#3E63A8" stroke-width="6" opacity=".7"/>
+<circle cx="256" cy="256" r="108" fill="url(#duck)"/>
+<circle cx="218" cy="236" r="15" fill="#0F1B38"/><circle cx="294" cy="236" r="15" fill="#0F1B38"/>
+<circle cx="223" cy="230" r="5" fill="#FFF"/><circle cx="299" cy="230" r="5" fill="#FFF"/>
+<circle cx="182" cy="274" r="17" fill="#FFF" opacity=".85"/><circle cx="330" cy="274" r="17" fill="#FFF" opacity=".85"/>
+<ellipse cx="256" cy="284" rx="48" ry="31" fill="#FF8A1F"/>
+<ellipse cx="256" cy="274" rx="30" ry="9" fill="#FFB067" opacity=".7"/>
+<rect x="231" y="287" width="50" height="6" rx="3" fill="#D9480F"/>
+</svg>

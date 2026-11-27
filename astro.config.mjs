@@ -126,6 +126,9 @@ export default defineConfig({
       title: DEFAULT_DOCS_UI.site.title,
       description: DEFAULT_DOCS_UI.site.description,
       favicon: "/favicon.ico",
+      // The app logo (same artwork as public/logo.svg, from repos/DML). Without this,
+      // hagilight-starlight falls back to the HagiCode logo in the header.
+      logo: { src: "./src/assets/logo.svg", alt: "SuperDucky" },
       // i18n configuration - Use the desktop-aligned locale catalog.
       // Keep Chinese on / and English on /en-US/.
       defaultLocale: "root",
