@@ -5,9 +5,9 @@ description: SuperDucky is a desktop mod manager for PC games. Keep dozens of mo
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-SuperDucky (中文名“超级丫丫”) is a desktop mod manager for PC games. Installing a mod is easy; the trouble starts once you have dozens: you cannot find them, the order is wrong, an update breaks something, and switching to another playstyle risks a mess. SuperDucky puts all of that in one place.
+SuperDucky (中文名“超级丫丫”) is a desktop mod manager for PC games. One or two mods are easy to install by hand. With dozens, they become hard to find, the load order goes wrong, an update breaks something, and switching to another playstyle risks a mess. SuperDucky puts all of that in one place.
 
-## Problems you may be running into
+## Questions this page answers
 
 1. [With dozens of mods installed, how do I keep order?](#with-dozens-of-mods-installed-how-do-i-keep-order)
 2. [An update broke a mod. Can I see what changed and get the old version back?](#an-update-broke-a-mod-can-i-see-what-changed-and-get-the-old-version-back)
@@ -17,7 +17,7 @@ SuperDucky (中文名“超级丫丫”) is a desktop mod manager for PC games. 
 6. [A dependency is missing or in the wrong order. How do I find and fix it?](#a-dependency-is-missing-or-in-the-wrong-order-how-do-i-find-and-fix-it)
 7. [A mod is not working. Where exactly does it get stuck?](#a-mod-is-not-working-where-exactly-does-it-get-stuck)
 
-The first four are the core of SuperDucky: mod management, the Mod Local Repository, mod ordering and profile management. The last three are supporting features around them. The answers follow one by one.
+The first four are the core of SuperDucky: mod management, the Mod Local Repository, mod ordering and profile management. The last three are supporting features around them.
 
 ## With dozens of mods installed, how do I keep order?
 
@@ -28,7 +28,7 @@ The first four are the core of SuperDucky: mod management, the Mod Local Reposit
 - **One list for every source**: SuperDucky scans the local Mod folder and the Steam Workshop folder, and every mod appears in the same list with its source on the card. Newly scanned mods land in "Ungrouped" first, so they never slip into your setup unnoticed.
 - **Find things quickly**: filter by source (local / Workshop) and status (enabled / disabled), search by name, author or description (press `/` to focus the search box), and pick the default, compact or single-line view.
 - **Act on a batch at once**: after filtering, "Enable filtered" or "Disable filtered" affects only the mods you can see; select several cards to enable, disable, move to a group, or send to the start or end of a group together.
-- **Organise with groups**: "Combat", "Interface", "Shop helpers" and so on. Each group has its own name and colour, and creating, editing, deleting and reordering all happen on the group list. Deleting a group that holds mods asks where they should go, so nothing is lost.
+- **Organize with groups**: "Combat", "Interface", "Shop helpers" and so on. Each group has its own name and color, and creating, editing, deleting and reordering all happen on the group list. Deleting a group that holds mods asks where they should go, so nothing is lost.
 - **Changes stay under control**: after a move or an enable the page says "You have unsaved changes", and nothing takes effect until you click "Save changes".
 
 See [Mods and groups](/en-US/user-guide/mods-and-groups).
@@ -52,11 +52,11 @@ It only saves and shows. The only thing that puts a stored version back into the
 
 **Answer: drag to reorder, then use "Preview results" to see the merged final order.**
 
-![Preview results: all groups merged, with cards coloured by group](../img/screenshots/user-guide/duckov-load-order-en-us/original.avif)
+![Preview results: all groups merged, with cards colored by group](../img/screenshots/user-guide/duckov-load-order-en-us/original.avif)
 
 - **The rule is simple**: all groups are unrolled from top to bottom, and each group is laid out from front to back. That single total order is the load order. Earlier loads first, and only enabled mods take part.
 - **Two levels of adjustment**: drag a group to move all of its mods together; drag a card inside a group to affect only that group. The card menu also offers move up, move down, move to the start or end of the group, and send to a group.
-- **Confirm before launch**: "Preview results" merges all groups into one list, and every card carries the colour of its group. You can see whether the order is right before the game starts.
+- **Confirm before launch**: "Preview results" merges all groups into one list, and every card carries the color of its group. You can see whether the order is right before the game starts.
 - **Cross-check with the log**: the order in which mods actually load in the game can be compared with the preview.
 
 The Binding of Isaac has no load order, only enabled and disabled. See [Load order and profiles](/en-US/user-guide/load-order-and-profiles).
@@ -124,7 +124,7 @@ See [Game log](/en-US/user-guide/logs).
 | Fix dependency problems | Dependency health check | Five checks, enable or subscribe in place, locate and ignore |
 | Find out why a mod did not load | Log System | Live monitoring, search, auto-scroll |
 
-There are also the full-screen launch progress page (where you can abort a launch), the first-launch agreements and quick check, ten interface languages and light and dark themes. These are nice extras and do not change the core use above.
+There are also the full-screen launch progress page (where you can abort a launch), the first-launch agreements and quick check, ten interface languages and light and dark themes. The core use above does not depend on any of them.
 
 ### Supported games
 
