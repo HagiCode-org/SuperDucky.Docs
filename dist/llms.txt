@@ -1,0 +1,39 @@
+# SuperDucky Docs
+
+> SuperDucky 的产品文档、安装指南、版本更新说明与博客。
+
+## Overview
+
+- [常见问题](https://sd.hagicode.com/faq/): SuperDucky 使用中的常见问题:支持哪些游戏、模组没有生效怎么办、Steam 提示游戏正在运行、深空当铺的能力确认、在哪里反馈问题。
+- [下载与安装](https://sd.hagicode.com/installation/): 从 Microsoft Store 或 GitHub Releases 获取 SuperDucky(超级丫丫):获取方式、历史版本下载、系统要求、更新方式,以及安装后数据保存在哪里。
+- [SuperDucky 产品概览](https://sd.hagicode.com/product-overview/): SuperDucky(超级丫丫)是 PC 游戏的桌面模组管理器:管理大量模组、保存每个模组的历史版本、拖动排序并预览加载顺序、用套件一键切换整套配置,并管好 Steam 创意工坊的订阅与依赖。支持逃离鸭科夫、深空当铺和以撒的结合。
+- [版本更新说明](https://sd.hagicode.com/release-notes/): 浏览已同步到文档站的 SuperDucky 版本更新说明。
+
+## User Guide
+
+- [界面总览](https://sd.hagicode.com/user-guide/): 认识 SuperDucky 的界面:左侧导航、当前游戏切换、主题,以及每个页面负责什么。
+- [以撒的结合](https://sd.hagicode.com/user-guide/isaac/): 用 SuperDucky 管理《以撒的结合》(The Binding of Isaac,Steam 250900)的模组:metadata.xml、启用与停用、没有加载顺序,以及模组历史、存档、日志和已知限制。
+- [启动游戏](https://sd.hagicode.com/user-guide/launching-the-game/): 点击启动游戏后,全屏的“游戏启动进度”页面显示哪些阶段,怎样中止一次正在进行的启动,以及启动前的模组检查做了什么。
+- [加载顺序与套件](https://sd.hagicode.com/user-guide/load-order-and-profiles/): 理解 SuperDucky 的模组加载顺序,用“预览结果”核对最终顺序,用套件保存和切换配置,并从历史记录还原。
+- [游戏日志](https://sd.hagicode.com/user-guide/logs/): 用 SuperDucky 的“日志系统”实时查看游戏日志,搜索、自动滚动、在编辑器中打开,判断模组有没有加载成功。
+- [模组市场](https://sd.hagicode.com/user-guide/marketplace/): 在 SuperDucky 里浏览、搜索、订阅 Steam 创意工坊的模组,检查依赖,并从文件夹中的 ZIP 压缩包安装本地模组。
+- [模组本地仓库](https://sd.hagicode.com/user-guide/mod-local-repository/): 开启模组本地仓库后,SuperDucky 为每个模组保存它出现过的每个版本。这里说明开关、立即检查、版本历史、已归档版本的复用,以及为什么已保存的版本不会因为时间而被删除。
+- [模组与分组](https://sd.hagicode.com/user-guide/mods-and-groups/): 在 SuperDucky 里扫描、筛选、启用模组,用分组组织模组,批量操作,并读懂依赖健康检查。
+- [深空当铺](https://sd.hagicode.com/user-guide/probably-stolen/): 用 SuperDucky 管理深空当铺(Probably Stolen)的模组:manifest.xml、能力声明与确认、存档备份,以及和逃离鸭科夫的区别。
+- [设置](https://sd.hagicode.com/user-guide/settings/): SuperDucky 的设置页面:基础配置、游戏选项与启动等待时间、安装向导、模组市场、调试工具、安全中心和存档图鉴。
+
+## Blog
+
+- [博客](https://sd.hagicode.com/blog/): SuperDucky 产品文档，包含安装指南、版本更新说明与博客文章，帮助你快速上手并了解最新变化。
+- [SuperDucky 文档站上线](https://sd.hagicode.com/blog/2026-11-22-welcome/): SuperDucky 文档站的基础结构已经就绪，这是第一篇占位文章，之后会被正式内容取代。
+- [标签](https://sd.hagicode.com/blog/tags/): SuperDucky 产品文档，包含安装指南、版本更新说明与博客文章，帮助你快速上手并了解最新变化。
+
+## Faq
+
+- [遥测与隐私](https://sd.hagicode.com/faq/data-and-privacy/): SuperDucky 收集哪些匿名遥测数据、不收集什么、如何在设置里查看或关闭,以及应用数据保存在本机的哪些位置。
+- [模组没有加载怎么办](https://sd.hagicode.com/faq/mod-not-loading/): 模组在 SuperDucky 里已启用但游戏里没有生效时的排查步骤:保存、启动方式、路径、依赖、冲突和日志。
+
+## Quick Start
+
+- [首次启动](https://sd.hagicode.com/quick-start/first-launch/): 第一次打开 SuperDucky 时,依次选择显示语言、同意协议(包括风险披露)、通过快速检查,再选择游戏、自动探测或手动设置模组文件夹路径,完成初始化。
+- [管理第一批模组](https://sd.hagicode.com/quick-start/first-mods/): 用 SuperDucky 分组、启用模组,预览最终加载顺序,保存并启动游戏的完整流程。
